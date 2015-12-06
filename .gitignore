@@ -1,0 +1,5 @@
+.DS_STORE
+.idea
+
+.meteor/local
+.meteor/meteorite
