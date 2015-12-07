@@ -5,14 +5,15 @@ Header = React.createClass({
                 <div className="inner-bar">
                     <div className="logo">logo</div>
                     <div className="toolbar">
-                        <div className="search-button">
-                            <i className="fa fa-search fa-2x"></i>
-                        </div>
-                        <div className="user-button">
-                            <i className="fa fa-user fa-2x"></i>
+                        <div className="search-bar">
+                            <input type="text" placeholder="Rechercher un post, un mur, une ville ..."/>
+                            <div><i className="fa fa-search fa-1x"></i></div>
                         </div>
                         <div className="add-post-button">
-                            <i className="fa fa-edit fa-2x"></i>
+                            <i className="fa fa-plus fa-3x"></i><label> Post</label>
+                        </div>
+                        <div className="user-icon">
+                            <img src="img/unknown_user.png" alt="Mon Compte" />
                         </div>
                     </div>
                 </div>
