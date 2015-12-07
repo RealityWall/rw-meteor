@@ -37,33 +37,38 @@ SinglePostComponent = React.createClass({
     render() {
         var self = this;
         return (
-            <div>
+            <div className="singlePostPage">
                 <h1>Single</h1>
-                <div>
+                <div className="postDescription">
                     <div>
-                        <div>{self.data.post.title}</div>
-                        <div>{self.data.post.body}</div>
-                        <div>upvotes : {self.data.post.upvotes}</div>
-                        <div>downvotes : {self.data.post.downvotes}</div>
+                        
+                        <div className="postVotes">
+                            <div className="postUpVote"><i className="fa fa-arrow-up"></i> {self.data.post.upvotes}</div>
+                            <div className="postDownVote"><i className="fa fa-arrow-down"></i> {self.data.post.downvotes}</div>
+                        </div>
+                        <div className="postTitle">{self.data.post.title}</div>
+                        <div className="postBody">{self.data.post.body}</div>
                         <div>comments : { self.data.post.commentCount }</div>
                     </div>
                 </div>
-                <div>
+                <div className="addCommentForm">
                     <form onSubmit={ self._submitComment }>
-                        <input type="text" ref="comment" required/>
-                        <input type="submit" value="SUBMIT COMMENT"/>
+                        <span>Ajouter un commentaire : </span>
+                        <textarea type="text" ref="comment" required></textarea>
+                        <input type="submit" value="SUBMIT"/>
                     </form>
                 </div>
-                <div>
+                <div className="hbar"></div>
+                <div className="comments">
                     {
                         self.data.comments.map( (comment, index) => {
                             return (
-                                <div key={index}>
+                                <div key={index} className="comment">
                                     <div> comment:  {comment.body} </div>
                                     <div> upvotes:  {comment.upvotes} </div>
                                     <div> downvotes:  {comment.downvotes} </div>
-                                    <button onClick={ () => { self._upVoteComment(comment._id) } }>upVote</button>
-                                    <button onClick={ () => { self._downVoteComment(comment._id) } }>downVote</button>
+                                    <div className="commentUpVote" onClick={ () => { self._upVoteComment(comment._id) } }>upVote</div>
+                                    <div className="commentDownVote" onClick={ () => { self._downVoteComment(comment._id) } }>downVote</div>
                                 </div>
                             )
                         })
