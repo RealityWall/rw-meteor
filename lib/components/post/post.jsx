@@ -66,7 +66,7 @@ PostComponent = React.createClass({
                     }
                 </div>
                 {
-                    self.data.posts.length % 10 != 0
+                    self.data.posts.length == self.data.numberOfPosts
                     ? null :
                     <button onClick={ self._increaseLimit }>increase limit {self.state.limit }</button>
                 }
