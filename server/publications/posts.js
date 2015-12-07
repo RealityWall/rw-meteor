@@ -14,9 +14,9 @@ Meteor.methods({
         let userId = this.userId;
         if (userId) {
             cancelDownvote(Posts, postId, userId);
-            userCancelDownvotePost(postId, userId);
+            userCancelDownvote('Posts', postId, userId);
             if (upvote(Posts, postId, userId) > 0) {
-                userUpvotePost(postId, userId);
+                userUpvote('Posts', postId, userId);
             }
         }
         else {
@@ -27,9 +27,9 @@ Meteor.methods({
         let userId = this.userId;
         if (userId) {
             cancelUpvote(Posts, postId, userId);
-            userCancelUpvotePost(postId, userId);
+            userCancelUpvote('Posts', postId, userId);
             if (downvote(Posts, postId, userId)) {
-                userDownvotePost(postId, userId);
+                userDownvote('Posts', postId, userId);
             }
         } else {
             throw new Meteor.Error(403, "must be logged in");
