@@ -1,5 +1,6 @@
 HomeComponent = React.createClass({
     render() {
+        console.log(Meteor.user());
         return (
             <div>
                 <h1>home</h1>

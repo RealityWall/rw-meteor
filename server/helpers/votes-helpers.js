@@ -1,3 +1,6 @@
+//////////////////////////////////////////
+///////////  HELPERS METHODS  ////////////
+//////////////////////////////////////////
 upvote = (collection, itemId, userId) => {
     return collection.update({_id: itemId, upvoters: { $ne: userId }}, {
         $addToSet: {upvoters: userId},

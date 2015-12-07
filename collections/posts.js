@@ -1,4 +1,5 @@
-var PostSchema = new SimpleSchema({
+// Schema for the post system
+let PostSchema = new SimpleSchema({
     title: {
         type: String,
         max: 200
@@ -38,6 +39,14 @@ var PostSchema = new SimpleSchema({
 Posts = new Meteor.Collection("posts");
 Posts.attachSchema(PostSchema);
 
+// ACL
+Posts.allow({
+    insert(userId, doc) {
+        return userId == doc.userId;
+    }
+});
+
+// add before hook
 Posts.before.insert( (userId, doc) => {
     doc.userId = userId;
     doc.upvoters = [];
@@ -48,38 +57,9 @@ Posts.before.insert( (userId, doc) => {
     doc.commenters = [];
 });
 
-Posts.allow({
-    insert(userId, doc) {
-        return userId == doc.userId;
-    }
-});
-
-
-//////////////////////////////////////////
-///////////  EXPORTED METHODS  ///////////
-//////////////////////////////////////////
-Meteor.methods({
-    upVotePost(postId) {
-
-        let userId = this.userId;
-
-        if (userId) {
-            cancelDownvote(Posts, postId, userId);
-            upvote(Posts, postId, userId);
-        } else {
-            throw new Meteor.Error(403, "must be logged in");
-        }
-    },
-
-    downVotePost(postId) {
-
-        let userId = this.userId;
-
-        if (userId) {
-            cancelUpvote(Posts, postId, userId);
-            downvote(Posts, postId, userId);
-        } else {
-            throw new Meteor.Error(403, "must be logged in");
-        }
-    }
+// add after hook
+Posts.after.insert( (userId) => {
+    Meteor.users.update({_id: userId}, {
+        $inc: {postCount: 1}
+    })
 });
