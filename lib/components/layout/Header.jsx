@@ -13,7 +13,7 @@ Header = React.createClass({
                             <i className="fa fa-plus fa-3x"></i><label> Post</label>
                         </div>
                         <div className="user-icon">
-                            <img src="img/unknown_user.png" alt="Mon Compte" />
+                            <img src="/img/unknown_user.png" alt="Mon Compte" />
                         </div>
                     </div>
                 </div>
