@@ -4,12 +4,12 @@ PostComponent = React.createClass({
 
     getInitialState() {
         return {
-            limit: 1
+            limit: 10
         }
     },
 
     _increaseLimit() {
-        this.setState({limit: this.state.limit + 1});
+        this.setState({limit: this.state.limit + 10});
     },
 
     getMeteorData() {
@@ -21,10 +21,7 @@ PostComponent = React.createClass({
 
     _submitPost(e) {
         e.preventDefault();
-        Posts.insert({
-           title: this.refs.title.value,
-           body: this.refs.body.value
-        });
+        Meteor.call('insertPost', this.refs.title.value, this.refs.body.value);
     },
 
     _upVote(postId) {
@@ -68,7 +65,12 @@ PostComponent = React.createClass({
                         })
                     }
                 </div>
-                <button onClick={ self._increaseLimit }>increase limit {self.state.limit }</button>
+                {
+                    self.data.posts.length % 10 != 0
+                    ? null :
+                    <button onClick={ self._increaseLimit }>increase limit {self.state.limit }</button>
+                }
+
                 <a href="../">back</a>
             </div>
         )

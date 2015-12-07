@@ -23,15 +23,16 @@ let userSchemaObject = {
         blackbox: true
     },
     postCount: {
-        type: Number
+        type: Number,
+        optional: true
     },
     commentCount: {
-        type: Number
+        type: Number,
+        optional: true,
     },
     roles: {
         type: [String]
     }
 };
-// TODO : add roles in an array
 
 Meteor.users.attachSchema(userSchemaObject);

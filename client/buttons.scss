@@ -1,0 +1,32 @@
+$grey: rgb(231, 228, 224);
+$darkgrey: rgb(74, 74, 74);
+$lightgrey: rgb(247, 247, 247);
+$primary: #db4c3f;
+
+.btn {
+  display:inline-block;
+  border-radius: 3px;
+  padding: 10px 40px;
+  font-size:15px;
+  cursor:pointer;
+
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+}
+
+.btn.transparent {
+  color: $lightgrey;
+  border: 2px solid;
+}
+
+.btn.transparent:hover {
+  color: $grey;
+}
+
+.btn.plain {
+  color: $lightgrey;
+  background-color: $primary;
+  padding: 12px 40px;
+  box-shadow: inset 0px -4px 0px $grey;
+}

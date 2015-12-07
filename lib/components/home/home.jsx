@@ -1,10 +1,10 @@
 HomeComponent = React.createClass({
     render() {
         return (
-            <div>
+            <LayoutComponent>
                 <h1>home</h1>
-                <a href="./posts">view posts</a>
-            </div>
+                <a href="./posts" className="btn plain">view posts</a>
+            </LayoutComponent>
         )
     }
 });

@@ -39,13 +39,6 @@ let PostSchema = new SimpleSchema({
 Posts = new Meteor.Collection("posts");
 Posts.attachSchema(PostSchema);
 
-// ACL
-Posts.allow({
-    insert(userId, doc) {
-        return userId == doc.userId;
-    }
-});
-
 // add before hook
 Posts.before.insert( (userId, doc) => {
     doc.userId = userId;

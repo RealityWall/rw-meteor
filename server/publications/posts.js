@@ -10,9 +10,21 @@ Meteor.publish('singlePost', (postId) => {
 ///////////  EXPORTED METHODS  ///////////
 //////////////////////////////////////////
 Meteor.methods({
+    insertPost(title, body) {
+        let userId = this.userId;
+        if (userId && isUserById(userId)) {
+            Posts.insert({
+                title: title,
+                body: body,
+                userId: userId
+            });
+        } else {
+            throw new Meteor.Error(403, "must be logged in or user by id");
+        }
+    },
     upVotePost(postId) {
         let userId = this.userId;
-        if (userId) {
+        if (userId && isUserById(userId)) {
             cancelDownvote(Posts, postId, userId);
             userCancelDownvote('Posts', postId, userId);
             if (upvote(Posts, postId, userId) > 0) {
@@ -25,7 +37,7 @@ Meteor.methods({
     },
     downVotePost(postId) {
         let userId = this.userId;
-        if (userId) {
+        if (userId && isUserById(userId)) {
             cancelUpvote(Posts, postId, userId);
             userCancelUpvote('Posts', postId, userId);
             if (downvote(Posts, postId, userId)) {
