@@ -1,52 +1,94 @@
 $grey: rgb(231, 228, 224);
 $darkgrey: rgb(74, 74, 74);
 $lightgrey: rgb(247, 247, 247);
-$primary: #db4c3f;
+$mainColor: #db4c3f;
 
-$max-width: 950px;
+$max-width: 1080px;
+$headerHeight: 50px;
 
 #header {
-  height: 43px;
-  top: 0;
   position: fixed;
+  height: 50px;
+  top: 0;
   z-index: 200;
   width: 100%;
-  border-bottom: solid 1px #ca2100;
-  background-color: $primary;
-  -webkit-transition: height 200ms ease-in;
-  transition: height 200ms ease-in;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.15);
+  background-color: $mainColor;
 
   .inner-bar {
     max-width:$max-width;
-    margin:auto;
+    margin:0 auto;
+    height: $headerHeight;
+    line-height: $headerHeight;
 
     .logo {
       float:left;
       margin-left: 35px;
-      padding-top:12px;
+      width: calc(10% - 35px);
     }
 
+    
     .toolbar {
+      text-align: right;
       color: $lightgrey;
       float:right;
+      height: $headerHeight;
       margin-right: 35px;
+      width: calc(90% - 35px);
+
+      .search-bar{
+        height: 100%;
+        font-family: "Roboto"; 
+        font-weight: 500;
+        vertical-align: top;
+
+        input[type="text"], div{
+          height: 30px;
+          color: $darkgrey;
+        }
+
+        input[type="text"]{
+          border: none;
+          outline: 0;
+          padding-left: 8px;
+          border-top-left-radius: 3px;
+          border-bottom-left-radius: 3px;
+        }
+
+        div{
+          background-color: white;
+          height: 30px;
+          line-height: 30px;
+          display: inline-block;
+          padding: 0 8px;
+          border-top-right-radius: 3px;
+          border-bottom-right-radius: 3px;
+        }
+      }
+
 
       > * {
         display:inline-block;
-        margin-right:10px;
+      }
 
-        .fa {
+      .add-post-button {   
+        margin: 0 3%;
+        > * {
+          font-size: 20px;
+          font-weight: 500;
           cursor: pointer;
         }
       }
 
-      > *:last-child {
-        margin-right:0px;
-      }
+      .user-icon{
+        margin: 0;
+        vertical-align: top;
+        height: $headerHeight;
 
-      .add-post-button {
-        padding-top: 8px;
+        img{
+          margin-top: 10px;
+          height: 30px;
+          cursor: pointer;
+        }
       }
 
 
