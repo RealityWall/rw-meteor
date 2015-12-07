@@ -3,7 +3,7 @@ HomeComponent = React.createClass({
         return (
             <LayoutComponent>
                 <h1>home</h1>
-                <a href="./posts" className="btn plain">view posts</a>
+                <a href="/walls" className="btn plain">view posts</a>
             </LayoutComponent>
         )
     }

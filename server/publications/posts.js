@@ -1,23 +1,33 @@
-Meteor.publish('postsList', (limit) => {
-    return Posts.find({}, {limit: limit ? limit : 1});
-});
-
 Meteor.publish('singlePost', (postId) => {
     return Posts.find(postId);
 });
+
+Meteor.publish('postsByWallId', (wallId, limit) => {
+    return Posts.find({wallId: wallId}, {limit: limit ? limit : 10});
+})
+
+// Comments specific helper
+incrPostWall = (wallId, postId) => {
+    return Walls.update({_id: wallId}, {
+        $push: {posts: postId},
+        $inc: {postCount: 1}
+    });
+};
 
 //////////////////////////////////////////
 ///////////  EXPORTED METHODS  ///////////
 //////////////////////////////////////////
 Meteor.methods({
-    insertPost(title, body) {
+    insertPost(wallId, title, body) {
         let userId = this.userId;
         if (userId && isUserById(userId)) {
-            Posts.insert({
+            let postId = Posts.insert({
                 title: title,
                 body: body,
-                userId: userId
+                userId: userId,
+                wallId: wallId
             });
+            incrPostWall(wallId, postId);
         } else {
             throw new Meteor.Error(403, "must be logged in or user by id");
         }

@@ -7,6 +7,9 @@ let PostSchema = new SimpleSchema({
     body: {
         type:String
     },
+    wallId: {
+        type: String
+    },
     userId: {
         type: String
     },
