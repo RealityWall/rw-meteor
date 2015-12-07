@@ -27,6 +27,9 @@ let userSchemaObject = {
     },
     commentCount: {
         type: Number
+    },
+    roles: {
+        type: [String]
     }
 };
 // TODO : add roles in an array

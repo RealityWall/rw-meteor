@@ -8,7 +8,8 @@ Accounts.onCreateUser( (options, user) => {
             downvotedPosts: [],
             upvotedComments: [],
             downvotedComments: []
-        }
+        },
+        roles: ['user']
     };
     user = _.extend(user, userProperties);
     return user;
