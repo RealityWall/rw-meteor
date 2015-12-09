@@ -1,3 +1,6 @@
+$grey: rgb(231, 228, 224);
+$darkgrey: rgb(74, 74, 74);
+$lightgrey: rgb(247, 247, 247);
 $mainColor: #db4c3f;
 $mainColorAccent: #872F27;
 
@@ -9,7 +12,7 @@ $mainColorAccent: #872F27;
 .add-post-form{
 	border: solid green 1px;
 	margin-top: 20px;
-	display: none;
+	//display: none;
 }
 
 .posts-container{
@@ -17,6 +20,7 @@ $mainColorAccent: #872F27;
 		> *{
 			display: inline-block;
 			vertical-align: top;
+			margin: 10px 0;
 		}
 
 		.post-votes{
@@ -33,30 +37,50 @@ $mainColorAccent: #872F27;
 			}
 
 			.post-up-votes:hover, .post-down-votes:hover{
-				background-color: lightblue;
+				background-color: $mainColor;
 				color: white;
 			}
 		}
 
 		.post-description{
-			width: calc(100% - 52px);
+			padding-left: 15px;
+			width: calc(100% - 52px - 15px);
+			height: 80px;
 
 			> *{
 				display: inline-block;
 			}
 
 			.post-title{
-				width: calc(100% - 2px);
-				border: solid black 1px;
+				margin: 4px 0;
+			}
+
+			.post-title, .post-body{
+				width: calc(98%);
+				text-overflow: ellipsis;
+			    overflow: hidden;
+			    white-space: nowrap;
+			}
+
+			.post-title a, .post-title a:visited{
+				font-size: 20px;
+				font-weight: 300;
+				text-decoration: none;
+				color: inherit;
+			}
+
+			.post-comments-number{
+				margin: 5px 20px;
+			}
+
+			.post-from, .post-comments-number, .post-date{
+				font-size: 12px;
+				color: $mainColor !important;
 			}
 	
 			
 		}
 		
-
-		.post-body{
-			display: none;
-		}
 		.uselessButton{
 			display:none;
 		}

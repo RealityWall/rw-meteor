@@ -87,16 +87,16 @@ PostItemComponent = React.createClass({
         return (
             <div className="post-item">
                 <div className="post-votes">
-                    <div className="post-up-votes"><i className="fa fa-arrow-up"></i> {self.props.post.upvotes}</div>
-                    <div className="post-down-votes"><i className="fa fa-arrow-down"></i> {self.props.post.downvotes}</div>
+                    <div className="post-up-votes" onClick={ self._upVote }><i className="fa fa-arrow-up"></i> {self.props.post.upvotes}</div>
+                    <div className="post-down-votes" onClick={ self._downVote }><i className="fa fa-arrow-down"></i> {self.props.post.downvotes}</div>
                 </div>
                 <div className="post-description">
                     <div className="post-title"><a href={ '/posts/' + self.props.post._id }>{self.props.post.title}</a></div>
                     
                     <div className="post-body">{self.props.post.body}</div>                
-                    <div className="post-date">2 hours ago</div>
-                    <div className="post-comments-number">{self.props.post.commentCount} comments</div>
-                    <div className="post-from"><i className="fa fa-user"></i>Jean Michel</div>
+                    <div className="post-date"><i className="fa fa-clock-o"></i> 2 hours ago</div>
+                    <div className="post-comments-number"><i className="fa fa-comment-o"></i> {self.props.post.commentCount} comments</div>
+                    <div className="post-from"><i className="fa fa-user"></i> Jean Michel</div>
                 </div>
                 <div className="uselessButton">
                     <button onClick={ self._upVote }>upvote</button>
