@@ -25,10 +25,13 @@ Meteor.methods({
         if (userId && isUserById(userId)) {
             incrCommentPost(postId, userId);
             incrUserCommentCount(userId);
+            let user = Meteor.users.findOne(userId);
             Comments.insert({
                 body: body,
                 userId: userId,
-                postId: postId
+                postId: postId,
+                author: user.firstname + ' ' + user.lastname,
+                createdAt: new Date()
             });
         } else {
             throw new Meteor.Error(403, "must be logged in");

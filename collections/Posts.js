@@ -13,6 +13,12 @@ let PostSchema = new SimpleSchema({
     userId: {
         type: String
     },
+    author: {
+        type: String
+    },
+    createdAt: {
+        type: Date
+    },
     commentCount: {
         type: Number,
         optional: true
