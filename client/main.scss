@@ -5,6 +5,7 @@ $lightgrey: rgb(247, 247, 247);
 $mainColor: #db4c3f;
 $mainColorAccent: #872F27;
 
+$max-width: 1080px;
 
 h1 {
   color:red;
@@ -21,15 +22,16 @@ body{
 }
 
 
-.body, .body-wrapper, .footer{
-	width: 100%;
+.body-wrapper, .footer{
+	width: 94%;
+	margin: 0 3%;
 }
 
 .body{
+	width: 100%;
 	position: absolute;
 	height: calc(100vh - 50px);	
 	top: 50px;
-	
 }
 
 

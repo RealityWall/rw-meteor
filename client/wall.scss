@@ -1,0 +1,65 @@
+$mainColor: #db4c3f;
+$mainColorAccent: #872F27;
+
+.wall-info{
+	position: relative;
+	border: solid red 1px;
+}
+
+.add-post-form{
+	border: solid green 1px;
+	margin-top: 20px;
+	display: none;
+}
+
+.posts-container{
+	.post-item{
+		> *{
+			display: inline-block;
+			vertical-align: top;
+		}
+
+		.post-votes{
+			width: 50px;
+			height: 80px;
+			border: solid $mainColor 1px;
+			
+			.post-up-votes, .post-down-votes{
+				width: 100%;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				cursor: pointer;
+			}
+
+			.post-up-votes:hover, .post-down-votes:hover{
+				background-color: lightblue;
+				color: white;
+			}
+		}
+
+		.post-description{
+			width: calc(100% - 52px);
+
+			> *{
+				display: inline-block;
+			}
+
+			.post-title{
+				width: calc(100% - 2px);
+				border: solid black 1px;
+			}
+	
+			
+		}
+		
+
+		.post-body{
+			display: none;
+		}
+		.uselessButton{
+			display:none;
+		}
+		
+	}
+}

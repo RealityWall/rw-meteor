@@ -47,7 +47,7 @@ WallComponent = React.createClass({
                     }
 
                 </div>
-                <div>
+                <div className="add-post-form">
                     {/* TODO : build form component */}
                     <form onSubmit={ self._submitPost }>
                         <input type="text" ref="title" required/>
@@ -86,14 +86,19 @@ PostItemComponent = React.createClass({
         var self = this;
         return (
             <div className="post-item">
-                <div className="title"><a href={ '/posts/' + self.props.post._id }>{self.props.post.title}</a></div>
-                <div className="body">{self.props.post.body}</div>
-                <div>
-                    comments : {self.props.post.commentCount}<br/>
-                    upvotes : {self.props.post.upvotes}<br/>
-                    downvotes : {self.props.post.downvotes}<br/>
+                <div className="post-votes">
+                    <div className="post-up-votes"><i className="fa fa-arrow-up"></i> {self.props.post.upvotes}</div>
+                    <div className="post-down-votes"><i className="fa fa-arrow-down"></i> {self.props.post.downvotes}</div>
                 </div>
-                <div>
+                <div className="post-description">
+                    <div className="post-title"><a href={ '/posts/' + self.props.post._id }>{self.props.post.title}</a></div>
+                    
+                    <div className="post-body">{self.props.post.body}</div>                
+                    <div className="post-date">2 hours ago</div>
+                    <div className="post-comments-number">{self.props.post.commentCount} comments</div>
+                    <div className="post-from"><i className="fa fa-user"></i>Jean Michel</div>
+                </div>
+                <div className="uselessButton">
                     <button onClick={ self._upVote }>upvote</button>
                     <button onClick={ self._downVote }>downvote</button>
                 </div>

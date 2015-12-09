@@ -5,9 +5,6 @@ LayoutComponent = React.createClass({
                 <Header />
                 <div className="body-wrapper">
                     {this.props.children}
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-                    <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
                 </div>
                 <Footer />
             </div>
