@@ -4,18 +4,35 @@ $lightgrey: rgb(247, 247, 247);
 $mainColor: #db4c3f;
 $mainColorAccent: #872F27;
 
+
+.wall-info, .posts-container{
+	display: inline-block;
+}
+
+
 .wall-info{
 	position: relative;
 	border: solid red 1px;
+	width: 15%;
+	vertical-align: top;
+
+	.wall-address{
+		margin-top: 10px;
+		border: solid yellow 1px;
+	}
 }
 
 .add-post-form{
 	border: solid green 1px;
 	margin-top: 20px;
-	//display: none;
+	display: none;
 }
 
 .posts-container{
+	width: 83%;
+	margin-left: 1%;
+	border: solid blue 1px;
+
 	.post-item{
 		> *{
 			display: inline-block;

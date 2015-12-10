@@ -34,7 +34,7 @@ WallComponent = React.createClass({
                     {/* TODO : build wall info component */}
                     { self.data.wall ?
                         <div>
-                            <div className="wall-adrress">
+                            <div className="wall-address">
                                 {self.data.wall.address.address}<br/>
                                 {self.data.wall.address.postalCode}
                                 {self.data.wall.address.city}
