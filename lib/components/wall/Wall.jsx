@@ -56,6 +56,7 @@ WallComponent = React.createClass({
                     }
                 </div>
                 <div className="add-post-form">
+                    <div className="add-post-form-title">Ajouter un post</div>
                     {/* TODO : build form component */}
                     <form onSubmit={ self._submitPost }>
                         <input type="text" ref="title" required/>
