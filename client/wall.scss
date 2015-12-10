@@ -136,8 +136,11 @@ $mainColorAccent: #872F27;
 			.post-from, .post-comments-number, .post-date{
 				font-size: 12px;
 				color: $mainColor !important;
-			  	text-transform: capitalize;
 			}
+
+		  .post-from {
+			text-transform: capitalize;
+		  }
 
 			.post-from-lastname{
 				display: inline-block;

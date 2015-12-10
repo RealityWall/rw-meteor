@@ -3,7 +3,9 @@ Header = React.createClass({
         return (
             <div id="header">
                 <div className="inner-bar">
-                    <div className="logo">logo</div>
+                    <div className="logo">
+                        <a href="/"><img src="/img/rw-logo.png" alt="Reality Wall Logo"/></a>
+                    </div>
                     <div className="toolbar">
                         <div className="search-bar">
                             <input type="text" placeholder="Rechercher un post, un mur, une ville ..."/>
