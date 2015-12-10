@@ -18,7 +18,7 @@ $mainColorAccent: #872F27;
 	background-color: $mainColor;
 	color: white;
 	padding-bottom: 10px;
-	
+
 	div > *{
 		max-width:90%;
 		max-height:90%;
@@ -66,9 +66,28 @@ $mainColorAccent: #872F27;
 }
 
 .add-post-form{
-	border: solid green 1px;
-	margin-top: 20px;
-	//display: none;
+	position: fixed;
+	width: 400px;
+	height: 50px;
+	bottom: 0;
+	left: 50%;
+    margin-left: -200px;
+
+	background-color: $mainColor;
+
+	> * {
+		display: none;
+	}
+
+	.add-post-form-title{
+		display: block;
+		color: white;
+		height: 50px;
+		line-height: 50px;
+		text-align: center;
+		font-size: 24px;
+		font-weight: 400;
+	}	
 }
 
 .posts-container{
