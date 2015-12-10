@@ -21,11 +21,6 @@ WallComponent = React.createClass({
         this.setState({limit: this.state.limit + 10});
     },
 
-    _submitPost(e) {
-        e.preventDefault();
-        Meteor.call('insertPost', this.props.id, this.refs.title.value, this.refs.body.value);
-    },
-
     render() {
         let self = this;
         return (
@@ -55,15 +50,9 @@ WallComponent = React.createClass({
                         })
                     }
                 </div>
-                <div className="add-post-form">
-                    <div className="add-post-form-title">Ajouter un post</div>
-                    {/* TODO : build form component */}
-                    <form onSubmit={ self._submitPost }>
-                        <input type="text" ref="title" required/>
-                        <input type="text" ref="body" required/>
-                        <input type="submit" value="SUBMIT"/>
-                    </form>
-                </div>
+
+                <AddPostFormComponent wallId={self.props.id}/>
+
                 {
                     self.data.wall && self.data.posts.length == self.data.wall.postCount
                         ? null :
