@@ -71,6 +71,9 @@ SinglePostComponent = React.createClass({
                                         <div> comment:  {comment.body} </div>
                                         <div> upvotes:  {comment.upvotes} </div>
                                         <div> downvotes:  {comment.downvotes} </div>
+                                        <div>
+                                            <i className="fa fa-clock-o"></i> <TimeAgo time={ comment.createdAt }/>
+                                        </div>
                                         <div className="commentUpVote" onClick={ () => { self._upVoteComment(comment._id) } }>upVote</div>
                                         <div className="commentDownVote" onClick={ () => { self._downVoteComment(comment._id) } }>downVote</div>
                                     </div>

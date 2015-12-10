@@ -30,7 +30,7 @@ Meteor.methods({
                 body: body,
                 userId: userId,
                 postId: postId,
-                author: user.firstname + ' ' + user.lastname,
+                author: user.firstname + ' ' + user.lastname.substr(0, 1) + '.',
                 createdAt: new Date()
             });
         } else {
