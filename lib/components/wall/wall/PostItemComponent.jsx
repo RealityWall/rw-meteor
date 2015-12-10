@@ -15,8 +15,8 @@ PostItemComponent = React.createClass({
                     <div className="post-title"><a href={ '/posts/' + self.props.post._id }>{self.props.post.title}</a></div>
                     <div className="post-body">{self.props.post.body}</div>
                     <div className="post-date"><i className="fa fa-clock-o"></i> <TimeAgo time={ self.props.post.createdAt }/></div>
-                    <div className="post-comments-number"><i className="fa fa-comment-o"></i> {self.props.post.commentCount} comments</div>
-                    <div className="post-from"><i className="fa fa-user"></i> { self.props.post.author }</div>
+                    <div className="post-comments-number"><a href={ '/posts/' + self.props.post._id }><i className="fa fa-comment-o"></i> {self.props.post.commentCount} comments</a></div>
+                    <div className="post-from"><a href="#"><i className="fa fa-user"></i> { self.props.post.author }</a></div>
                 </div>
             </div>
         );

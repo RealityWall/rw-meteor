@@ -68,26 +68,29 @@ $mainColorAccent: #872F27;
 .add-post-form{
 	position: fixed;
 	width: 400px;
-	height: 50px;
-	bottom: 0;
+	height: 450px;
+	bottom: -400px;
 	left: 50%;
     margin-left: -200px;
-
-	background-color: $mainColor;
-
-	> * {
-		display: none;
-	}
+	background-color: white;
+	transition: bottom .3s;
 
 	.add-post-form-title{
+		background-color: $mainColor;
 		display: block;
 		color: white;
 		height: 50px;
+		width: inherit;
 		line-height: 50px;
 		text-align: center;
 		font-size: 24px;
 		font-weight: 400;
+		cursor: pointer;
 	}	
+}
+
+.opened{
+	bottom: 0px;
 }
 
 .posts-container{

@@ -44,6 +44,7 @@ $headerHeight: 50px;
         font-family: "Roboto"; 
         font-weight: 500;
         vertical-align: top;
+        margin-right: 10px;
 
         input[type="text"], div{
           height: 30px;
@@ -73,15 +74,6 @@ $headerHeight: 50px;
 
       > * {
         display:inline-block;
-      }
-
-      .add-post-button {   
-        margin: 0 3%;
-        > * {
-          font-size: 20px;
-          font-weight: 500;
-          cursor: pointer;
-        }
       }
 
       .user-icon{

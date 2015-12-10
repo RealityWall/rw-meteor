@@ -11,9 +11,7 @@ Header = React.createClass({
                             <input type="text" placeholder="Rechercher un post, un mur, une ville ..."/>
                             <div><i className="fa fa-search fa-1x"></i></div>
                         </div>
-                        <div className="add-post-button">
-                            <i className="fa fa-plus fa-3x"></i><label> Post</label>
-                        </div>
+
                         <div className="user-icon">
                             <img src="/img/unknown_user.png" alt="Mon Compte" />
                         </div>
