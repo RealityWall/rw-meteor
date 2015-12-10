@@ -12,32 +12,65 @@ $mainColorAccent: #872F27;
 
 .wall-info{
 	position: relative;
-	border: solid red 1px;
-	width: 15%;
+	width: 20%;
 	vertical-align: top;
+	margin-top: 20px;
+	background-color: $mainColor;
+	color: white;
+
+	div > *{
+		max-width:90%;
+		max-height:90%;
+		margin: 5px auto;
+	}
+
+	.wall-map img{
+		max-width:100%;
+		max-height:100%;
+	}
 
 	.wall-address{
-		margin-top: 10px;
-		border: solid yellow 1px;
+		font-size: 18px;
 	}
+
+	.wall-adds{
+		.wall-add{
+			border: solid black 1px;
+
+			> *{
+				display: inline-block;
+			}
+			
+			.wall-add-img{
+				width: 33%;
+			}
+
+			.wall-add-description{
+				width: 66%;
+			}
+
+		}
+	}
+
+
 }
 
 .add-post-form{
 	border: solid green 1px;
 	margin-top: 20px;
-	display: none;
+	//display: none;
 }
 
 .posts-container{
-	width: 83%;
-	margin-left: 1%;
-	border: solid blue 1px;
-
+	width: 77%;
+	margin-left: 2%;
+	margin-top: 20px;
+	
 	.post-item{
 		> *{
 			display: inline-block;
 			vertical-align: top;
-			margin: 10px 0;
+			margin-bottom: 20px;
 		}
 
 		.post-votes{

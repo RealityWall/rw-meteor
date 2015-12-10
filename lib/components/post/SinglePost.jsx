@@ -43,7 +43,6 @@ SinglePostComponent = React.createClass({
         return (
             <LayoutComponent>
                 <div className="singlePostPage">
-                    <h1>Single</h1>
                     <div className="postDescription">
                         <div>
 

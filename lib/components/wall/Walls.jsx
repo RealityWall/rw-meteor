@@ -36,11 +36,10 @@ WallItemComponent = React.createClass({
             <div className="wall-item">
                 <div className="wall-adrress">
                     <a href={'/walls/' + self.props.wall._id }>{self.props.wall.address.address}<br/>
-                        {self.props.wall.address.postalCode}
-                        {self.props.wall.address.city}</a>
+                        {self.props.wall.address.postalCode} {self.props.wall.address.city}</a>
                 </div>
-                <div className="geolocation">
-                    {self.props.wall.loc.lat}, {self.props.wall.loc.lng}
+                <div className="wall-geolocation">
+                    {self.props.wall.loc.lat}, {self.props.wall.loc.lon}
                 </div>
             </div>
         );

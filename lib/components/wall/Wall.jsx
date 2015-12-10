@@ -35,17 +35,59 @@ WallComponent = React.createClass({
                     { self.data.wall ?
                         <div>
                             <div className="wall-address">
-                                {self.data.wall.address.address}<br/>
-                                {self.data.wall.address.postalCode}
-                                {self.data.wall.address.city}
+                                {self.data.wall.address.address}
                             </div>
-                            <div className="geolocation">
-                                {self.data.wall.loc.lat}, {self.data.wall.loc.lng}
+                            <div className="wall-postal-code">
+                                {self.data.wall.address.postalCode} {self.data.wall.address.city}
+                            </div>
+                            <div className="wall-geolocation">
+                                {self.data.wall.loc.lat}, {self.data.wall.loc.lon}
+                            </div>
+                            <div className="wall-map">
+                                <img src="/img/gmap.png" alt="A remplacer par une vrai map clicable pour agrandir ou rediriger"/>
+                            </div>
+
+                            <div className="wall-adds">
+                                <div className="wall-add">
+                                    <div className="wall-add-img">
+                                        <img src="/img/pub_celio.png" alt="" />
+                                    </div>
+                                    <div className="wall-add-description">
+                                        <div className="wall-add-title">Celio</div>
+                                        <div className="wall-add-city">Nice</div>
+                                    </div>
+                                </div>
+                                <div className="wall-add">
+                                    <div className="wall-add-img">
+                                        <img src="/img/pub_subway.png" alt="" />
+                                    </div>
+                                    <div className="wall-add-description">
+                                        <div className="wall-add-title">Subway</div>
+                                        <div className="wall-add-city">Valbonne</div>
+                                    </div>
+                                </div>
+                                <div className="wall-add">
+                                    <div className="wall-add-img">
+                                        <img src="/img/pub_ibis.png" alt="" />
+                                    </div>
+                                    <div className="wall-add-description">
+                                        <div className="wall-add-title">Hotel Ibis</div>
+                                        <div className="wall-add-city">Valbonne</div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     : null
                     }
 
+                </div>
+                
+                <div className="posts-container">
+                    {
+                        self.data.posts.map( (post, index) => {
+                            return <PostItemComponent post={post} key={index} />
+                        })
+                    }
                 </div>
                 <div className="add-post-form">
                     {/* TODO : build form component */}
@@ -54,13 +96,6 @@ WallComponent = React.createClass({
                         <input type="text" ref="body" required/>
                         <input type="submit" value="SUBMIT"/>
                     </form>
-                </div>
-                <div className="posts-container">
-                    {
-                        self.data.posts.map( (post, index) => {
-                            return <PostItemComponent post={post} key={index} />
-                        })
-                    }
                 </div>
                 {
                     self.data.wall && self.data.posts.length == self.data.wall.postCount
