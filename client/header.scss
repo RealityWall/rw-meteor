@@ -18,12 +18,17 @@ $headerHeight: 50px;
     max-width:$max-width;
     margin:0 auto;
     height: $headerHeight;
+    padding-left:10px;
+    padding-right:10px;
     line-height: $headerHeight;
 
     .logo {
       float:left;
-      margin-left: 35px;
       width: calc(10% - 35px);
+      img {
+        height: 35px;
+        margin-top:7px;
+      }
     }
 
     
@@ -32,7 +37,6 @@ $headerHeight: 50px;
       color: $lightgrey;
       float:right;
       height: $headerHeight;
-      margin-right: 35px;
       width: calc(90% - 35px);
 
       .search-bar{
@@ -52,6 +56,7 @@ $headerHeight: 50px;
           padding-left: 8px;
           border-top-left-radius: 3px;
           border-bottom-left-radius: 3px;
+          font-weight:100;
         }
 
         div{

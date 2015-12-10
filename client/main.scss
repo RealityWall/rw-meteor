@@ -24,8 +24,10 @@ body{
 
 
 .body-wrapper, .footer{
-	width: 94%;
-	margin: 0 3%;
+  max-width: $max-width;
+  margin:auto;
+  padding-left:10px;
+  padding-right:10px;
 }
 
 .body{

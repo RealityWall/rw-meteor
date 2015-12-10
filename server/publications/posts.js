@@ -27,7 +27,7 @@ Meteor.methods({
                 body: body,
                 userId: userId,
                 wallId: wallId,
-                author: user.firstname + ' ' + user.lastname,
+                author: user.firstname + ' ' + user.lastname.substr(0, 1) + '.',
                 createdAt: new Date()
             });
             incrPostWall(wallId, postId);
