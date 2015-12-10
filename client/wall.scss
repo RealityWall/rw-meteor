@@ -17,7 +17,8 @@ $mainColorAccent: #872F27;
 	margin-top: 20px;
 	background-color: $mainColor;
 	color: white;
-
+	padding-bottom: 10px;
+	
 	div > *{
 		max-width:90%;
 		max-height:90%;
@@ -35,18 +36,27 @@ $mainColorAccent: #872F27;
 
 	.wall-adds{
 		.wall-add{
-			border: solid black 1px;
+			height: 50px;
 
 			> *{
 				display: inline-block;
 			}
-			
+
 			.wall-add-img{
 				width: 33%;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
 			}
 
 			.wall-add-description{
 				width: 66%;
+				height: 100%;
+				vertical-align: top;
+
+				> *{
+					font-size: 14px;
+				}
 			}
 
 		}
@@ -128,6 +138,22 @@ $mainColorAccent: #872F27;
 				color: $mainColor !important;
 			  	text-transform: capitalize;
 			}
+
+			.post-from-lastname{
+				display: inline-block;
+				width: 8px;
+				text-overflow: '.';
+				white-space: nowrap;
+				overflow: hidden;
+				vertical-align: bottom;
+			}
+
+			.post-from:hover .post-from-lastname{
+				display: inline-block;
+				width: 50px;
+				vertical-align: bottom;
+			}
+	
 	
 			
 		}

@@ -119,6 +119,7 @@ PostItemComponent = React.createClass({
 
     render() {
         var self = this;
+        //TODO : mettre un nom ET prenom dans 2 balises différentes, pas {self.props.post.author}
         return (
             <div className="post-item">
                 <div className="post-votes">
@@ -130,7 +131,7 @@ PostItemComponent = React.createClass({
                     <div className="post-body">{self.props.post.body}</div>                
                     <div className="post-date"><i className="fa fa-clock-o"></i> 2 hours ago</div>
                     <div className="post-comments-number"><i className="fa fa-comment-o"></i> {self.props.post.commentCount} comments</div>
-                    <div className="post-from"><i className="fa fa-user"></i> {self.props.post.author}</div>
+                    <div className="post-from"><i className="fa fa-user"></i> Prenom <div className="post-from-lastname">Nom</div></div>
                 </div>
             </div>
         );
