@@ -4,7 +4,7 @@ Meteor.publish('singlePost', (postId) => {
 
 Meteor.publish('postsByWallId', (wallId, limit) => {
     return Posts.find({wallId: wallId}, {limit: limit ? limit : 10});
-})
+});
 
 // Comments specific helper
 incrPostWall = (wallId, postId) => {
@@ -21,11 +21,14 @@ Meteor.methods({
     insertPost(wallId, title, body) {
         let userId = this.userId;
         if (userId && isUserById(userId)) {
+            let user = Meteor.users.findOne(userId);
             let postId = Posts.insert({
                 title: title,
                 body: body,
                 userId: userId,
-                wallId: wallId
+                wallId: wallId,
+                author: user.firstname + ' ' + user.lastname,
+                createdAt: new Date()
             });
             incrPostWall(wallId, postId);
         } else {

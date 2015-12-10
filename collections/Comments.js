@@ -6,8 +6,14 @@ let CommentSchema = new SimpleSchema({
     userId: {
         type: String
     },
+    author: {
+        type: String
+    },
     postId: {
         type: String
+    },
+    createdAt: {
+        type: Date
     },
     upvotes: {
         type: Number,

@@ -11,7 +11,7 @@ WallComponent = React.createClass({
     getMeteorData() {
         return {
             readyForWall: Meteor.subscribe('wallById', this.props.id).ready(),
-            readyForPosts: Meteor.subscribe('postsByWallId', this.props.id).ready(),
+            readyForPosts: Meteor.subscribe('postsByWallId', this.props.id, this.state.limit).ready(),
             wall: Walls.findOne({}),
             posts: Posts.find({}).fetch()
         }
@@ -92,15 +92,10 @@ PostItemComponent = React.createClass({
                 </div>
                 <div className="post-description">
                     <div className="post-title"><a href={ '/posts/' + self.props.post._id }>{self.props.post.title}</a></div>
-                    
                     <div className="post-body">{self.props.post.body}</div>                
                     <div className="post-date"><i className="fa fa-clock-o"></i> 2 hours ago</div>
                     <div className="post-comments-number"><i className="fa fa-comment-o"></i> {self.props.post.commentCount} comments</div>
-                    <div className="post-from"><i className="fa fa-user"></i> Jean Michel</div>
-                </div>
-                <div className="uselessButton">
-                    <button onClick={ self._upVote }>upvote</button>
-                    <button onClick={ self._downVote }>downvote</button>
+                    <div className="post-from"><i className="fa fa-user"></i> {self.props.post.author}</div>
                 </div>
             </div>
         );

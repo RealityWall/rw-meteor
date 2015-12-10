@@ -1,4 +1,10 @@
 let userSchemaObject = {
+    firstname: {
+        type: String
+    },
+    lastname: {
+        type: String
+    },
     emails: {
         type: [Object]
     },
