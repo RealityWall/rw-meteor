@@ -2,7 +2,7 @@ UserProfileComponent = React.createClass({
 
     logout() {
         Meteor.logout();
-        FlowRouter.go('signin');
+        FlowRouter.go('/signin');
     },
 
     render() {
