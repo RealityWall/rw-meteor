@@ -21,9 +21,11 @@ AddPostFormComponent = React.createClass({
             <div className={"add-post-form " + (self.state.opened ? "opened" : "")}>
                 <div className="add-post-form-title" onClick={ self.toggle }>Ajouter un post</div>
                 <form onSubmit={ self._submitPost }>
-                    <input type="text" ref="title" required/>
-                    <input type="text" ref="body" required/>
-                    <input type="submit" value="SUBMIT"/>
+                    <span className="add-post-title-span">Titre : </span>
+                    <input type="text" ref="title" className="add-post-title-input" required/>
+                    <span className="add-post-body-span">Corps : </span>
+                    <textarea className="add-post-body-input" required></textarea>
+                    <input className="add-post-submit" type="submit" value="Poster"/>
                 </form>
             </div>
         );

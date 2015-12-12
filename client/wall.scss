@@ -68,12 +68,16 @@ $mainColorAccent: #872F27;
 .add-post-form{
 	position: fixed;
 	width: 400px;
-	height: 450px;
-	bottom: -400px;
+	height: 410px;
+	bottom: -360px;
 	left: 50%;
     margin-left: -200px;
 	background-color: white;
 	transition: bottom .3s;
+	-moz-box-shadow: 0px 0px 5px 0px #656565;
+	-webkit-box-shadow: 0px 0px 5px 0px #656565;
+	-o-box-shadow: 0px 0px 5px 0px #656565;
+	box-shadow: 0px 0px 5px 0px #656565;
 
 	.add-post-form-title{
 		background-color: $mainColor;
@@ -87,6 +91,39 @@ $mainColorAccent: #872F27;
 		font-weight: 400;
 		cursor: pointer;
 	}	
+
+	.add-post-title-input, .add-post-body-input{
+		display: block;
+		width: 95%;
+		margin: 0 auto;
+	}
+
+	.add-post-body-input{
+		height: 200px;
+		resize: none;
+	}
+
+	.add-post-title-span, .add-post-body-span{
+		display: block;
+		margin: 5px;
+		font-size: 16px;
+	}
+
+	.add-post-body-span{
+		margin-top: 20px;
+	}
+
+	input[type="submit"]{
+		background-color: $mainColor;
+		display: block;
+		color: white;
+		border: none;
+		height: 40px;
+		width: 80px;
+		padding: 10px;
+		margin: 15px auto;
+		cursor: pointer;
+	}
 }
 
 .opened{
