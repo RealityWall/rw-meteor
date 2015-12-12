@@ -1,0 +1,31 @@
+$max-width: 1080px;
+
+.body .errors {
+
+  position: fixed;
+  top: 60px;
+  right:0px;
+  z-index:10000;
+
+  .error {
+    background: black;
+    margin-bottom: 10px;
+    height: 40px;
+    color: white;
+    padding-right: 15px;
+    padding-left: 15px;
+    line-height: 40px;
+    animation-duration: .3s;
+  }
+
+  .error:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+@media screen and (min-width: 1080px) {
+  .body .errors {
+    right: calc( (100% - 1080px) / 2);
+  }
+
+}

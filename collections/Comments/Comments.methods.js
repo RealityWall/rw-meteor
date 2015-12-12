@@ -26,7 +26,13 @@ Meteor.methods({
                 createdAt: new Date()
             });
         } else {
-            throw new Meteor.Error(403, "must be logged in");
+            if (Meteor.isClient) {
+                pushErrorToClient({
+                    code: 403,
+                    id: Session.get('errorId'),
+                    message: "must be logged in or user by id"
+                });
+            }
         }
     },
     upVoteComment(postId) {
@@ -43,7 +49,13 @@ Meteor.methods({
                 }
             }
         } else {
-            throw new Meteor.Error(403, "must be logged in");
+            if (Meteor.isClient) {
+                pushErrorToClient({
+                    code: 403,
+                    id: Session.get('errorId'),
+                    message: "must be logged in or user by id"
+                });
+            }
         }
     },
     downVoteComment(postId) {
@@ -60,7 +72,13 @@ Meteor.methods({
                 }
             }
         } else {
-            throw new Meteor.Error(403, "must be logged in");
+            if (Meteor.isClient) {
+                pushErrorToClient({
+                    code: 403,
+                    id: Session.get('errorId'),
+                    message: "must be logged in or user by id"
+                });
+            }
         }
     }
 });

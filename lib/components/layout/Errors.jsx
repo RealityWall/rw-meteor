@@ -15,7 +15,7 @@ Errors = React.createClass({
                 {
                     self.data.errors.map( (error, index) => {
                         return (
-                            <div key={index} className="error">
+                            <div key={index} className="error animated fadeInRight">
                                 { error.message }
                             </div>
                         )

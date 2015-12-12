@@ -22,7 +22,7 @@ LoginComponent = React.createClass({
     render() {
         let self = this;
         return (
-            <div>
+            <LayoutComponent>
                 {
                     self.data.userId
                     ?
@@ -41,7 +41,7 @@ LoginComponent = React.createClass({
                         </div>
                 }
                 <a href="../">home</a>
-            </div>
+            </LayoutComponent>
         )
     }
 });
