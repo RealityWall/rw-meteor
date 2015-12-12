@@ -24,7 +24,7 @@ AddPostFormComponent = React.createClass({
                     <span className="add-post-title-span">Titre : </span>
                     <input type="text" ref="title" className="add-post-title-input" required/>
                     <span className="add-post-body-span">Corps : </span>
-                    <textarea className="add-post-body-input" required></textarea>
+                    <textarea ref="body" className="add-post-body-input" required></textarea>
                     <input className="add-post-submit" type="submit" value="Poster"/>
                 </form>
             </div>

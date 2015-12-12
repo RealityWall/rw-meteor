@@ -25,7 +25,7 @@ SigninComponent = React.createClass({
     render() {
         let self = this;
         return (
-            <div>
+            <LayoutComponent>
                 <form onSubmit={ self._submit }>
                     <input type="text" ref="firstname" required placeholder="firstame"/>
                     <input type="text" ref="lastname" required placeholder="lastname"/>
@@ -44,7 +44,7 @@ SigninComponent = React.createClass({
                     : null
                 }
                 <a href="../login">Already an account ? Click here to log in</a>
-            </div>
+            </LayoutComponent>
         )
     }
 });

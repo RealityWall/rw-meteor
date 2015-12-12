@@ -23,6 +23,18 @@ userCancelDownvote = (collection, postId, userId) => {
     return Meteor.users.update(userId, modifier);
 };
 
+hasAlreadyUpvoted = (collection, itemId, userId) => {
+    let query = {_id: userId};
+    query["votes.upvoted" + collection] = itemId;
+    return Meteor.users.findOne(query);
+};
+
+hasAlreadyDownvoted = (collection, itemId, userId) => {
+    let query = {_id: userId};
+    query["votes.downvoted" + collection] = itemId;
+    return Meteor.users.findOne(query);
+};
+
 // Helpers for right Method
 isUserById = (userId) => {
     return Meteor.users.findOne({
