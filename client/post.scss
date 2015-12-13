@@ -1,14 +1,7 @@
-$grey: rgb(231, 228, 224);
-$darkgrey: rgb(74, 74, 74);
-$lightgrey: rgb(247, 247, 247);
-
-$mainColor: #db4c3f;
-$mainColorAccent: #872F27;
-
-$max-width: 1080px;
+@import "./constants";
 
 .singlePostPage{
-	font-family: "Roboto";
+	font-family: "Roboto", sans-serif;
 	margin-top: 20px;
 	
 	.postDescription{

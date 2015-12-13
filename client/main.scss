@@ -1,20 +1,9 @@
-$grey: rgb(231, 228, 224);
-$darkgrey: rgb(74, 74, 74);
-$lightgrey: rgb(247, 247, 247);
-
-$mainColor: #db4c3f;
-$mainColorAccent: #872F27;
-
-$max-width: 1080px;
-
-h1 {
-  color:red;
-}
+@import "./constants";
 
 body{
 	width: 100%;
 	height: 100vh;
-	//color: $darkgrey;
+	background: $grey;
 }
 
 *{
@@ -32,10 +21,10 @@ a:hover{
 }
 
 .body-wrapper, .footer{
-  max-width: $max-width;
-  margin:auto;
-  padding-left:10px;
-  padding-right:10px;
+	max-width: $max-width;
+	margin:auto;
+	padding-left:10px;
+	padding-right:10px;
 }
 
 .body{
@@ -43,12 +32,5 @@ a:hover{
 	position: absolute;
 	height: calc(100vh - 50px);	
 	top: 50px;
-  overflow: auto;
+  	overflow: auto;
 }
-
-
-/*
-
-	contenu centré avec padding de 3% sur les cotés
-
-*/

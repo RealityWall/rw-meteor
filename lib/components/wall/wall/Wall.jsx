@@ -49,15 +49,18 @@ WallComponent = React.createClass({
                             return <PostItemComponent post={post} key={index} />
                         })
                     }
+                    {
+                        self.data.wall && self.data.posts.length == self.data.wall.postCount
+                            ? null :
+                            <a className="btn plain" onClick={ self._increaseLimit }>
+                                Load More
+                            </a>
+                    }
                 </div>
 
                 <AddPostFormComponent wallId={self.props.id}/>
 
-                {
-                    self.data.wall && self.data.posts.length == self.data.wall.postCount
-                        ? null :
-                        <button onClick={ self._increaseLimit }>increase limit {self.state.limit }</button>
-                }
+
             </LayoutComponent>
         )
     }

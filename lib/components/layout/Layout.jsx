@@ -7,7 +7,6 @@ LayoutComponent = React.createClass({
                 <div className="body-wrapper">
                     {this.props.children}
                 </div>
-                <Footer />
             </div>
         )
     }

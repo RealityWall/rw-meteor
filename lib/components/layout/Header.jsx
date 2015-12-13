@@ -8,7 +8,7 @@ Header = React.createClass({
                     </div>
                     <div className="toolbar">
                         <div className="search-bar">
-                            <input type="text" placeholder="Rechercher un post, un mur, une ville ..."/>
+                            <input type="text" placeholder="Recherche..."/>
                             <div><i className="fa fa-search fa-1x"></i></div>
                         </div>
 

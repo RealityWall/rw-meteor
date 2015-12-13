@@ -30,7 +30,7 @@ Meteor.methods({
             }
         }
     },
-    upVotePost(postId, cb) {
+    upVotePost(postId) {
         let userId = this.userId;
         if (userId && isUserById(userId)) {
             if (hasAlreadyUpvoted('Posts', postId, userId)) {
@@ -76,5 +76,13 @@ Meteor.methods({
                 });
             }
         }
+    },
+
+    hasAlreadyUpvoted(postId) {
+        return this.userId ? hasAlreadyUpvoted('Posts', postId, this.userId) : false;
+    },
+
+    hasAlreadyDownvoted(postId) {
+        return this.userId ? hasAlreadyDownvoted('Posts', postId, this.userId) : false;
     }
 });

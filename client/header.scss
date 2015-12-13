@@ -1,10 +1,4 @@
-$grey: rgb(231, 228, 224);
-$darkgrey: rgb(74, 74, 74);
-$lightgrey: rgb(247, 247, 247);
-$mainColor: #db4c3f;
-
-$max-width: 1080px;
-$headerHeight: 50px;
+@import "./constants";
 
 #header {
   position: fixed;
@@ -13,6 +7,12 @@ $headerHeight: 50px;
   z-index: 200;
   width: 100%;
   background-color: $mainColor;
+
+  -moz-box-shadow: 0px 1px 5px 0px #656565;
+  -webkit-box-shadow: 0px 1px 5px 0px #656565;
+  -o-box-shadow: 0px 1px 5px 0px #656565;
+  box-shadow: 0px 1px 5px 0px #656565;
+  filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
 
   .inner-bar {
     max-width:$max-width;
@@ -49,6 +49,7 @@ $headerHeight: 50px;
         input[type="text"], div{
           height: 30px;
           color: $darkgrey;
+          background:$lightgrey;
         }
 
         input[type="text"]{
@@ -61,9 +62,9 @@ $headerHeight: 50px;
         }
 
         div{
-          background-color: white;
           height: 30px;
           line-height: 30px;
+          cursor: pointer;
           display: inline-block;
           padding: 0 8px;
           border-top-right-radius: 3px;

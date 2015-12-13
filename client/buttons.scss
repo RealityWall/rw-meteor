@@ -1,7 +1,4 @@
-$grey: rgb(231, 228, 224);
-$darkgrey: rgb(74, 74, 74);
-$lightgrey: rgb(247, 247, 247);
-$primary: #db4c3f;
+@import "./constants";
 
 .btn {
   display:inline-block;
@@ -26,7 +23,12 @@ $primary: #db4c3f;
 
 .btn.plain {
   color: $lightgrey;
-  background-color: $primary;
+  background-color: $mainColor;
   padding: 12px 40px;
-  box-shadow: inset 0px -4px 0px $grey;
+  box-shadow: inset 0px -2px 0px $mainColorAccent;
+}
+
+button.btn {
+  outline: 0px!important;
+  border:none;
 }
