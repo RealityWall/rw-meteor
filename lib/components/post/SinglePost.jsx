@@ -38,6 +38,9 @@ SinglePostComponent = React.createClass({
         window.history.back();
     },
 
+    _upVote() { Meteor.call('upVotePost', this.props.id); },
+    _downVote() { Meteor.call('downVotePost', this.props.id); },
+
     render() {
         var self = this;
         return (
@@ -47,8 +50,8 @@ SinglePostComponent = React.createClass({
                         <div>
 
                             <div className="postVotes">
-                                <div className="postUpVote"><i className="fa fa-arrow-up"></i> {self.data.post.upvotes}</div>
-                                <div className="postDownVote"><i className="fa fa-arrow-down"></i> {self.data.post.downvotes}</div>
+                                <div className="postUpVote" onClick={ self._upVote }><i className="fa fa-arrow-up"></i> {self.data.post.upvotes}</div>
+                                <div className="postDownVote" onClick={ self._downVote }><i className="fa fa-arrow-down"></i> {self.data.post.downvotes}</div>
                             </div>
                             <div className="postTitle">{self.data.post.title}</div>
                             <div className="postBody">{self.data.post.body}</div>

@@ -13,7 +13,7 @@ Header = React.createClass({
                         </div>
 
                         <div className="user-icon">
-                            <a href="/user"><img src="/img/unknown_user.png" alt="Compte Utilisateur" /></a>
+                            <a href="/my-account"><img src="/img/unknown_user.png" alt="Compte Utilisateur" /></a>
                         </div>
                     </div>
                 </div>

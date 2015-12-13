@@ -26,9 +26,6 @@ Accounts.onCreateUser( (options, user) => {
     return user;
 });
 
-
-// TODO : publish userData role to know who is the user on the front end
-// TODO : secure URL thanks to user role (admin) to create new displayer acounts
-
-// TODO : create admin account
-// TODO : create secure
+Meteor.publish('getUserById', (userId) => {
+    return Meteor.users.find(userId);
+});
