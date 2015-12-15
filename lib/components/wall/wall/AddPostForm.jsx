@@ -19,7 +19,7 @@ AddPostFormComponent = React.createClass({
         let self = this;
         return (
             <div className={"add-post-form " + (self.state.opened ? "opened" : "")}>
-                <div className="add-post-form-title animated wobble" onClick={ self.toggle }>
+                <div className="add-post-form-title animated tada" onClick={ self.toggle }>
                     <i className="fa fa-plus"></i> <span className="title-text">Post</span>
                 </div>
                 <form onSubmit={ self._submitPost }>

@@ -11,6 +11,13 @@ PostItemComponent = React.createClass({
 
         return (
             <div className="post-item">
+                <div className="rank">
+                    <div className="rank-box">
+                        <div className="rank">{this.props.rank + 1}</div>
+                        <div className="score">{ parseInt(1907 / (this.props.rank+1)) }</div>
+                    </div>
+
+                </div>
                 <div className="post-votes">
                     <div className={"post-up-votes " + (hasAlreadyUpvoted ? "toggled" : "")} onClick={ self._upVote }><i className="fa fa-arrow-up"></i></div>
                     <div className={"post-down-votes " + (hasAlreadyDownvoted ? "toggled" : "")} onClick={ self._downVote }><i className="fa fa-arrow-down"></i></div>

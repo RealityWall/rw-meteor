@@ -46,7 +46,7 @@ WallComponent = React.createClass({
                 <div className="posts-container">
                     {
                         self.data.posts.map( (post, index) => {
-                            return <PostItemComponent post={post} key={index} />
+                            return <PostItemComponent post={post} key={index} rank={index} />
                         })
                     }
                     {
