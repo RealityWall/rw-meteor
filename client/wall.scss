@@ -74,13 +74,19 @@
   transition: bottom .3s, border-radius .3s, width .3s, margin-left .3s;
 
   form {
+    overflow:hidden;
     display: none;
     background-color: $lightgrey;
     height: 100%;
+    padding-top:10px;
 
+    input[type="text"].input, textarea.add-post-body-input {
+      width: 360px;
+      margin:auto;
+      margin-bottom: 10px;
+    }
     .btn {
       margin-right: 10px;
-      margin-top: 10px;
       float: right;
     }
   }
@@ -174,6 +180,16 @@
     .title-text {
       display: none;
     }
+
+    form {
+
+      input[type="text"].input, textarea.add-post-body-input {
+        width: 90%;
+        margin:auto;
+        margin-bottom: 10px;
+      }
+    }
+
   }
   .add-post-form.opened {
     width: 100% !important;
@@ -186,9 +202,6 @@
       display: inline !important;
     }
   }
-}
-
-@media (max-width: 550px) {
   .posts-container {
     width: 100% !important;
     margin-left: 0% !important;
@@ -202,6 +215,10 @@
   margin-top: 10px;
 
   padding-bottom: 80px;
+
+  a.btn.plain {
+    margin-top:5px;
+  }
 
   .post-item:nth-child(1) > .rank .rank-box {
     background: gold;
@@ -221,14 +238,14 @@
     text-align: left;
 
     background: $lightgrey;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     padding: 10px;
 
-    -moz-box-shadow: 0px 1px 3px 0px #656565;
-    -webkit-box-shadow: 0px 1px 3px 0px #656565;
-    -o-box-shadow: 0px 1px 3px 0px #656565;
-    box-shadow: 0px 1px 3px 0px #656565;
-    filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=3);
+    -moz-box-shadow: 0px 1px 2px 0px #656565;
+    -webkit-box-shadow: 0px 1px 2px 0px #656565;
+    -o-box-shadow: 0px 1px 2px 0px #656565;
+    box-shadow: 0px 1px 2px 0px #656565;
+    filter: progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=2);
 
     > * {
       display: inline-block;
@@ -285,9 +302,12 @@
         color: $darkgrey;
       }
 
-      .post-up-votes:hover, .post-down-votes:hover {
-        background-color: $mainColor;
-        color: $lightgrey;
+      .post-up-votes:active, .post-down-votes:active {
+        -moz-box-shadow: inset 0px 1px 2px 0px #656565;
+        -webkit-box-shadow: inset 0px 1px 2px 0px #656565;
+        -o-box-shadow: inset 0px 1px 2px 0px #656565;
+        box-shadow: inset 0px 1px 2px 0px #656565;
+        filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=2);
       }
     }
 
