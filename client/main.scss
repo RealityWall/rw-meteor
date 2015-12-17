@@ -54,10 +54,10 @@ input[type="text"].input, input[type="password"].input, input[type="email"].inpu
   border-radius: 0px;
 
   padding: 10px;
-  border: solid 5px silver;
+  border: solid 3px silver;
   transition: border 0.3s;
 }
 input[type="text"]:focus.input, input[type="password"]:focus.input, input[type="email"].input:focus, textarea:focus {
   outline: none;
-  border: solid 5px #969696;
+  border: solid 3px #969696;
 }
