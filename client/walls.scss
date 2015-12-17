@@ -1,0 +1,47 @@
+@import "./constants";
+
+$marker-width: 48px;
+.walls-wrapper {
+
+  .gmnoprint, .gm-style > div:last-child, .gm-style > .gm-style-cc {
+    display:none;
+  }
+
+
+  .custom-marker {
+    position: absolute;
+    cursor: pointer;
+    width: $marker-width;
+    height: $marker-width;
+    margin-top:- $marker-width / 2;
+    margin-left: - $marker-width / 2;
+    background: $lightgrey;
+    border-radius: 1000000px;
+    border: 2px solid $mainColor;
+
+    img {
+      width: $marker-width / 2;
+      margin-top:$marker-width / 4;
+      margin-left: $marker-width / 4;
+    }
+
+    div.badge {
+      float:right;
+      color: $lightgrey;
+      background: $mainColor;
+      border-radius: 100000px;
+      margin-top:-3px;
+      padding:2px 5px;
+    }
+  }
+
+
+  #walls-map {
+    position:fixed!important;
+    width: 100%;
+    height: calc(100vh - 50px);
+    margin-left: -10px;
+
+    .gm-style-iw + div {display: none;}
+  }
+}
