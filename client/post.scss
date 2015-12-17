@@ -1,56 +1,106 @@
 @import "./constants";
 
-.singlePostPage{
-	font-family: "Roboto", sans-serif;
-	margin-top: 20px;
-	
-	.postDescription{
-		.postVotes{
-			display: inline-block;
-			border: solid $mainColor 2px;
-			width: 50px;
-			height: 80px;			
-			margin-left: 3%;
 
-			.postUpVote, .postDownVote{
+
+.single-post-page{
+	font-family: "Roboto", sans-serif;
+	background-color: $lightgrey;
+	margin-top: 10px;
+	color: #4a4a4a;
+	
+	.post-description{
+		> div > .rank {
+			margin: 10px 0 10px 10px;;
+	      	vertical-align: top;
+			display: inline-block;
+			width: 60px;
+			height: 60px;
+			font-family: 'Audiowide', sans-serif;
+
+	      .rank-box {
+	        width: 60px;
+	        height: 60px;
+    		background: gold;
+	        color: $darkgrey;
+	        border-radius: 3px;
+	        font-size: 23px;
+	        text-align:center;
+	        border-bottom: 2px grey solid;
+	      }
+
+	      .score {
+	        text-align:center;
+	        font-size:12px;
+	        color:$darkgrey;
+	        margin-top: -1px;
+	      }
+
+	     .rank {
+	       text-align:center;
+	       padding-top: 10px;
+	     }
+	    }
+
+		.post-votes{
+			display: inline-block;
+			border: solid $mainColor 1px;
+			width: 40px;
+			height: 60px;			
+			margin: 10px;
+
+			.post-up-vote, .post-down-vote{
 				width: 100%;
-				height: 40px;
-				line-height: 40px;
+				height: 30px;
+				line-height: 30px;
 				text-align: center;
 				cursor: pointer;
 			}
 
 		}
-
-		.postTitle{
+		
+		.post-components{
 			display: inline-block;
 			vertical-align: top;
-			width: calc(94% - 56px - 15px); /* (-)50 div vote (-) 4 border vote (-) padding-left*/
-			border: solid black 1px;
-			font-size: 36px;
-			color: $mainColor;
-			font-weight: 300;
-			padding-left: 15px;
+			margin-top: 5px;
+
+			.post-from, .post-comments-number, .post-date {
+				margin-top: 10px;
+		        font-size: 12px;
+		        color: $mainColor !important;
+		        display: inline-block;
+		    }
+
+		    .post-comments-number{
+		    	margin: 0 20px;
+		    }
+
+			.post-title{
+				vertical-align: top;
+				font-size: 32px;
+				font-weight: 300;		
+			}
 		}
 
-		.postBody{
-			width: calc(94% - 20px); /*- padding */
-			margin: 25px auto;
-			background-color: lightgrey;
+		
+
+		.post-body{
+			width: calc(100% - 40px); /*- padding */
+			margin: 10px 10px;
+			background-color: $grey;
 			padding: 10px;
 		}
 		
 	}
 
-	.addCommentForm{
+	.add-comment-form{
 		> *{
-			margin-left: 3%;
+			margin-left: 10px;
 		}
 
 		span{
 			display: block;
-			margin: 15px 0;
-			font-size: 24px;
+			margin: 20px 0 10px 0;
+			font-size: 20px;
 			font-weight: 300;
 		}
 
@@ -85,9 +135,44 @@
 
 	.comments{
 		.comment{
-			.commentUpVote, .commentDownVote{
-				border: solid black 1px;
-				width: 200px;
+			.left-comment-side, .right-comment-side{
+				display: inline-block;
+			}
+
+			.left-comment-side{
+				img{
+					margin-top: 10px;
+					height: 80px;
+					cursor: pointer;
+				}
+			}
+
+			.right-comment-side{
+				.comment-votes{
+					display: inline-block;
+					width: 30px;
+					height: 60px;
+					border: solid $mainColor 1px;
+
+					.comment-up-vote, .comment-down-vote {
+						width: 100%;
+						height: 30px;
+						line-height: 30px;
+						text-align: center;
+						cursor: pointer;
+						color: $darkgrey;
+					}
+
+					.comment-up-vote:active, .comment-down-vote:active {
+						-moz-box-shadow: inset 0px 1px 2px 0px #656565;
+						-webkit-box-shadow: inset 0px 1px 2px 0px #656565;
+						-o-box-shadow: inset 0px 1px 2px 0px #656565;
+						box-shadow: inset 0px 1px 2px 0px #656565;
+						filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=2);
+					}
+				}
+
+				
 			}	
 		}
 	}
