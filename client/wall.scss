@@ -74,6 +74,7 @@
   transition: bottom .3s, border-radius .3s, width .3s, margin-left .3s;
 
   form {
+    text-align: center;
     overflow:hidden;
     display: none;
     background-color: $lightgrey;
@@ -87,7 +88,6 @@
     }
     .btn {
       margin-right: 10px;
-      float: right;
     }
   }
 

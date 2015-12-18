@@ -80,20 +80,21 @@ SinglePostComponent = React.createClass({
                             self.data.comments.map( (comment, index) => {
                                 return (
                                     <div key={index} className="comment">
+                                        <div className="comment-separator"></div>
                                         <div className="left-comment-side">
-                                            <a href="/my-account"><img src="/img/unknown_user.png" alt="Compte Utilisateur" /></a>
+                                            <a href="/my-account">
+                                                <img src="/img/unknown_user.png" alt="Compte Utilisateur" />
+                                                <div className="comment-username">username</div>
+                                                <div><TimeAgo time={ comment.createdAt }/></div>
+                                            </a>
                                         </div>
                                         <div className="right-comment-side">
                                             <div className="comment-votes">
-                                                <div className="comment-up-vote" onClick={ () => { self._upVoteComment(comment._id) } }>1</div>
-                                                <div className="comment-down-vote" onClick={ () => { self._downVoteComment(comment._id) } }>0</div>
+                                                <div className="comment-up-vote" onClick={ () => { self._upVoteComment(comment._id) } }>{comment.upvotes}</div>
+                                                <div className="comment-down-vote" onClick={ () => { self._downVoteComment(comment._id) } }>{comment.downvotes}</div>
                                             </div>
-
-                                            <div> comment:  {comment.body} </div>
-                                            <div> upvotes:  {comment.upvotes} </div>
-                                            <div> downvotes:  {comment.downvotes} </div>
-                                            <div>
-                                                <i className="fa fa-clock-o"></i> <TimeAgo time={ comment.createdAt }/>
+                                            <div className="comment-description">
+                                                <div>{comment.body} </div>
                                             </div>
                                         </div>
                                         
