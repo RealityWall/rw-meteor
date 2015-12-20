@@ -2,7 +2,7 @@ UserSettingsComponent = React.createClass({
 
     logout() {
         Meteor.logout();
-        FlowRouter.go('/signin');
+        FlowRouter.go('/sign-in');
     },
 
     render() {
