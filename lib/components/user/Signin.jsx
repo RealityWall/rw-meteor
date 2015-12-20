@@ -26,13 +26,29 @@ SigninComponent = React.createClass({
         let self = this;
         return (
             <LayoutComponent>
-                <form onSubmit={ self._submit }>
-                    <input type="text" ref="firstname" required placeholder="firstame"/>
-                    <input type="text" ref="lastname" required placeholder="lastname"/>
-                    <input type="email" ref="email" required placeholder="email"/>
-                    <input type="password" ref="password" required placeholder="password"/>
-                    <input type="submit" value="signin"/>
-                </form>
+                <div className="login-signin-panel">
+                    <div className="login-panel">
+                        <form onSubmit={ self._submit }>
+                            <h2>Connexion</h2>
+                            <input className="input login-mail" type="email" ref="email" required placeholder="email"/>
+                            <input className="input login-password"type="password" ref="password" required placeholder="password"/>
+                            <div><input className="input login-submit"type="submit" value="Connexion"/></div>
+                        </form>
+                    </div>
+                    <div className="vertical-separator"></div>
+                    <div className="signin-panel">
+                        <form onSubmit={ self._submit }>
+                            <h2>Inscription</h2>
+                            <input className="input signin-firstname" type="text" ref="firstname" required placeholder="firstame"/>
+                            <input className="input signin-lastname" type="text" ref="lastname" required placeholder="lastname"/>
+                            <input className="input signin-mail" type="email" ref="email" required placeholder="email"/>
+                            <input className="input signin-password" type="password" ref="password" required placeholder="password"/>
+                            <div><input className="input signin-submit" type="submit" value="Envoyer"/></div>
+                        </form>
+                    </div>
+                </div>
+                
+                
                 {
                     self.state.loading
                         ? <div>loading...</div>
@@ -43,7 +59,6 @@ SigninComponent = React.createClass({
                     ? <div>ERROR</div>
                     : null
                 }
-                <a href="../login">Already an account ? Click here to log in</a>
             </LayoutComponent>
         )
     }
