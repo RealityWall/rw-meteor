@@ -4,7 +4,7 @@ Header = React.createClass({
             <div id="header">
                 <div className="inner-bar">
                     <div className="logo">
-                        <a href="/"><img src="/img/rw-logo.png" alt="Reality Wall Logo"/></a>
+                        <a href="/walls"><img src="/img/rw-logo.png" alt="Reality Wall Logo"/></a>
                     </div>
                     <div className="toolbar">
                         <div className="search-bar">

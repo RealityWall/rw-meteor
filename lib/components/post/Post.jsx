@@ -1,78 +1,32 @@
-PostComponent = React.createClass({
+Post = React.createClass({
 
-    mixins: [ReactMeteorData],
-
-    getInitialState() {
-        return {
-            limit: 10
-        }
-    },
-
-    _increaseLimit() {
-        this.setState({limit: this.state.limit + 10});
-    },
-
-    getMeteorData() {
-        return {
-            ready: Meteor.subscribe("postsList", this.state.limit).ready(),
-            posts: Posts.find({}).fetch()
-        }
-    },
-
-    _submitPost(e) {
-        e.preventDefault();
-        Meteor.call('insertPost', this.refs.title.value, this.refs.body.value);
-    },
-
-    _upVote(postId) {
-        Meteor.call('upVotePost', postId);
-    },
-
-    _downVote(postId) {
-        Meteor.call('downVotePost', postId);
-    },
+    _upVote() { Meteor.call('upVotePost', this.props.post._id); },
+    _downVote() { Meteor.call('downVotePost', this.props.post._id); },
 
     render() {
-        var self = this;
+        let self = this;
         return (
-            <div>
-                <h1>posts</h1>
+            <div className="post-description">
                 <div>
-                    <form onSubmit={ self._submitPost }>
-                        <input type="text" ref="title" required/>
-                        <input type="text" ref="body" required/>
-                        <input type="submit" value="SUBMIT"/>
-                    </form>
+                    <div className="rank">
+                        <div className="rank-box">
+                            <div className="rank">1</div>
+                            <div className="score">1549</div>
+                        </div>
+                    </div>
+                    <div className="post-votes">
+                        <div className="post-up-vote" onClick={ self._upVote }><i className="fa fa-arrow-up"></i> {self.props.post.upvotes}</div>
+                        <div className="post-down-vote" onClick={ self._downVote }><i className="fa fa-arrow-down"></i> {self.props.post.downvotes}</div>
+                    </div>
+                    <div className="post-components">
+                        <div className="post-title">{self.props.post.title}</div>
+                        <div className="post-date"><i className="fa fa-clock-o"></i> 2 hours ago</div>
+                        <div className="post-comments-number"><a href="#"><i className="fa fa-comment-o"></i> 2 comments</a></div>
+                        <div className="post-from"><a href="#"><i className="fa fa-user"></i> Moi</a></div>
+                    </div>
+                    <div className="post-body">{self.props.post.body}</div>
                 </div>
-                <div>
-                    {
-                        self.data.ready ? null : <div>loading...</div>
-                    }
-                </div>
-                <div>
-                    {
-                        self.data.posts.map((post, index) => {
-                            return (
-                                <div key={index}>
-                                    <div><a href={'./posts/' + post._id}>{post.title}</a></div>
-                                    <div>{post.body}</div>
-                                    <div>upvotes : {post.upvotes}</div>
-                                    <div>downvotes : {post.downvotes}</div>
-                                    <button onClick={ () => { self._upVote(post._id) }}>up vote</button>
-                                    <button onClick={ () => { self._downVote(post._id) }}>down vote</button>
-                                </div>
-                            )
-                        })
-                    }
-                </div>
-                {
-                    self.data.posts.length % 10 != 0
-                    ? null :
-                    <button onClick={ self._increaseLimit }>increase limit {self.state.limit }</button>
-                }
-
-                <a href="../">back</a>
             </div>
-        )
+        );
     }
 });
