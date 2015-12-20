@@ -54,7 +54,7 @@
 				line-height: 30px;
 				text-align: center;
 				cursor: pointer;
-			  transition: color .3s, background .3s;
+			    transition: color .3s, background .3s;
 			}
 
 		  .post-up-vote:active, .post-down-vote:active {
@@ -83,6 +83,10 @@
 		        color: $mainColor !important;
 		        display: inline-block;
 		    }
+
+		    .post-from{
+				text-transform: capitalize;
+			}
 
 		    .post-comments-number{
 		    	margin: 0 20px;
@@ -164,13 +168,13 @@
 			}
 
 			.left-comment-side{
-				margin: 0 10px;
 				font-size: 14px;
 				text-align: center;
-				width: 125px;
+				width: 90px;
 
 				img{
-					height: 80px;
+					margin-top: 10px;
+					height: 62px;
 					cursor: pointer;
 				}
 			}
@@ -190,6 +194,7 @@
 						text-align: center;
 						cursor: pointer;
 						color: $darkgrey;
+			    		transition: color .3s, background .3s;
 					}
 
 					.comment-up-vote:active, .comment-down-vote:active {
@@ -199,15 +204,39 @@
 						box-shadow: inset 0px 1px 2px 0px #656565;
 						filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=2);
 					}
+
+					.toggled{
+						background: $mainColor;
+						color: $lightgrey;
+					}
 				}
 
 				.comment-description{
 					margin: 10px;
 					display: inline-block;
-					height: 60px;
 
-					> *{
+					.comment-username, .comment-date{
 						display: inline-block;
+					}
+
+
+					.comment-username{
+						text-transform: capitalize;
+						color: $mainColor;
+						font-weight: 500;
+					}
+
+					.comment-date:before{
+						border-left: solid $darkgrey 1px;
+						content:'';
+						margin-left: 5px;
+						padding-left: 5px;
+					}
+
+					.comment-body{
+						width: $max-width - 380px;
+						margin-top: 5px;
+						text-align: justify;
 					}
 				}		
 			}	
