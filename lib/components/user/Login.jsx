@@ -37,7 +37,7 @@ LoginComponent = React.createClass({
                                 <input type="password" ref="password" required/>
                                 <input type="submit" value="login"/>
                             </form>
-                            <a href="../signin">No Account yet ? Click here to sign in</a>
+                            <a href="../sign-in">No Account yet ? Click here to sign in</a>
                         </div>
                 }
                 <a href="../">home</a>
