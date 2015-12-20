@@ -300,6 +300,7 @@
         text-align: center;
         cursor: pointer;
         color: $darkgrey;
+        transition: color .3s, background .3s;
       }
 
       .post-up-votes:active, .post-down-votes:active {

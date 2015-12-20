@@ -31,7 +31,7 @@ TimeAgo = React.createClass({
             timeoutDuration = this._calcTimeoutDuration(diff, 30 * 24 * 60 * 60 * 1000);
         } else {
             // on compte en année
-            display = parseInt(diff/(365 * 24 * 60 * 60 * 1000)) + ' année(s)';
+            display = parseInt(diff/(365 * 24 * 60 * 60 * 1000)) + ' an(s)';
             timeoutDuration = this._calcTimeoutDuration(diff, 365 * 30 * 24 * 60 * 60 * 1000);
         }
         this.setState({display: 'il y a ' + display});

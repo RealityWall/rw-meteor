@@ -54,7 +54,21 @@
 				line-height: 30px;
 				text-align: center;
 				cursor: pointer;
+			  transition: color .3s, background .3s;
 			}
+
+		  .post-up-vote:active, .post-down-vote:active {
+			-moz-box-shadow: inset 0px 1px 2px 0px #656565;
+			-webkit-box-shadow: inset 0px 1px 2px 0px #656565;
+			-o-box-shadow: inset 0px 1px 2px 0px #656565;
+			box-shadow: inset 0px 1px 2px 0px #656565;
+			filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=2);
+		  }
+
+		  .post-up-vote.toggled, .post-down-vote.toggled {
+			background: $mainColor;
+			color: $lightgrey;
+		  }
 
 		}
 		

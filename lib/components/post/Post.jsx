@@ -5,6 +5,10 @@ Post = React.createClass({
 
     render() {
         let self = this;
+
+        let hasAlreadyUpvoted = this.props.post.upvoters.indexOf(Meteor.userId()) >= 0;
+        let hasAlreadyDownvoted = this.props.post.downvoters.indexOf(Meteor.userId()) >= 0;
+
         return (
             <div className="post-description">
                 <div>
@@ -15,8 +19,8 @@ Post = React.createClass({
                         </div>
                     </div>
                     <div className="post-votes">
-                        <div className="post-up-vote" onClick={ self._upVote }><i className="fa fa-arrow-up"></i> {self.props.post.upvotes}</div>
-                        <div className="post-down-vote" onClick={ self._downVote }><i className="fa fa-arrow-down"></i> {self.props.post.downvotes}</div>
+                        <div className={"post-up-vote " + (hasAlreadyUpvoted ? "toggled" : "")} onClick={ self._upVote }><i className="fa fa-arrow-up"></i> {self.props.post.upvotes}</div>
+                        <div className={"post-down-vote " + (hasAlreadyDownvoted ? "toggled" : "")} onClick={ self._downVote }><i className="fa fa-arrow-down"></i> {self.props.post.downvotes}</div>
                     </div>
                     <div className="post-components">
                         <div className="post-title">{self.props.post.title}</div>

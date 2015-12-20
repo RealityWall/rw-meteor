@@ -14,6 +14,10 @@ CommentsOfPost = React.createClass({
             <div className="comments">
                 {
                     self.props.comments.map( (comment, index) => {
+
+                        let hasAlreadyUpvoted = comment.upvoters.indexOf(Meteor.userId()) >= 0;
+                        let hasAlreadyDownvoted = comment.downvoters.indexOf(Meteor.userId()) >= 0;
+
                         return (
                             <div key={index} className="comment">
                                 <div className="comment-separator"></div>
@@ -26,8 +30,8 @@ CommentsOfPost = React.createClass({
                                 </div>
                                 <div className="right-comment-side">
                                     <div className="comment-votes">
-                                        <div className="comment-up-vote" onClick={ () => { self._upVoteComment(comment._id) } }>{comment.upvotes}</div>
-                                        <div className="comment-down-vote" onClick={ () => { self._downVoteComment(comment._id) } }>{comment.downvotes}</div>
+                                        <div className={"comment-up-vote " + (hasAlreadyUpvoted ? "toggled":"")} onClick={ () => { self._upVoteComment(comment._id) } }>{comment.upvotes}</div>
+                                        <div className={"comment-down-vote " + (hasAlreadyDownvoted ? "toggled":"")} onClick={ () => { self._downVoteComment(comment._id) } }>{comment.downvotes}</div>
                                     </div>
                                     <div className="comment-description">
                                         <div>{comment.body} </div>
