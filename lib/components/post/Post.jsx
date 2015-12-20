@@ -24,9 +24,9 @@ Post = React.createClass({
                     </div>
                     <div className="post-components">
                         <div className="post-title">{self.props.post.title}</div>
-                        <div className="post-date"><i className="fa fa-clock-o"></i> 2 hours ago</div>
-                        <div className="post-comments-number"><a href="#"><i className="fa fa-comment-o"></i> 2 comments</a></div>
-                        <div className="post-from"><a href="#"><i className="fa fa-user"></i> Moi</a></div>
+                        <div className="post-date"><i className="fa fa-clock-o"></i> <TimeAgo time={self.props.post.createdAt} /></div>
+                        <div className="post-comments-number"><a href="#"><i className="fa fa-comment-o"></i> {self.props.post.commentCount} comments</a></div>
+                        <div className="post-from"><a href="#"><i className="fa fa-user"></i> {self.props.post.author}</a></div>
                     </div>
                     <div className="post-body">{self.props.post.body}</div>
                 </div>

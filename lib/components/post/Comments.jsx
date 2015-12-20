@@ -24,7 +24,7 @@ CommentsOfPost = React.createClass({
                                 <div className="left-comment-side">
                                     <a href={"/users/" + comment.userId}>
                                         <img src="/img/unknown_user.png" alt="Compte Utilisateur" />
-                                        <div className="comment-username">username</div>
+                                        <div className="comment-username">{comment.author}</div>
                                         <div><TimeAgo time={ comment.createdAt }/></div>
                                     </a>
                                 </div>
