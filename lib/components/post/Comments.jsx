@@ -24,8 +24,6 @@ CommentsOfPost = React.createClass({
                                 <div className="left-comment-side">
                                     <a href={"/users/" + comment.userId}>
                                         <img src="/img/unknown_user.png" alt="Compte Utilisateur" />
-                                        <div className="comment-username">{comment.author}</div>
-                                        <div><TimeAgo time={ comment.createdAt }/></div>
                                     </a>
                                 </div>
                                 <div className="right-comment-side">
@@ -34,7 +32,9 @@ CommentsOfPost = React.createClass({
                                         <div className={"comment-down-vote " + (hasAlreadyDownvoted ? "toggled":"")} onClick={ () => { self._downVoteComment(comment._id) } }>{comment.downvotes}</div>
                                     </div>
                                     <div className="comment-description">
-                                        <div>{comment.body} </div>
+                                        <div className="comment-username"><a href={"/users/" + comment.userId}>{comment.author}</a></div>
+                                        <div className="comment-date"><TimeAgo time={ comment.createdAt }/></div>
+                                        <div className="comment-body">{comment.body} </div>
                                     </div>
                                 </div>
                             </div>
