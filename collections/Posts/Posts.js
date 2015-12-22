@@ -1,9 +1,5 @@
 // Schema for the post system
 let PostSchema = new SimpleSchema({
-    title: {
-        type: String,
-        max: 200
-    },
     body: {
         type:String
     },
@@ -13,35 +9,8 @@ let PostSchema = new SimpleSchema({
     userId: {
         type: String
     },
-    author: {
-        type: String
-    },
     createdAt: {
         type: Date
-    },
-    commentCount: {
-        type: Number,
-        optional: true
-    },
-    commenters: {
-        type: [String],
-        optional: true
-    },
-    upvotes: {
-        type: Number,
-        optional: true
-    },
-    upvoters: {
-        type: [String], // XXX
-        optional: true
-    },
-    downvotes: {
-        type: Number,
-        optional: true
-    },
-    downvoters: {
-        type: [String], // XXX
-        optional: true
     }
 });
 
@@ -51,12 +20,6 @@ Posts.attachSchema(PostSchema);
 // add before hook
 Posts.before.insert( (userId, doc) => {
     doc.userId = userId;
-    doc.upvoters = [];
-    doc.downvoters = [];
-    doc.upvotes = 0;
-    doc.downvotes = 0;
-    doc.commentCount = 0;
-    doc.commenters = [];
 });
 
 // add after hook

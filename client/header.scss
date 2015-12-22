@@ -77,6 +77,14 @@
         display:inline-block;
       }
 
+      > a.btn {
+        height: 26px;
+        line-height: 26px;
+        padding: 0px 10px;
+        text-decoration:none;
+        margin-right:10px;
+      }
+
       .user-icon{
         margin: 0;
         vertical-align: top;

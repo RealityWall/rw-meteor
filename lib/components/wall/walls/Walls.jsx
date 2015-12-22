@@ -64,7 +64,11 @@ WallsComponent = React.createClass({
             });*/
                 new CustomMarker(new google.maps.LatLng(wall.loc.lat, wall.loc.lon), map, {postCount: wall.postCount});
             marker.addListener('click', () => {
-                FlowRouter.go('/walls/' + wall._id);
+                if (window.location.search == '?next=post') {
+                    FlowRouter.go('/walls/' + wall._id + '/post');
+                } else {
+                    FlowRouter.go('/walls/' + wall._id);
+                }
             });
 
             markers.push(marker);

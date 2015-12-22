@@ -37,6 +37,16 @@ LogIn = React.createClass({
         }
     },
 
+    facebookLogin() {
+        Meteor.loginWithFacebook({}, function(err){
+            if (err) {
+                throw new Meteor.Error("Facebook login failed");
+            } else {
+                FlowRouter.go('/walls');
+            }
+        });
+    },
+
     render() {
         var self = this;
        return (
@@ -47,6 +57,8 @@ LogIn = React.createClass({
                    <input className="input login-password"type="password" ref="password" required placeholder="password"/>
                    <div><input className="input login-submit"type="submit" value="Connexion"/></div>
                </form>
+
+               <button onClick={self.facebookLogin}>Login with facebook</button>
 
                {
                    self.state.loading

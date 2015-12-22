@@ -9,19 +9,16 @@ Meteor.publish('userData', function() {
 
 // add hook to bind custom properties to user document
 Accounts.onCreateUser( (options, user) => {
+
     var userProperties = {
-        firstname: options.firstname,
-        lastname: options.lastname,
-        postCount: 0,
-        commentCount: 0,
-        votes: {
-            upvotedPosts: [],
-            downvotedPosts: [],
-            upvotedComments: [],
-            downvotedComments: []
+        profile: {
+            firstname: options.firstname,
+            lastname: options.lastname
         },
+        postCount: 0,
         roles: ['user']
     };
+
     user = _.extend(user, userProperties);
     return user;
 });

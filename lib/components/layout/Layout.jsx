@@ -3,7 +3,7 @@ LayoutComponent = React.createClass({
         return (
             <div className="body">
                 <Errors />
-                <Header />
+                <Header hideAddPost={this.props.hideAddPost} />
                 <div className="body-wrapper">
                     {this.props.children}
                 </div>

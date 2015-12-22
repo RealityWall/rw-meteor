@@ -27,13 +27,13 @@ Header = React.createClass({
                         <a href="/walls"><img src="/img/rw-logo.png" alt="Reality Wall Logo"/></a>
                     </div>
                     <div className="toolbar">
-                        <div className="search-bar">
-                            <input type="text" placeholder="Recherche..."/>
-                            <div><i className="fa fa-search fa-1x"></i></div>
-                        </div>
+                        {
+                            this.props.hideAddPost ?
+                                null
+                                : <a href="/walls?next=post" className="btn transparent"><i className="fa fa-plus"></i> Post</a>
+                        }
 
                         <div className="user-icon">
-
                             {
                                 this.data.userId ?
                                     <span>

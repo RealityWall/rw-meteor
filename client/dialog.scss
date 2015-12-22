@@ -1,0 +1,172 @@
+@import "./constants";
+.dialog.hidden {
+  display:none;
+}
+.dialog {
+  position: fixed;
+  width:100%;
+  height: 100%;
+  top:0px;
+  left:0px;
+  z-index:200;
+  background: rgba(0,0,0,0.7);
+
+  > .content {
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+    position:relative;
+    width:300px;
+    overflow: hidden;
+
+    > div {
+      background: $lightgrey;
+    }
+
+
+    .header {
+      width:100%;
+      display:table;
+      border-bottom: 2px solid $mainColor;
+
+      /* Tab container */
+      > div {
+        height:80px;
+        width:33%;
+        display:table-cell;
+        cursor:pointer;
+        transition: 0.3s;
+        background-color:$lightgrey;
+        color: rgb(50,50,50);
+      }
+      > div:hover {
+        background-color:$grey;
+      }
+      > div.selected {
+        background-color:$mainColor;
+        color:white;
+      }
+
+      /* Logo of the tab */
+      > div > div:first-child {
+        height:80%;
+        font-size: 40px;
+        text-align:center;
+      }
+
+      > div > div:first-child > i {
+        margin-top:15px;
+      }
+
+      /* text of the tab */
+      > div > div:last-child {
+        height:20%;
+        text-align:center;
+        font-size:10px;
+        padding-left:5px;
+        padding-right:5px;
+      }
+
+    }
+
+    .content {
+
+      padding-bottom:0px;
+      display:block;
+      width:100%;
+      position:relative;
+      transition: min-height .3s, left .5s ease .3s;
+
+
+      > div {
+        display:block;
+        width:300px;
+        position:absolute;
+      }
+      > div:nth-child(2) { left:100%; top:0px;}
+      > div:nth-child(3) { left:200%; top:0px;}
+
+      > div > form {
+        text-align:right;
+        width:100%;
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+
+      > div > form > input[type="text"], > div > form > input[type="email"] {
+        margin-bottom:10px;
+      }
+
+      > div > form > input {
+        width: 260px;
+        margin-right: auto;
+        margin-left: auto;
+      }
+
+      > div > form > a.submit {
+        color:#e73931;
+        font-weight:bold;
+        padding: 10px 20px;
+      }
+      > div > form > a.submit:hover {
+        color:darkred;
+      }
+
+      > div > form > a.cancel {
+        color:darkgrey;
+        font-weight:bold;
+        padding: 10px 20px;
+      }
+      > div > form > a.cancel:hover {
+        color:black;
+      }
+
+      > div > form > .login-arrow {
+        margin-top:4px!important;
+        background-color: white;
+        width:60px;
+        height:60px;
+        border-radius:1000000px;
+        margin:auto;
+        padding:0px;
+        border:none;
+        display:block;
+        margin-bottom: -29px;
+        animation-delay: .8s;
+        animation-duration: .5s;
+      }
+
+      > div > form > .login-arrow > div {
+        cursor:pointer;
+        border:2px $mainColor solid;
+        border-radius:10000000px;
+        width:50px;
+        height:50px;
+        text-align:center;
+        margin:auto;
+        transition:0.3s;
+      }
+      > div > form > .login-arrow > div:hover {
+        border-color:$mainColorAccent;
+      }
+      > div > form > .login-arrow > div:hover > i {
+        color:$mainColorAccent;
+        transition:0.3s;
+      }
+
+      > div > form > .login-arrow > div > i {
+        margin-top: 11px;
+        margin-left:4px;
+        font-size:23px;
+        color: $mainColor;
+      }
+    }
+
+    .content.left-0 {  left: 0%;       min-height:156px;   }
+    .content.left-1 {  left: -100%;    min-height:281px;   }
+    .content.left-2 {  left: -200%;    min-height:103px;   }
+
+
+  }
+
+}
