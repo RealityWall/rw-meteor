@@ -30,4 +30,4 @@ let userSchemaObject = {
     }
 };
 
-Meteor.users.attachSchema(userSchemaObject);
+//Meteor.users.attachSchema(userSchemaObject);

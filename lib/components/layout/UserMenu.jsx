@@ -7,8 +7,10 @@ UserMenuComponent = React.createClass({
     },
 
     logOut() {
-        Meteor.logout();
-        FlowRouter.go('/sign-in');
+        Meteor.logout(function () {
+            FlowRouter.go('/sign-in');
+        });
+
     },
 
     componentWillMount: function () {

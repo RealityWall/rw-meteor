@@ -3,13 +3,13 @@ Meteor.startup( () => {
         let userId = Meteor.users.insert({
             profile: {
                 firstname: 'admin',
-                lastname: 'admin'
+                lastname: 'admin',
+                roles : ['admin']
             },
             emails: [{
                 address: 'admin@admin.fr',
                 verified: true
             }],
-            roles : ['admin'],
             createdAt: new Date()
         });
         Accounts.setPassword(userId, 'password');

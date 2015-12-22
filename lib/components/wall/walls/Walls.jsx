@@ -12,6 +12,13 @@ WallsComponent = React.createClass({
         }
     },
 
+    getInitialState() {
+        return {
+            showUserStep: Meteor.isClient && window.location.search === '?next=post',
+            showAdminStep: Meteor.isClient && window.location.search === '?next=upload'
+        };
+    },
+
     componentDidMount() {
         map = new google.maps.Map(document.getElementById('walls-map'), {
             center: {lat: 43.700000, lng: 7.250000},
@@ -19,6 +26,19 @@ WallsComponent = React.createClass({
             disableDefaultUI: true
         });
         this.displayWalls();
+
+        window.addEventListener('searchchange', this._onSearchChange);
+    },
+
+    componentWillUnmount() {
+        window.removeEventListener('searchchange', this._onSearchChange);
+    },
+
+    _onSearchChange() {
+        this.setState({
+            showUserStep: Meteor.isClient && window.location.search === '?next=post',
+            showAdminStep: Meteor.isClient && window.location.search === '?next=upload'
+        });
     },
 
     componentWillUpdate() {
@@ -58,14 +78,12 @@ WallsComponent = React.createClass({
         };
 
         this.data.walls.forEach( (wall) => {
-            let marker = /*new google.maps.Marker({
-                position: new google.maps.LatLng(wall.loc.lat, wall.loc.lon),
-                map: map,
-            });*/
-                new CustomMarker(new google.maps.LatLng(wall.loc.lat, wall.loc.lon), map, {postCount: wall.postCount});
+            let marker = new CustomMarker(new google.maps.LatLng(wall.loc.lat, wall.loc.lon), map, {postCount: wall.postCount});
             marker.addListener('click', () => {
                 if (window.location.search == '?next=post') {
                     FlowRouter.go('/walls/' + wall._id + '/post');
+                } else if (window.location.search == '?next=upload') {
+                    FlowRouter.go('/walls/' + wall._id + '/upload');
                 } else {
                     FlowRouter.go('/walls/' + wall._id);
                 }
@@ -80,6 +98,25 @@ WallsComponent = React.createClass({
             <LayoutComponent>
                 <div className="walls-wrapper">
                     <div id="walls-map"></div>
+                    {
+                        this.state.showUserStep ?
+                            <div className="step-wrapper">
+                                <div className="step-1 animated tada">
+                                    <span className="step-title">étape 1 :</span> Choisissez un mur
+                                </div>
+                            </div>
+                            : null
+                    }
+
+                    {
+                        this.state.showAdminStep ?
+                            <div className="step-wrapper">
+                                <div className="step-1 animated tada">
+                                    <span className="step-title">étape 1 :</span> Choisissez un mur
+                                </div>
+                            </div>
+                            : null
+                    }
                 </div>
             </LayoutComponent>
         )

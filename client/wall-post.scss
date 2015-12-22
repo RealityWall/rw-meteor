@@ -1,0 +1,15 @@
+.wall-post-container {
+  padding-top: 10px;
+
+  > form {
+
+    text-align: center;
+
+    textarea.add-post-body-input {
+      height: 100px;
+      width: calc(90% - 20px);
+      margin: auto;
+      margin-bottom: 10px;
+    }
+  }
+}

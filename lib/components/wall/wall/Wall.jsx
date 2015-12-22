@@ -21,7 +21,7 @@ WallComponent = React.createClass({
                             <div className="wall-postal-code">{self.data.wall.address.postalCode} {self.data.wall.address.city}</div>
                             <div className="wall-geolocation">{self.data.wall.loc.lat}, {self.data.wall.loc.lon}</div>
                         </div>
-                    : null
+                        : null
                     }
 
                 </div>
