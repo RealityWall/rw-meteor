@@ -1,15 +1,42 @@
+@import "./constants";
+
 .wall-post-container {
   padding-top: 10px;
+
+  h1{
+    color: $fontColor;
+    font-family: "Roboto"; 
+    font-weight: 600;
+  }
+
+  p{
+    color: #8A312F;
+  }
+
+  .step-wrapper *{
+    background-color: $headerColor !important;    
+  }
+
+  .step-wrapper .step-title{
+    color: #ECECEC !important;    
+  }
+
+  button{
+    margin-top: 15px;
+    background-color: $headerColor !important;
+    box-shadow: inset 0px -2px 0px $fontColor !important;
+  }
 
   > form {
 
     text-align: center;
 
     textarea.add-post-body-input {
-      height: 100px;
-      width: calc(90% - 20px);
-      margin: auto;
+      height: 400px;
+      width: calc(100% - 20px);
+      margin: 30px auto;
       margin-bottom: 10px;
+      resize: vertical;
     }
   }
 }
