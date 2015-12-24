@@ -31,3 +31,4 @@ service-configuration
 thereactivestack:blazetoreact
 cfs:standard-packages
 cfs:gridfs
+ostrio:mailer

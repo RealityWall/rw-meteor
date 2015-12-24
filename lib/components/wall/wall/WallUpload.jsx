@@ -5,39 +5,50 @@ WallUploadComponent = React.createClass({
     getMeteorData() {
         return {
             imagesReady: Meteor.subscribe('images').ready(),
-            images: Images.find({}).fetch()
+            images: WallImages.find({}).fetch()
         }
     },
-
-    submit(e) {
-        FS.Utility.eachFile(e, function(file) {
-            console.log('OLKM');
-            Images.insert(file, function (err, fileObj) {
-                if (err){
-                    // handle error
-                    console.log('err');
-                } else {
-                    console.log('OKLM', fileObj);
-                }
-            });
+    
+    submitImage(e) {
+        e.preventDefault();
+        //console.log(e.target[0]);
+        //Meteor.call('uploadImage', document.getElementById('coucou').files[0]);
+        WallImages.insert(document.getElementById('coucou').files[0], function (err, fileObj) {
+            if (err){
+                // handle error
+                console.log('err');
+            } else {
+                console.log('OKLM', fileObj);
+            }
         });
+    },
+
+    deleteImage(image) {
+        console.log(image);
+        WallImages.remove(image._id);
     },
 
     render() {
         //console.log(this.data.images[0]);
+        let self = this;
         return (
             <LayoutComponent>
                 <div className="wall-upload-container">
                     UPLOAD
                     <div>
-                            <input name="coucou" type="file" onChange={this.submit}/>
+                        <form onSubmit={ self.submitImage } encType="multipart/form-data">
+                            <input id="coucou" type="file"/>
+                            <input type="submit"/>
+                        </form>
+                            
                     </div>
 
                     {
-                        this.data.imagesReady ?
-                            this.data.images.map( (image, index) => {
+                        self.data.imagesReady ?
+                            self.data.images.map( (image, index) => {
                                 return Meteor.isClient ?
-                                    (<img src={image.url()} key={index} alt=""/>)
+                                    (<img height="100" src={image.url()} key={index} alt=""
+                                          onClick={ () => { self.deleteImage(image) }}/>)
                                     : null;
                             }):
                             null
