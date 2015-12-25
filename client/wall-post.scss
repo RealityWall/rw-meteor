@@ -1,6 +1,6 @@
 @import "./constants";
 
-.wall-post-container {
+.wall-post-container, .wall-upload-container {
   padding-top: 10px;
 
   h1{
@@ -38,5 +38,9 @@
       margin-bottom: 10px;
       resize: vertical;
     }
+  }
+
+  form .datepicker {
+    margin:auto;
   }
 }

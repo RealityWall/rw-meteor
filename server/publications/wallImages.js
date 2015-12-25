@@ -1,0 +1,1 @@
+Meteor.publish("wallImages", function(){ return WallImages.find(); });

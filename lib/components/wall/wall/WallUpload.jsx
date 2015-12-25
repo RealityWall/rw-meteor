@@ -4,28 +4,53 @@ WallUploadComponent = React.createClass({
 
     getMeteorData() {
         return {
-            imagesReady: Meteor.subscribe('images').ready(),
+            imagesReady: Meteor.subscribe('wallImages').ready(),
             images: WallImages.find({}).fetch()
         }
     },
     
     submitImage(e) {
         e.preventDefault();
-        //console.log(e.target[0]);
-        //Meteor.call('uploadImage', document.getElementById('coucou').files[0]);
-        WallImages.insert(document.getElementById('coucou').files[0], function (err, fileObj) {
-            if (err){
-                // handle error
-                console.log('err');
-            } else {
-                console.log('OKLM', fileObj);
+        let self = this;
+        let datepicker = $('#datepicker');
+        let date = datepicker.data('datepicker').selectedDates.length > 0 ?
+            datepicker.data('datepicker').selectedDates[0]
+            : null;
+
+        if (date) {
+            WallImages.insert(document.getElementById('wall-img').files[0], function (err, fileObj) {
+                if (err) {
+                    // handle error
+                    console.log('err');
+                } else {
+                    console.log('OKLM', fileObj._id);
+                    Meteor.call('associateImageWithWall', self.props.id, date, fileObj._id);
+                }
+            });
+        } else {
+            if (Meteor.isClient) {
+                pushErrorToClient({
+                    code: 400,
+                    id: Session.get('errorId'),
+                    message: "must select a date"
+                });
             }
-        });
+        }
     },
 
     deleteImage(image) {
         console.log(image);
         WallImages.remove(image._id);
+    },
+
+    componentDidMount() {
+        let datepickerElement = $('#datepicker');
+        datepickerElement.datepicker({
+            language: 'fr',
+            maxDate: new Date(),
+            inline: true
+        });
+        datepickerElement.data('datepicker').selectDate(new Date());
     },
 
     render() {
@@ -34,11 +59,18 @@ WallUploadComponent = React.createClass({
         return (
             <LayoutComponent>
                 <div className="wall-upload-container">
-                    UPLOAD
                     <div>
                         <form onSubmit={ self.submitImage } encType="multipart/form-data">
-                            <input id="coucou" type="file"/>
-                            <input type="submit"/>
+                            <div>
+                                à quelle date correspond la photo du mur ?
+                            </div>
+                            <div id="datepicker" />
+                            <div>
+                                <input id="wall-img" type="file" accept="image/*"/>
+                            </div>
+                            <div>
+                                <button type="submit" className="btn plain"><i className="fa fa-upload"></i> Envoyer</button>
+                            </div>
                         </form>
                             
                     </div>

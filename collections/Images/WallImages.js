@@ -1,6 +1,6 @@
-var imageStore = new FS.Store.GridFS("images", {path: "~/bonjour"});
+var imageStore = new FS.Store.GridFS("wallImages", {path: "~/walls"});
 
-WallImages = new FS.Collection("images", {
+WallImages = new FS.Collection("wallImages", {
     stores: [imageStore],
     filter: {
         maxSize: 2097152, // in bytes

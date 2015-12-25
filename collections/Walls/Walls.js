@@ -25,6 +25,17 @@ let GeolocSchema = new SimpleSchema({
     }
 });
 
+let WallImageSchema = new SimpleSchema({
+    date: {
+        type: Date,
+        optional: true
+    },
+    id: {
+        type: String,
+        optional: true
+    }
+});
+
 // Schema for the post system
 let WallSchema = new SimpleSchema({
     address: {
@@ -40,6 +51,11 @@ let WallSchema = new SimpleSchema({
     posts: {
         type: [String],
         optional: true
+    },
+    pictures: {
+        type: [WallImageSchema],
+        optional: true,
+        blackbox: true
     }
 });
 
@@ -50,4 +66,5 @@ Walls.attachSchema(WallSchema);
 Walls.before.insert( (userId, doc) => {
     doc.postCount = 0;
     doc.posts = [];
+    doc.pictures = [];
 });
