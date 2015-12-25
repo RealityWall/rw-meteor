@@ -23,9 +23,8 @@ WallPostComponent = React.createClass({
         return (
             <LayoutComponent>
                 <div className="wall-post-container">
-                    <div>
-                        attention ! vous ne pouvez postez qu'un seul message par jour !
-                    </div>
+                    <h1>Poster un message</h1>
+                    <p>Attention ! vous ne pouvez postez qu&#39;un seul message par jour !</p>
                     <form onSubmit={ this._postMessage }>
                         <textarea ref="body" className="add-post-body-input" required placeholder="Entrez votre message..."></textarea>
                         <button className="btn plain" type="submit">Poster <i className="fa fa-paper-plane"></i></button>
