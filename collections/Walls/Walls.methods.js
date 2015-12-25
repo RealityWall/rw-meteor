@@ -10,37 +10,44 @@ Meteor.methods({
        imageDate.setMilliseconds(0);
 
        if (isAdminById(userId)) {
-            let wall = Walls.findOne({
-                _id: wallId,
-                pictures: { $elemMatch : { date: imageDate }}
-            });
+            let wall = Walls.findOne(wallId);
            if (wall) {
                // Delete previous image
+               let hasAlreadyUploaded = false;
                for (let i in wall.pictures) {
                    if (new Date(wall.pictures[i].date).getTime() == imageDate.getTime()) {
+                       hasAlreadyUploaded = true;
                        WallImages.remove(wall.pictures[i].id);
                        break;
                    }
                }
-               // update pictures element
-               Walls.update({
-                   _id: wallId,
-                   pictures: { $elemMatch : { date: imageDate }}
-               }, {
-                   $set: {
-                       'pictures.$.id' : imageId
-                   }
-               });
-           } else {
-               // push new picture
-               Walls.update(wallId, {
-                   $push: {
-                       pictures: {
-                           date: imageDate,
-                           id: imageId
+
+               if (hasAlreadyUploaded) {
+                   // update pictures element
+                   Walls.update({
+                       _id: wallId,
+                       pictures: { $elemMatch : { date: imageDate }}
+                   }, {
+                       $set: {
+                           'pictures.$.id' : imageId
                        }
-                   }
-               });
+                   });
+               } else {
+                   // push new picture
+                   Walls.update(wallId, {
+                       $push: {
+                           pictures: {
+                               date: imageDate,
+                               id: imageId
+                           }
+                       }
+                   });
+               }
+
+           } else {
+               if (Meteor.isServer) {
+                   WallImages.remove(imageId);
+               }
            }
        } else {
            if (Meteor.isClient) {

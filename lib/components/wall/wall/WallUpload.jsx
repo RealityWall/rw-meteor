@@ -40,7 +40,7 @@ WallUploadComponent = React.createClass({
 
     deleteImage(image) {
         console.log(image);
-        WallImages.remove(image._id);
+        //WallImages.remove(image._id);
     },
 
     componentDidMount() {
@@ -54,7 +54,6 @@ WallUploadComponent = React.createClass({
     },
 
     render() {
-        //console.log(this.data.images[0]);
         let self = this;
         return (
             <LayoutComponent>
