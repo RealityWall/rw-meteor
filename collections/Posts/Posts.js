@@ -1,3 +1,12 @@
+let AuthorSchema = new SimpleSchema({
+    name: {
+        type:String
+    },
+    imagePath: {
+        type: String
+    }
+});
+
 // Schema for the post system
 let PostSchema = new SimpleSchema({
     body: {
@@ -11,6 +20,9 @@ let PostSchema = new SimpleSchema({
     },
     createdAt: {
         type: Date
+    },
+    author: {
+        type: AuthorSchema
     }
 });
 

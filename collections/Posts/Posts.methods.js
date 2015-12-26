@@ -1,14 +1,19 @@
 Meteor.methods({
     insertPost(wallId, body) {
         let userId = this.userId;
-        if (userId && isUserById(userId)) {
+        let user = isUserById(userId);
+        if (userId && user) {
             if (isBetween7and22()) {
                 if (!hasAlreadyPostedToday()) {
                     let postId = Posts.insert({
                         body: body,
                         userId: userId,
                         wallId: wallId,
-                        createdAt: new Date()
+                        createdAt: new Date(),
+                        author: {
+                            name: user.profile.firstname + " " + user.profile.lastname.substr(0, 1) + ".",
+                            imagePath: user.profile.imagePath
+                        }
                     });
 
                     Meteor.users.update(userId, {

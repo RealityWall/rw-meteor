@@ -1,9 +1,11 @@
-Meteor.publish('singlePost', (postId) => {
-    return Posts.find(postId);
-});
-
 Meteor.publish('postsByWallId', (wallId, limit) => {
-    return Posts.find({wallId: wallId}, {limit: limit ? limit : 10, sort: {commentCount: -1}});
+    let user = Meteor.user();
+    if (user.profile.roles.indexOf('admin') >= 0) {
+        return Posts.find({wallId: wallId}, {limit: limit ? limit : 10, sort: {commentCount: -1}});
+    } else {
+        return Posts.find({wallId: 'haters_gonna_hate'});
+    }
+
 });
 
 Meteor.publish('postsByUserId', (userId, limit) => {
