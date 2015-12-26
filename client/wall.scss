@@ -611,5 +611,44 @@
       }
     }
   }
+
+  @media screen and (max-height: 400px){
+    .pictures{
+      display: none;
+    }
+
+    .current-date{
+      font-size: 18px;
+    }
+
+    .gallery-description{
+      display: none;
+    }
+
+    .slider-container {
+      position: relative;
+      $pictureHeight: calc(100vh - 150px);
+      $navDim: 40px;
+      
+      #current-picture {
+        height: $pictureHeight;
+      }
+
+      .previous, .next{
+        top: calc((100vh - 180px) / 2);
+      }
+
+      .controls {
+        text-align:center;
+        height: 40px;
+
+        > div {
+          height: 40px;
+          line-height: 40px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
 
