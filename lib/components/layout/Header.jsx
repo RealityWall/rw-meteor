@@ -79,7 +79,7 @@ Header = React.createClass({
                                         }
 
                                     </span>
-                                    : <a href="/sign-in" className="btn transparent"><i className="fa fa-lock"></i> Connexion</a>
+                                    : <a onClick={ this.props.toggleSignInDialog } className="btn transparent"><i className="fa fa-lock"></i> Connexion</a>
                             }
 
                         </div>

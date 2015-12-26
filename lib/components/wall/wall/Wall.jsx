@@ -180,7 +180,7 @@ PictureItems = React.createClass({
         for (let i = 0; i < pictures.length; i++) {
             if (pictures[i].url == this.state.currentUrl) {
                 if (i < pictures.length - 1) {
-                    this.props.update(pictures[i+1].url);
+                    this.props.update(pictures[i+1].url, pictures[i+1].date);
                     this.setState({currentUrl: pictures[i+1].url});
                     if (i == pictures.length - 2)  this.props.setHide('previous');
                     else this.props.setHide('');
@@ -197,7 +197,7 @@ PictureItems = React.createClass({
         for (let i = 0; i < pictures.length; i++) {
             if (pictures[i].url == this.state.currentUrl) {
                 if (i > 0) {
-                    this.props.update(pictures[i-1].url);
+                    this.props.update(pictures[i-1].url, pictures[i-1].date);
                     this.setState({currentUrl: pictures[i-1].url});
                     if (i == 1) this.props.setHide('next');
                     else this.props.setHide('');
