@@ -145,6 +145,15 @@ PictureItems = React.createClass({
         }
     },
 
+    componentDidUpdate() {
+        if (this.state.currentUrl == '' && this.data.wallImages.length == this.props.images.length && this.data.wallImages.length > 0) {
+            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date);
+            this.setState({currentUrl: this.data.wallImages[0].url});
+            this.props.setHide('next');
+            if (this.data.wallImages.length == 1) this.props.setHide('all');
+        }
+    },
+
     _updateSlider(url, date) {
         this.props.update(url, date);
         this.setState({currentUrl: url});
