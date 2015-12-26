@@ -22,6 +22,11 @@ UserSettingsComponent = React.createClass({
                             <ProfilePictureSettings user={this.data.currentUser} />
                             : null
                     }
+                    {
+                        this.data.currentUser ?
+                            <NameSettings user={this.data.currentUser}/>
+                            : null
+                    }
 
                 </div>
             </LayoutComponent>
