@@ -23,9 +23,8 @@
   }
 }
 
-@media screen and (min-width: 1080px) {
+@media screen and (min-width: $max-width) {
   .body .errors {
-    right: calc( (100% - 1080px) / 2);
+    right: calc( (100% - $max-width) / 2);
   }
-
 }

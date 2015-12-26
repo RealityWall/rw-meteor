@@ -387,3 +387,81 @@
 
   }
 }
+
+.wall-gallery-container {
+
+  .current-date {
+    background: $darkgrey;
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    text-align:center;
+    color: $lightgrey;
+    font-size:24px;
+    padding:5px;
+  }
+
+  .slider-container {
+
+    $pictureHeight: 400px;
+    position: relative;
+
+    #current-picture {
+      background: $darkgrey;
+      height: $pictureHeight;
+      position:relative;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+    }
+
+    $navDim: 40px;
+
+    .previous {
+      cursor:pointer;
+      text-align:center;
+      line-height: $navDim;
+      position:absolute;
+      left:10px;
+      width: $navDim;
+      height: $navDim;
+      top: ($pictureHeight / 2) - ($navDim / 2);
+      color: $lightgrey;
+      border: 2px $lightgrey solid;
+      border-radius: 10000px;
+      background: $darkgrey;
+    }
+    .next {
+      cursor: pointer;
+      text-align:center;
+      line-height: $navDim;
+      position:absolute;
+      right:10px;
+      width: $navDim;
+      height: $navDim;
+      top: ($pictureHeight / 2) - ($navDim / 2);
+      color: $lightgrey;
+      border: 2px $lightgrey solid;
+      border-radius: 10000px;
+      background: $darkgrey;
+    }
+
+    .controls {
+      text-align:center;
+      background: $darkgrey;
+      width: calc(100% + 20px);
+      margin-left: -10px;
+
+
+      > div {
+        display:inline-block;
+        padding:5px;
+        color:lightgrey;
+        cursor:pointer;
+      }
+    }
+  }
+
+  .wall-info {
+    display:none;
+  }
+
+}

@@ -38,6 +38,7 @@ WallComponent = React.createClass({
         currentPicture.iviewer('loadImage', url);
         currentPicture.iviewer('fit');
         this.setState({dateToDisplay: date});
+        $("#react-root > .body").scrollTo(0, {duration: 300});
     },
     _zoomBy(number) {
         $('#current-picture').iviewer('zoom_by', number);
@@ -56,7 +57,7 @@ WallComponent = React.createClass({
                 <div className="wall-gallery-container">
                     {/* TODO : build wall info component */}
                     { self.data.wall ?
-                        <div>
+                        <div className="wall-info">
                             <div className="wall-address">{self.data.wall.address.address}</div>
                             <div className="wall-postal-code">{self.data.wall.address.postalCode} {self.data.wall.address.city}</div>
                             <div className="wall-geolocation">{self.data.wall.loc.lat}, {self.data.wall.loc.lon}</div>
@@ -64,23 +65,24 @@ WallComponent = React.createClass({
                         : null
                     }
 
-                    <div> { getFrenchDate(self.state.dateToDisplay) }</div>
-                    <div id="current-picture" style={{height:'400px', position: 'relative'}}></div>
-
-                    <div className="controls">
-                        <button onClick={ () => { self._zoomBy(1); }}>+ zoom</button>
-                        <button onClick={ self._fit }>fit</button>
-                        <button onClick={ () => { self._zoomBy(-1); }}>- zoom</button>
+                    <div className="current-date"> { getFrenchDate(self.state.dateToDisplay) }</div>
+                    <div className="slider-container">
+                        <div id="current-picture"></div>
                         {
                             self.state.hide === 'previous' || self.state.hide === 'all' ?
                                 null:
-                                <button onClick={ self._previous }>précédent</button>
+                                <div className="previous" onClick={ self._previous }><i className="fa fa-chevron-left"></i></div>
                         }
                         {
                             self.state.hide === 'next' || self.state.hide === 'all' ?
                                 null:
-                                <button onClick={ self._next }>suivant</button>
+                                <div className="next" onClick={ self._next }><i className="fa fa-chevron-right"></i></div>
                         }
+                        <div className="controls">
+                            <div onClick={ () => { self._zoomBy(-1); }}><i className="fa fa-search-minus fa-2x"></i></div>
+                            <div onClick={ self._fit }><i className="fa fa-arrows-alt fa-2x"></i></div>
+                            <div onClick={ () => { self._zoomBy(1); }}><i className="fa fa-search-plus fa-2x"></i></div>
+                        </div>
                     </div>
 
                     {
@@ -219,7 +221,7 @@ PictureItems = React.createClass({
                             { self.data.wallImages.map( (image, index) => {
                                 return Meteor.isClient ?
                                     <div
-                                        className={"col-lg-3 col-md-4 col-sm-6 " + (image.url == self.state.currentUrl ? "selected":"")} key={index}
+                                        className={"col-lg-3 col-md-4 col-sm-6 col-xs-12 " + (image.url == self.state.currentUrl ? "selected":"")} key={index}
                                         onClick={ () => {
                                             self._updateSlider(image.url, image.date);
                                         }}>

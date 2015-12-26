@@ -6,19 +6,30 @@
 .row > .col-xs-12, .row > .col-sm-6, .row > .col-md-4, .row > .col-lg-3 {
   float:left;
 }
-/*
-.col-xs-12 {
-  width:100%;
+
+@media screen and (max-width: 500px) {
+  .col-xs-12 {
+    width: 100%;
+  }
 }
-.col-sm-6 {
-  width:50%;
+
+@media screen and (min-width: 500px) and (max-width: 992px)  {
+  .col-sm-6 {
+    width: 50%;
+  }
 }
-.col-md-4 {
-  width: 25%;
-}*/
-.col-lg-3 {
-  width: 33.333%;
+
+@media screen and (min-width: 992px) and (max-width: 1200px) {
+  .col-md-4 {
+    width: 33.333%;
+  }
 }
+@media screen and (min-width: 1200px) {
+  .col-lg-3 {
+    width: 25%;
+  }
+}
+
 
 .img-responsive-height {
   height:200px;
