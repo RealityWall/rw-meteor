@@ -26,7 +26,7 @@ Header = React.createClass({
             pushErrorToClient({
                 code: 403,
                 id: Session.get('errorId'),
-                message: "you have already posted today"
+                message: "Vous avez déjà posté un message aujourd'hui"
             });
         } else {
             FlowRouter.go(location);
@@ -43,6 +43,7 @@ Header = React.createClass({
                     <div className="logo">
                         <a href="#" onClick={() => { this.onWallClick('/walls') }}><img src="/img/rw-logo.png" alt="Reality Wall Logo"/></a>
                     </div>
+
                     <div className="toolbar">
                         {
                             this.props.hideAddPost || !this.data.user || (this.data.user && this.data.user.profile && this.data.user.profile.roles && this.data.user.profile.roles.indexOf('admin') >= 0) ?
@@ -56,21 +57,18 @@ Header = React.createClass({
                                 : null
                         }
 
-                        <div className="user-icon">
+                        <div className="user-icon" style={{paddingTop: (this.data.userId ? '10px':'0px')}}>
                             {
                                 this.data.userId ?
                                     <span>
-                                        {
-                                            this.data.user.profile && this.data.user.profile.facebookId
-                                                ?
-                                                <a onClick={this.toggle}>
-                                                    <img
-                                                        src={"http://graph.facebook.com/" + this.data.user.profile.facebookId + "/picture?type=square"}
-                                                        alt="Compte Utilisateur" />
-                                                </a>
-                                                :
-                                                <a onClick={this.toggle}><img src="/img/unknown_user.png" alt="Compte Utilisateur" /></a>
-                                        }
+
+                                        <a onClick={this.toggle}>
+                                            {
+                                                this.data.user && this.data.user.profile.imageId ?
+                                                    <MyCustomImage imageId={this.data.user.profile.imageId}/>
+                                                    : <img src={this.data.user.profile.imagePath} alt="Compte Utilisateur" />
+                                            }
+                                        </a>
 
                                         {
                                             this.state.toggled ?
@@ -88,4 +86,29 @@ Header = React.createClass({
             </div>
         )
     }
+});
+
+MyCustomImage = React.createClass({
+
+    mixins: [ReactMeteorData],
+
+    getMeteorData() {
+        return {
+            readyForProfilePicture: Meteor.subscribe("myProfileImage", this.props.imageId),
+            profilePicture: ProfileImages.findOne(this.props.imageId)
+        }
+    },
+
+    render() {
+        return (
+            <div className="profile-thumb" style={{
+                backgroundImage: 'url("' +
+                 (this.data.readyForProfilePicture && this.data.profilePicture && Meteor.isClient ?
+                    this.data.profilePicture.url() : "/img/unknown_user.png")
+                 + '")'
+            }}>
+            </div>
+        );
+    }
+
 });

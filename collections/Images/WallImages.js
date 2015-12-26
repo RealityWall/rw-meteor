@@ -20,14 +20,14 @@ WallImages = new FS.Collection("wallImages", {
 });
 
 WallImages.allow({
-    insert: function(){
-        return true;
+    insert: function(userId){
+        return isAdminById(userId);
     },
-    update: function(){
-        return true;
+    update: function() {
+        return false;
     },
-    remove: function(){
-        return true;
+    remove: function(userId) {
+        return isAdminById(userId);
     },
     download: function(){
         return true;

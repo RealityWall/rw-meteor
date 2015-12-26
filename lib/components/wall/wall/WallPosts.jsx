@@ -25,30 +25,60 @@ WallPostsComponent = React.createClass({
                     {
                         self.data.readyForPosts ?
                             <div>
-                                {
-                                    self.data.posts.map( (post, index) => {
-                                        return (
-                                            <div key={index}>
-                                                <div className="date">
-                                                    {
-                                                        self._renderDate(post.createdAt, self.data.posts, index)
-                                                    }
-                                                </div>
-                                                <div className="message">
-                                                    <img src={post.author.imagePath} height="30"/>
-                                                    {post.author.name} :
-                                                    {post.body}
-                                                </div>
-                                            </div>
-                                        );
-                                    })
-                                }
+                                <AllPosts posts={self.data.posts}/>
                             </div>
                             : null
                     }
                 </div>
             </LayoutComponent>
         )
+    },
+});
+
+AllPosts = React.createClass({
+
+    mixins: [ReactMeteorData],
+
+    getMeteorData() {
+        return {
+            readyForImages: Meteor.subscribe('multipleProfileImage', this.props.posts.map( (post) => {
+                if (post.author.imageId) return post.author.imageId;
+            })).ready(),
+            images: ProfileImages.find({}).fetch().forEach( (image) => {
+                let posts = this.props.posts;
+                for (let i = 0; i < posts.length; i++) {
+                    if (posts[i].author.imageId == image._id) {
+                        if (Meteor.isClient) posts[i].author.imagePath = image.url();
+                        break;
+                    }
+                }
+            })
+        }
+    },
+
+    render() {
+        return (
+            <div>
+                {
+                    this.props.posts.map( (post, index) => {
+                        return (
+                            <div key={index}>
+                                <div className="date">
+                                    {
+                                        this._renderDate(post.createdAt, this.props.posts, index)
+                                    }
+                                </div>
+                                <div className="message">
+                                    <img src={post.author.imagePath} height="30"/>
+                                    {post.author.name} :
+                                    {post.body}
+                                </div>
+                            </div>
+                        );
+                    })
+                }
+            </div>
+        );
     },
 
     _renderDate(currentDate, posts, index) {
@@ -64,4 +94,5 @@ WallPostsComponent = React.createClass({
             return (<span> { getFrenchDate(date1) } </span>)
         }
     }
+
 });

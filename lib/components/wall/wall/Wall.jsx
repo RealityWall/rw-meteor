@@ -50,6 +50,22 @@ WallComponent = React.createClass({
     _next() { this.refs.pictureItems.next() },
     _setHide(newHide) { this.setState({hide: newHide}) },
 
+
+
+    componentDidMount() {
+        window.addEventListener('keydown', this._handleKeyboard);
+    },
+    componentWillUnmount() {
+        window.removeEventListener('keydown', this._handleKeyboard);
+    },
+    _handleKeyboard(e) {
+        if (e.which == 37) {
+            this._previous();
+        } else if (e.which == 39) {
+            this._next();
+        }
+    },
+
     render() {
         let self = this;
         return (
@@ -159,7 +175,7 @@ PictureItems = React.createClass({
         if (this.data.wallImages.length > 0) {
             this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date);
             this.setState({currentUrl: this.data.wallImages[0].url});
-            this.props.setHide('next');
+            this.props.setHide('previous');
             if (this.data.wallImages.length == 1) this.props.setHide('all');
         }
     },
@@ -168,7 +184,7 @@ PictureItems = React.createClass({
         if (this.state.currentUrl == '' && this.data.wallImages.length == this.props.images.length && this.data.wallImages.length > 0) {
             this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date);
             this.setState({currentUrl: this.data.wallImages[0].url});
-            this.props.setHide('next');
+            this.props.setHide('previous');
             if (this.data.wallImages.length == 1) this.props.setHide('all');
         }
     },
@@ -183,28 +199,11 @@ PictureItems = React.createClass({
                 if (i == 0 && i == pictures.length - 1) {
                     this.props.setHide('all');
                 } else if (i == 0) {
-                    this.props.setHide('next');
-                } else if (i == pictures.length - 1) {
                     this.props.setHide('previous');
+                } else if (i == pictures.length - 1) {
+                    this.props.setHide('next');
                 } else {
                     this.props.setHide('');
-                }
-                break;
-            }
-        }
-    },
-
-    previous() {
-        let pictures = this.data.wallImages;
-        for (let i = 0; i < pictures.length; i++) {
-            if (pictures[i].url == this.state.currentUrl) {
-                if (i < pictures.length - 1) {
-                    this.props.update(pictures[i+1].url, pictures[i+1].date);
-                    this.setState({currentUrl: pictures[i+1].url});
-                    if (i == pictures.length - 2)  this.props.setHide('previous');
-                    else this.props.setHide('');
-                } else {
-                    this.props.setHide('previous');
                 }
                 break;
             }
@@ -215,13 +214,30 @@ PictureItems = React.createClass({
         let pictures = this.data.wallImages;
         for (let i = 0; i < pictures.length; i++) {
             if (pictures[i].url == this.state.currentUrl) {
-                if (i > 0) {
-                    this.props.update(pictures[i-1].url, pictures[i-1].date);
-                    this.setState({currentUrl: pictures[i-1].url});
-                    if (i == 1) this.props.setHide('next');
+                if (i < pictures.length - 1) {
+                    this.props.update(pictures[i+1].url, pictures[i+1].date);
+                    this.setState({currentUrl: pictures[i+1].url});
+                    if (i == pictures.length - 2)  this.props.setHide('next');
                     else this.props.setHide('');
                 } else {
                     this.props.setHide('next');
+                }
+                break;
+            }
+        }
+    },
+
+    previous() {
+        let pictures = this.data.wallImages;
+        for (let i = 0; i < pictures.length; i++) {
+            if (pictures[i].url == this.state.currentUrl) {
+                if (i > 0) {
+                    this.props.update(pictures[i-1].url, pictures[i-1].date);
+                    this.setState({currentUrl: pictures[i-1].url});
+                    if (i == 1) this.props.setHide('previous');
+                    else this.props.setHide('');
+                } else {
+                    this.props.setHide('previous');
                 }
                 break;
             }

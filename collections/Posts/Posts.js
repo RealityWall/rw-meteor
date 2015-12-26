@@ -3,7 +3,12 @@ let AuthorSchema = new SimpleSchema({
         type:String
     },
     imagePath: {
-        type: String
+        type: String,
+        optional: true
+    },
+    imageId: {
+        type: String,
+        optional: true
     }
 });
 

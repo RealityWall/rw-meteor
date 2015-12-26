@@ -12,7 +12,8 @@ Meteor.methods({
                         createdAt: new Date(),
                         author: {
                             name: user.profile.firstname + " " + user.profile.lastname.substr(0, 1) + ".",
-                            imagePath: user.profile.imagePath
+                            imagePath: user.profile.imagePath,
+                            imageId: user.profile.imageId
                         }
                     });
 

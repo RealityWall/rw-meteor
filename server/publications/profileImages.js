@@ -3,3 +3,7 @@ Meteor.publish("multipleProfileImage", function(userIds) {
         _id: {$in: userIds}
     });
 });
+
+Meteor.publish("myProfileImage", function (imageId) {
+    return ProfileImages.find(imageId);
+});

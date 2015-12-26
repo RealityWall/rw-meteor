@@ -20,14 +20,14 @@ ProfileImages = new FS.Collection("profileImages", {
 });
 
 ProfileImages.allow({
-    insert: function(){
-        return true;
+    insert: function(userId) {
+        return isUserById(userId) || isAdminById(userId);
     },
-    update: function(){
-        return true;
+    update: function() {
+        return false;
     },
-    remove: function(){
-        return true;
+    remove: function(userId){
+        return isAdminById(userId);
     },
     download: function(){
         return true;

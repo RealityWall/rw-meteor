@@ -4,6 +4,8 @@ Meteor.startup( () => {
             profile: {
                 firstname: 'admin',
                 lastname: 'admin',
+                imagePath: '/img/unknown_user.png',
+                imageId: '',
                 roles : ['admin']
             },
             emails: [{
@@ -13,6 +15,8 @@ Meteor.startup( () => {
             createdAt: new Date()
         });
         Accounts.setPassword(userId, 'password');
+        ProfileImages.remove({});
+        WallImages.remove({});
     }
 });
 
