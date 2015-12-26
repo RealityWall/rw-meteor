@@ -1,15 +1,75 @@
 SignInForm = React.createClass({
+
+    getInitialState() {
+        return {
+            loading: false,
+            error: null
+        }
+    },
+
+    _submit(e) {
+        var self = this;
+        e.preventDefault();
+        self.setState({loading: true});
+        let email = this.refs.email.value;
+        Accounts.createUser({
+            email: email,
+            password: this.refs.password.value,
+            firstname: this.refs.firstname.value,
+            lastname: this.refs.lastname.value
+        }, function (err) {
+            self.setState({loading:false});
+            if (err) {
+                console.log(err);
+                if (err.reason != "Login forbidden") {
+                    pushErrorToClient({
+                        code: 403,
+                        id: Session.get('errorId'),
+                        message: "Cet email est déjà pris"
+                    });
+                } else {
+                    pushErrorToClient({
+                        code: 403,
+                        id: Session.get('errorId'),
+                        message: "Un email de confirmation a été envoyé à " + email
+                    });
+                }
+
+            } else {
+
+            }
+        });
+    },
+
+    _facebookLogin() {
+        Meteor.loginWithFacebook({}, function(err){
+            if (err) {
+                pushErrorToClient({
+                    code: 403,
+                    id: Session.get('errorId'),
+                    message: "Une erreur est survenue lors de la connexion à Facebook"
+                });
+            } else {
+                FlowRouter.go('/walls');
+            }
+        });
+    },
+
     render () {
         return (
-            <form ng-submit="hc.signIn()">
+            <div>
+                <form onSubmit={ this._submit }>
 
-                <input className="input" type="text" placeholder="Prénom" ng-model="hc.user.firstname" required/>
-                <input className="input" type="text" placeholder="Nom" ng-model="hc.user.lastname" required/>
-                <input className="input" type="email" placeholder="Email" ng-model="hc.user.mail" required/>
-                <input className="input" type="password" placeholder="Mot de passe" ng-model="hc.user.password" required/>
+                    <input className="input" type="text" placeholder="Prénom" ref="firstname" required/>
+                    <input className="input" type="text" placeholder="Nom" ref="lastname" required/>
+                    <input className="input" type="email" placeholder="Email" ref="email" required/>
+                    <input className="input" type="password" placeholder="Mot de passe" ref="password" required/>
 
-                <button type="submit" className="btn plain animated fadeIn">Créer un compte</button>
-            </form>
+                    <button type="submit" className="btn plain animated fadeIn">Créer un compte</button>
+                </form>
+                <button onClick={ this._facebookLogin } className="btn plain"><i className="fa fa-facebook"></i> Se Connecter Avec Facebook</button>
+            </div>
+
         );
     }
 });

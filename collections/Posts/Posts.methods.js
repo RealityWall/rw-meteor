@@ -31,7 +31,7 @@ Meteor.methods({
                         pushErrorToClient({
                             code: 403,
                             id: Session.get('errorId'),
-                            message: "you have already posted today"
+                            message: "Vous avez déjà posté un message aujourd'hui"
                         });
                     }
                 }
@@ -40,7 +40,7 @@ Meteor.methods({
                     pushErrorToClient({
                         code: 403,
                         id: Session.get('errorId'),
-                        message: "must be between 7 and 22"
+                        message: "Vous ne pouvez poster qu'entre 7h et 22h"
                     });
                 }
             }
@@ -49,7 +49,7 @@ Meteor.methods({
                 pushErrorToClient({
                     code: 403,
                     id: Session.get('errorId'),
-                    message: "must be logged in or user by id"
+                    message: "Vous devez être connecté"
                 });
             }
         }

@@ -101,41 +101,42 @@
         display:block;
         width:300px;
         position:absolute;
+        text-align:center;
       }
       > div:nth-child(2) { left:100%; top:0px;}
       > div:nth-child(3) { left:200%; top:0px;}
 
-      > div > form {
+      > div form {
         text-align:center;
         width:100%;
         padding-top: 10px;
         padding-bottom: 10px;
       }
 
-      > div > form > input[type="text"], > div > form > input[type="email"] {
+      > div form > input[type="text"], > div form > input[type="email"] {
         margin-bottom:10px;
       }
 
-      > div > form > input {
+      > div form > input {
         width: 260px;
         margin-right: auto;
         margin-left: auto;
       }
 
-      > div > form > button {
+      > div form > button {
         margin-top:10px;
         margin-bottom: 10px;
         animation-delay: .8s;
       }
 
-      > div:nth-child(3) > form > input {
+      > div:nth-child(3) form > input {
         margin-bottom:0px;
       }
 
     }
 
-    .content.left-0 {  left: 0%;       min-height:176px;   }
-    .content.left-1 {  left: -100%;    min-height:291px;   }
+    .content.left-0 {  left: 0%;       min-height:232px;   }
+    .content.left-1 {  left: -100%;    min-height:341px;   }
     .content.left-2 {  left: -200%;    min-height:120px;   }
 
 

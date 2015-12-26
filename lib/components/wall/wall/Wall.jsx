@@ -64,9 +64,16 @@ WallComponent = React.createClass({
                         </div>
                         : null
                     }
+                    {
+                        self.data.wall && self.data.wall.pictures.length > 0 ?
+                            <div className="current-date"> { getFrenchDate(self.state.dateToDisplay) }</div>
+                            :
+                            <div>
+                                désolé bro y'a pas d'image ici !
+                            </div>
+                    }
 
-                    <div className="current-date"> { getFrenchDate(self.state.dateToDisplay) }</div>
-                    <div className="slider-container">
+                    <div className={"slider-container " + (self.data.wall && self.data.wall.pictures.length > 0 ? "" : "hidden")} >
                         <div id="current-picture"></div>
                         {
                             self.state.hide === 'previous' || self.state.hide === 'all' ?

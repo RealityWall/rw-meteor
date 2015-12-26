@@ -8,7 +8,7 @@ UserMenuComponent = React.createClass({
 
     logOut() {
         Meteor.logout(function () {
-            FlowRouter.go('/sign-in');
+            FlowRouter.go('/');
         });
 
     },

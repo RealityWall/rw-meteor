@@ -54,7 +54,7 @@ Meteor.methods({
                pushErrorToClient({
                    code: 403,
                    id: Session.get('errorId'),
-                   message: "must be logged in and admin by id"
+                   message: "Vous devez être connecté en tant qu'administrateur"
                });
            }
        }
