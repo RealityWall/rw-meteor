@@ -11,7 +11,8 @@ WallComponent = React.createClass({
     getMeteorData() {
         return {
             readyForWall: Meteor.subscribe('wallById', this.props.id).ready(),
-            wall: Walls.findOne({})
+            wall: Walls.findOne({}),
+            currentUser: Meteor.user()
         }
     },
 
@@ -63,6 +64,11 @@ WallComponent = React.createClass({
                             <div className="wall-geolocation">{self.data.wall.loc.lat}, {self.data.wall.loc.lon}</div>
                         </div>
                         : null
+                    }
+                    {
+                        self.data.currentUser && self.data.currentUser.profile.roles.indexOf('admin') >= 0 ?
+                            <div><a href={"/walls/" + this.props.id + "/posts"}>voir les posts</a></div>
+                            :null
                     }
                     {
                         self.data.wall && self.data.wall.pictures.length > 0 ?
