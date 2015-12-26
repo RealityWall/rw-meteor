@@ -2,7 +2,6 @@ Meteor.publish('postsByWallId', (userId, wallId, limit) => {
     if (isAdminById(userId)) {
         return Posts.find({wallId: wallId}, {limit: limit ? limit : 10, sort: {commentCount: -1}});
     } else {
-        console.log('derp');
         return Posts.find({wallId: 'haters_gonna_hate'});
     }
 

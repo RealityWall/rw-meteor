@@ -23,7 +23,6 @@ WallUploadComponent = React.createClass({
                     // handle error
                     console.log('err');
                 } else {
-                    console.log('OKLM', fileObj._id);
                     Meteor.call('associateImageWithWall', self.props.id, date, fileObj._id);
                 }
             });

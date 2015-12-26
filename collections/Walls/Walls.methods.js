@@ -57,6 +57,9 @@ Meteor.methods({
                    message: "Vous devez être connecté en tant qu'administrateur"
                });
            }
+           if (Meteor.isServer) {
+               WallImages.remove(imageId);
+           }
        }
    }
 });

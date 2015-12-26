@@ -17,6 +17,7 @@ Accounts.onCreateUser( (options, user) => {
             firstname: user.services.facebook.first_name,
             lastname: user.services.facebook.last_name,
             imagePath: "http://graph.facebook.com/" + user.services.facebook.id + "/picture?type=square",
+            imageId: '',
             facebookId: user.services.facebook.id,
             roles: ['user']
         };
@@ -25,6 +26,7 @@ Accounts.onCreateUser( (options, user) => {
             firstname: options.firstname,
             lastname: options.lastname,
             imagePath: "/img/unknown_user.png",
+            imageId: '',
             roles: ['user']
         };
         Meteor.setTimeout(function() {

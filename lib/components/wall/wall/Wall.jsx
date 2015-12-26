@@ -109,7 +109,6 @@ WallComponent = React.createClass({
                                     images={ self.data.wall.pictures }/>
                             </div>
                             : null
-
                     }
                 </div>
             </LayoutComponent>
