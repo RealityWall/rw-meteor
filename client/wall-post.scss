@@ -4,7 +4,7 @@
   padding-top: 10px;
 
   h1{
-    color: $fontColor;
+    color: $darkBlue;
     font-family: "Roboto"; 
     font-weight: 600;
   }
@@ -14,7 +14,7 @@
   }
 
   .step-wrapper *{
-    background-color: $headerColor !important;    
+    background-color: $mainColor !important;    
   }
 
   .step-wrapper .step-title{
@@ -23,8 +23,8 @@
 
   button{
     margin-top: 15px;
-    background-color: $headerColor !important;
-    box-shadow: inset 0px -2px 0px $fontColor !important;
+    background-color: $mainColor !important;
+    box-shadow: inset 0px -2px 0px $darkBlue !important;
   }
 
   > form {
