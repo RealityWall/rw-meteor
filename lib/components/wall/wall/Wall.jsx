@@ -39,7 +39,6 @@ WallComponent = React.createClass({
         currentPicture.iviewer('loadImage', url);
         currentPicture.iviewer('fit');
         this.setState({dateToDisplay: date});
-        $("#react-root > .body").scrollTo(0, {duration: 300});
     },
     _zoomBy(number) {
         $('#current-picture').iviewer('zoom_by', number);
@@ -101,6 +100,12 @@ WallComponent = React.createClass({
                     {
                         self.data.wall ?
                             <div>
+                                <div className="gallery-description">
+                                    <div>
+                                        <div className="message">Choisissez l&#x27;image à agrandir</div>
+                                        <div className="picture-number">2/15</div>
+                                    </div>
+                                </div>
                                 <PictureItems
                                     init={ self._initSlider }
                                     update={ self._updateSlider }
@@ -226,22 +231,18 @@ PictureItems = React.createClass({
     render() {
         let self = this;
         return (
-            <div className="container">
+            <div className="pictures">
                 {
                     self.data.wallImages ?
-                        <div className="row">
-                            { self.data.wallImages.map( (image, index) => {
+                             self.data.wallImages.map( (image, index) => {
                                 return Meteor.isClient ?
-                                    <div
-                                        className={"col-lg-3 col-md-4 col-sm-6 col-xs-12 " + (image.url == self.state.currentUrl ? "selected":"")} key={index}
-                                        onClick={ () => {
-                                            self._updateSlider(image.url, image.date);
-                                        }}>
-                                        <img className="img-responsive-height" src={image.url}/>
-                                    </div>
+                                        <div key={index} className={"picture "+ (image.url == self.state.currentUrl ? "selected":"")} style={{backgroundImage: "url('"+image.url+"')"}} 
+                                            onClick={ () => {
+                                                self._updateSlider(image.url, image.date);
+                                            }}>
+                                        </div>
                                     : null
-                            }) }
-                        </div>
+                            }) 
                         : null
                 }
             </div>
