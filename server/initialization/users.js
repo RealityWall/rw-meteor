@@ -15,3 +15,20 @@ Meteor.startup( () => {
         Accounts.setPassword(userId, 'password');
     }
 });
+
+Accounts.validateLoginAttempt(function(attemptInfo) {
+
+    if (attemptInfo.type == 'facebook') return true;
+    if (attemptInfo.type == 'resume') return true;
+    if (attemptInfo.methodName == 'createUser') return false;
+    if (attemptInfo.methodName == 'login' && attemptInfo.allowed) {
+        var verified = false;
+        var email = attemptInfo.methodArguments[0].user.email;
+        attemptInfo.user.emails.forEach(function(value, index) {
+            if (email == value.address && value.verified) verified = true;
+        });
+        if (!verified) throw new Meteor.Error(403, 'Verify Email first!');
+    }
+
+    return true;
+});

@@ -27,6 +27,10 @@ Accounts.onCreateUser( (options, user) => {
             imagePath: "/img/unknown_user.png",
             roles: ['user']
         };
+        Meteor.setTimeout(function() {
+            console.log('send mail confirmation to', user);
+            Accounts.sendVerificationEmail(user._id);
+        }, 2 * 1000);
     }
 
     return user;

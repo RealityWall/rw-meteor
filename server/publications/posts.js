@@ -1,8 +1,8 @@
-Meteor.publish('postsByWallId', (wallId, limit) => {
-    let user = Meteor.user();
-    if (user.profile.roles.indexOf('admin') >= 0) {
+Meteor.publish('postsByWallId', (userId, wallId, limit) => {
+    if (isAdminById(userId)) {
         return Posts.find({wallId: wallId}, {limit: limit ? limit : 10, sort: {commentCount: -1}});
     } else {
+        console.log('derp');
         return Posts.find({wallId: 'haters_gonna_hate'});
     }
 

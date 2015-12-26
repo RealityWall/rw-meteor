@@ -403,6 +403,9 @@
     font-size:24px;
   }
 
+  .slider-container.hidden {
+    display:none;
+  }
   .slider-container {
 
     $pictureHeight: 400px;
