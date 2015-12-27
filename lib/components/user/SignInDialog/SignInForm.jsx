@@ -22,15 +22,15 @@ SignInForm = React.createClass({
             if (err) {
                 console.log(err);
                 if (err.reason != "Login forbidden") {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'ERROR',
+                        id: Session.get('notificationId'),
                         message: "Cet email est déjà pris"
                     });
                 } else {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'SUCCESS',
+                        id: Session.get('notificationId'),
                         message: "Un email de confirmation a été envoyé à " + email
                     });
                 }
@@ -44,9 +44,9 @@ SignInForm = React.createClass({
     _facebookLogin() {
         Meteor.loginWithFacebook({}, function(err){
             if (err) {
-                pushErrorToClient({
-                    code: 403,
-                    id: Session.get('errorId'),
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
                     message: "Une erreur est survenue lors de la connexion à Facebook"
                 });
             } else {

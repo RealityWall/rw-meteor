@@ -30,7 +30,6 @@ Accounts.onCreateUser( (options, user) => {
             roles: ['user']
         };
         Meteor.setTimeout(function() {
-            console.log('send mail confirmation to', user);
             Accounts.sendVerificationEmail(user._id);
         }, 2 * 1000);
     }

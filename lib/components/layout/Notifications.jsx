@@ -1,10 +1,10 @@
-Errors = React.createClass({
+Notifications = React.createClass({
 
     mixins: [ReactMeteorData],
 
     getMeteorData() {
         return {
-            errors: Meteor.isClient ? Session.get('errors') : []
+            notifications: Meteor.isClient ? Session.get('notifications') : []
         }
     },
 
@@ -13,10 +13,10 @@ Errors = React.createClass({
         return (
             <div className="errors">
                 {
-                    self.data.errors.map( (error, index) => {
+                    self.data.notifications.map( (notification, index) => {
                         return (
                             <div key={index} className="error animated fadeInRight">
-                                { error.message }
+                                { notification.message }
                             </div>
                         )
                     })

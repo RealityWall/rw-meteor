@@ -28,10 +28,10 @@ WallUploadComponent = React.createClass({
             });
         } else {
             if (Meteor.isClient) {
-                pushErrorToClient({
-                    code: 400,
-                    id: Session.get('errorId'),
-                    message: "must select a date"
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
+                    message: "Vous devez sélectionner une date"
                 });
             }
         }

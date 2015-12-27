@@ -9,10 +9,10 @@ ProfileImages = new FS.Collection("profileImages", {
         },
         onInvalid: function (message) {
             if (Meteor.isClient) {
-                pushErrorToClient({
-                    code: 400,
-                    id: Session.get('errorId'),
-                    message: message
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
+                    message: "La taille de l'image doit être inférieure à 2 Mo"
                 });
             }
         }

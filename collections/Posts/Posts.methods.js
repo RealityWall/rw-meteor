@@ -29,27 +29,27 @@ Meteor.methods({
                     return 'OK';
                 } else {
                     if (Meteor.isClient) {
-                        pushErrorToClient({
-                            code: 403,
-                            id: Session.get('errorId'),
+                        pushNotificationToClient({
+                            type: 'ERROR',
+                            id: Session.get('notificationId'),
                             message: "Vous avez déjà posté un message aujourd'hui"
                         });
                     }
                 }
             } else {
                 if (Meteor.isClient) {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'ERROR',
+                        id: Session.get('notificationId'),
                         message: "Vous ne pouvez poster qu'entre 7h et 22h"
                     });
                 }
             }
         } else {
             if (Meteor.isClient) {
-                pushErrorToClient({
-                    code: 403,
-                    id: Session.get('errorId'),
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
                     message: "Vous devez être connecté"
                 });
             }

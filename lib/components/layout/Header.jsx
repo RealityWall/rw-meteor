@@ -23,9 +23,9 @@ Header = React.createClass({
     onWallClick (location) {
 
         if (location == '/walls?next=post' && hasAlreadyPostedToday()) {
-            pushErrorToClient({
-                code: 403,
-                id: Session.get('errorId'),
+            pushNotificationToClient({
+                type: 'ERROR',
+                id: Session.get('notificationId'),
                 message: "Vous avez déjà posté un message aujourd'hui"
             });
         } else {

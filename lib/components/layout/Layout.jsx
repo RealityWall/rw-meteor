@@ -8,7 +8,7 @@ LayoutComponent = React.createClass({
     render() {
         return (
             <div className="body">
-                <Errors />
+                <Notifications />
                 <Header hideAddPost={this.props.hideAddPost} toggleSignInDialog={ this.toggleDialog } />
                 <div className="body-wrapper">
                     {this.props.children}

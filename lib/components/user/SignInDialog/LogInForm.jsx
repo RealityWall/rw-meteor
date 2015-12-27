@@ -15,9 +15,9 @@ LogInForm = React.createClass({
             Meteor.loginWithPassword(this.refs.email.value, this.refs.password.value, (err) => {
                 self.setState({loading: false});
                 if (err) {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'ERROR',
+                        id: Session.get('notificationId'),
                         message: "Email / Mot de passe incorrect"
                     });
                 } else {
@@ -30,9 +30,9 @@ LogInForm = React.createClass({
     _facebookLogin() {
         Meteor.loginWithFacebook({}, function(err){
             if (err) {
-                pushErrorToClient({
-                    code: 403,
-                    id: Session.get('errorId'),
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
                     message: "Une erreur est survenue lors de la connexion à Facebook"
                 });
             } else {

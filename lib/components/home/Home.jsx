@@ -4,15 +4,15 @@ HomeComponent = React.createClass({
         if (Accounts._verifyEmailToken) {
             Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
                 if (err != null) {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'ERROR',
+                        id: Session.get('notificationId'),
                         message: "Ce lien n'est plus valide"
                     });
                 } else {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'SUCCESS',
+                        id: Session.get('notificationId'),
                         message: "Votre email a bien été validé"
                     });
                     FlowRouter.go('/walls');

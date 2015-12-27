@@ -6,28 +6,28 @@ PasswordSettings = React.createClass({
         if (self.refs.newPassword.value == self.refs.newPasswordConfirmation.value) {
             Accounts.changePassword(self.refs.oldPassword.value, self.refs.newPassword.value, (err) => {
                 if (err) {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'ERROR',
+                        id: Session.get('notificationId'),
                         message: "Mot de passe actuel incorrect"
-                    })
+                    });
                 } else {
                     self.refs.oldPassword.value = '';
                     self.refs.newPassword.value = '';
                     self.refs.newPasswordConfirmation.value = '';
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'SUCCESS',
+                        id: Session.get('notificationId'),
                         message: "Mot de passe modifié avec succès"
-                    })
+                    });
                 }
             });
         } else {
-            pushErrorToClient({
-                code: 403,
-                id: Session.get('errorId'),
+            pushNotificationToClient({
+                type: 'ERROR',
+                id: Session.get('notificationId'),
                 message: "Les nouveaux mots de passe ne correspondent pas"
-            })
+            });
         }
 
     },

@@ -31,9 +31,9 @@ Meteor.methods({
                 ProfileImages.remove(imageId);
             }
             if (Meteor.isClient) {
-                pushErrorToClient({
-                    code: 403,
-                    id: Session.get('errorId'),
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
                     message: "Vous devez être connecté"
                 });
             }
@@ -65,26 +65,26 @@ Meteor.methods({
                     }
                 });
                 if (Meteor.isClient) {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'SUCCESS',
+                        id: Session.get('notificationId'),
                         message: "Votre prénom et nom ont été modifiés avec succès"
                     });
                 }
             } else {
                 if (Meteor.isClient) {
-                    pushErrorToClient({
-                        code: 403,
-                        id: Session.get('errorId'),
+                    pushNotificationToClient({
+                        type: 'ERROR',
+                        id: Session.get('notificationId'),
                         message: "Vous ne pouvez modifiez votre nom que toutes les semaines"
                     });
                 }
             }
         } else {
             if (Meteor.isClient && !userId) {
-                pushErrorToClient({
-                    code: 403,
-                    id: Session.get('errorId'),
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
                     message: "Vous devez être connecté"
                 });
             }
