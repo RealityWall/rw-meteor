@@ -46,7 +46,7 @@
     .header {
       width:100%;
       display:table;
-      border-bottom: 2px solid $mainColor;
+      border-bottom: 2px solid $pink;
 
       /* Tab container */
       > div {
@@ -62,7 +62,11 @@
         background-color:$grey;
       }
       > div.selected {
-        background-color:$mainColor;
+        background-color:$pink;
+        color:white;
+      }
+      > div.selected:hover {
+        background-color:$pinkAccent;
         color:white;
       }
 
@@ -111,6 +115,11 @@
         width:100%;
         padding-top: 10px;
         padding-bottom: 10px;
+
+        hr {
+          width: 280px;
+          margin: auto;
+        }
       }
 
       > div form > input[type="text"], > div form > input[type="email"] {
@@ -126,6 +135,13 @@
       > div form > button {
         margin-top:10px;
         margin-bottom: 10px;
+        animation-delay: .8s;
+        width: 280px;
+      }
+
+      > div button.facebook {
+        background: #3B5998;
+        box-shadow: inset 0px -2px 0px #273A63;
         animation-delay: .8s;
       }
 

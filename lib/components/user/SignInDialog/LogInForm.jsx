@@ -52,9 +52,10 @@ LogInForm = React.createClass({
                     <input className="input" type="password" ref="password" placeholder="Mot de passe" required/>
 
                     <button type="submit" className="btn plain animated fadeIn">Se Connecter</button>
+                    <hr/>
                 </form>
 
-                <button onClick={ this._facebookLogin } className="btn plain"><i className="fa fa-facebook"></i> Se Connecter Avec Facebook</button>
+                <button onClick={ this._facebookLogin } className="btn plain animated fadeIn facebook"><i className="fa fa-facebook"></i> Se Connecter Avec Facebook</button>
             </div>
 
         );

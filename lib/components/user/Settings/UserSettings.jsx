@@ -13,8 +13,8 @@ UserSettingsComponent = React.createClass({
             <LayoutComponent>
                 <div className="settings-container row">
                     {
-                        this.data.currentUser && !this.data.currentUser.profile.facebookId ?
-                            <PasswordSettings />
+                        this.data.currentUser ?
+                            <NameSettings user={this.data.currentUser}/>
                             : null
                     }
                     {
@@ -23,11 +23,10 @@ UserSettingsComponent = React.createClass({
                             : null
                     }
                     {
-                        this.data.currentUser ?
-                            <NameSettings user={this.data.currentUser}/>
+                        this.data.currentUser && !this.data.currentUser.profile.facebookId ?
+                            <PasswordSettings />
                             : null
                     }
-
                 </div>
             </LayoutComponent>
         );

@@ -21,18 +21,12 @@
     color: #ECECEC !important;    
   }
 
-  button{
-    margin-top: 15px;
-    background-color: $mainColor !important;
-    box-shadow: inset 0px -2px 0px $darkBlue !important;
-  }
-
   > form {
 
     text-align: center;
 
     textarea.add-post-body-input {
-      height: 400px;
+      height:200px;
       width: calc(100% - 20px);
       margin: 30px auto;
       margin-bottom: 10px;

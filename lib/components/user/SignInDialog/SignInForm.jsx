@@ -70,8 +70,9 @@ SignInForm = React.createClass({
                     <input className="input" type="password" placeholder="Mot de passe" ref="password" required/>
 
                     <button type="submit" className="btn plain animated fadeIn">Créer un compte</button>
+                    <hr/>
                 </form>
-                <button onClick={ this._facebookLogin } className="btn plain"><i className="fa fa-facebook"></i> Se Connecter Avec Facebook</button>
+                <button onClick={ this._facebookLogin } className="btn plain facebook animated fadeIn"><i className="fa fa-facebook"></i> Se Connecter Avec Facebook</button>
             </div>
 
         );

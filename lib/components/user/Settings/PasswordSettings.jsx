@@ -34,8 +34,9 @@ PasswordSettings = React.createClass({
 
     render() {
         return (
-            <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+            <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 password-container">
                 <form onSubmit={ this._updatePassword }>
+                    <div className="title">Votre mot de passe</div>
                     <input className="input" type="password" ref="oldPassword" placeholder="Mot de passe actuel" required/>
                     <input className="input" type="password" ref="newPassword" placeholder="Nouveau mot de passe" required/>
                     <input className="input" type="password" ref="newPasswordConfirmation" placeholder="Nouveau mot de passe (confirmation)" required/>

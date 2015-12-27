@@ -3,10 +3,8 @@ ResetPasswordForm = React.createClass({
     _submit(e) {
         e.preventDefault();
         if (this.refs.password.value === this.refs.passwordConfirmation.value) {
-            console.log(this.props.token);
             Accounts.resetPassword(this.props.token, this.refs.password.value, (err) => {
                 if (err) {
-                    console.log(err);
                     pushNotificationToClient({
                         type: 'ERROR',
                         id: Session.get('notificationId'),
