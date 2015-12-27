@@ -4,16 +4,17 @@
   position:fixed;
   bottom:10px;
   width:100%;
+  left:0px;
   text-align:center;
 
   .step-1 {
 
-    background: $mainColor;
+    background: $pink;
     color: $lightgrey;
     display:inline-block;
+    border-radius: 2px;
     z-index: 10000;
     padding:10px;
-    border-radius: 2px;
 
     >span.step-title {
       color: $darkgrey;

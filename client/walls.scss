@@ -17,7 +17,7 @@ $marker-width: 48px;
     margin-left: - $marker-width / 2;
     background: $lightgrey;
     border-radius: 1000000px;
-    border: 2px solid $mainColor;
+    border: 2px solid $pink;
 
     img {
       width: $marker-width / 2;
@@ -28,7 +28,7 @@ $marker-width: 48px;
     div.badge {
       float:right;
       color: $lightgrey;
-      background: $mainColor;
+      background: $pink;
       border-radius: 100000px;
       margin-top:-3px;
       padding:2px 5px;
@@ -41,5 +41,32 @@ $marker-width: 48px;
     left:0px;
     right:0px;
     height: calc(100vh - 50px);
+  }
+
+  .zoom-controls {
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    > div {
+      height: 40px;
+      width: 40px;
+      line-height: 40px;
+      text-align: center;
+      background: $lightgrey;
+      color: $darkgrey;
+      cursor: pointer;
+    }
+    
+    > div:first-child {
+      border-bottom: 2px $darkgrey solid;
+    }
+    
+    > div:active {
+      -moz-box-shadow: inset 0px 1px 2px 0px #656565;
+      -webkit-box-shadow: inset 0px 1px 2px 0px #656565;
+      -o-box-shadow: inset 0px 1px 2px 0px #656565;
+      box-shadow: inset 0px 1px 2px 0px #656565;
+      filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=2);
+    }
   }
 }

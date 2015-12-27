@@ -24,7 +24,8 @@ WallsComponent = React.createClass({
         map = new google.maps.Map(document.getElementById('walls-map'), {
             center: {lat: 43.700000, lng: 7.250000},
             zoom: 10,
-            disableDefaultUI: true
+            disableDefaultUI: true,
+            minZoom: 6, maxZoom: 15
         });
         this.displayWalls();
 
@@ -52,6 +53,11 @@ WallsComponent = React.createClass({
 
         // draw all the walls
         this.displayWalls();
+    },
+
+    zoom(out) {
+        if (out && map) map.setZoom(map.getZoom() - 1);
+        if (!out && map) map.setZoom(map.getZoom() + 1);
     },
 
     displayWalls() {
@@ -103,17 +109,7 @@ WallsComponent = React.createClass({
                 <div className="walls-wrapper">
                     <div id="walls-map"></div>
                     {
-                        this.state.showUserStep ?
-                            <div className="step-wrapper">
-                                <div className="step-1 animated tada">
-                                    <span className="step-title">étape 1 :</span> Choisissez un mur
-                                </div>
-                            </div>
-                            : null
-                    }
-
-                    {
-                        this.state.showAdminStep ?
+                        this.state.showUserStep || this.state.showAdminStep ?
                             <div className="step-wrapper">
                                 <div className="step-1 animated tada">
                                     Choisissez un mur
@@ -121,6 +117,10 @@ WallsComponent = React.createClass({
                             </div>
                             : null
                     }
+                    <div className="zoom-controls">
+                        <div onClick={ () => {this.zoom(false)}}><i className="fa fa-plus"></i></div>
+                        <div onClick={ () => {this.zoom(true)}}><i className="fa fa-minus"></i></div>
+                    </div>
                 </div>
             </LayoutComponent>
         )

@@ -19,26 +19,27 @@ WallComponent = React.createClass({
     getInitialState() {
         return {
             hide: '',
-            dateToDisplay: new Date()
+            dateToDisplay: new Date(),
+            index: 1
         };
     },
 
     ////////////////////////////////////////////
     ////////////// GALLERY HELPERS /////////////
     ////////////////////////////////////////////
-    _initSlider(url, date) {
+    _initSlider(url, date, index) {
         $("#current-picture").iviewer({
             src: url,
             ui_disabled: true,
             mousewheel: false
         });
-        this.setState({dateToDisplay: date});
+        this.setState({dateToDisplay: date, index: index});
     },
-    _updateSlider(url, date) {
+    _updateSlider(url, date, index) {
         let currentPicture = $('#current-picture');
         currentPicture.iviewer('loadImage', url);
         currentPicture.iviewer('fit');
-        this.setState({dateToDisplay: date});
+        this.setState({dateToDisplay: date, index: index});
     },
     _zoomBy(number) {
         $('#current-picture').iviewer('zoom_by', number);
@@ -114,8 +115,8 @@ WallComponent = React.createClass({
                             <div>
                                 <div className="gallery-description">
                                     <div>
-                                        <div className="message">Choisissez l&#x27;image à agrandir</div>
-                                        <div className="picture-number">2/15</div>
+                                        <div className="message">Choisissez l'image à agrandir</div>
+                                        <div className="picture-number">{self.state.index}/{self.data.wall.pictures.length}</div>
                                     </div>
                                 </div>
                                 <PictureItems
@@ -169,7 +170,7 @@ PictureItems = React.createClass({
 
     componentDidMount() {
         if (this.data.wallImages.length > 0) {
-            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date);
+            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date, 1);
             this.setState({currentUrl: this.data.wallImages[0].url});
             this.props.setHide('previous');
             if (this.data.wallImages.length == 1) this.props.setHide('all');
@@ -178,7 +179,7 @@ PictureItems = React.createClass({
 
     componentDidUpdate() {
         if (this.state.currentUrl == '' && this.data.wallImages.length == this.props.images.length && this.data.wallImages.length > 0) {
-            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date);
+            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date, 1);
             this.setState({currentUrl: this.data.wallImages[0].url});
             this.props.setHide('previous');
             if (this.data.wallImages.length == 1) this.props.setHide('all');
@@ -186,12 +187,11 @@ PictureItems = React.createClass({
     },
 
     _updateSlider(url, date) {
-        this.props.update(url, date);
-        this.setState({currentUrl: url});
-
         let pictures = this.data.wallImages;
+        let index = 1;
         for (let i = 0; i < pictures.length; i++) {
             if (pictures[i].url == url) {
+                index = i + 1;
                 if (i == 0 && i == pictures.length - 1) {
                     this.props.setHide('all');
                 } else if (i == 0) {
@@ -204,6 +204,8 @@ PictureItems = React.createClass({
                 break;
             }
         }
+        this.props.update(url, date, index);
+        this.setState({currentUrl: url});
     },
 
     next() {
@@ -211,7 +213,7 @@ PictureItems = React.createClass({
         for (let i = 0; i < pictures.length; i++) {
             if (pictures[i].url == this.state.currentUrl) {
                 if (i < pictures.length - 1) {
-                    this.props.update(pictures[i+1].url, pictures[i+1].date);
+                    this.props.update(pictures[i+1].url, pictures[i+1].date, i + 2);
                     this.setState({currentUrl: pictures[i+1].url});
                     if (i == pictures.length - 2)  this.props.setHide('next');
                     else this.props.setHide('');
@@ -228,7 +230,7 @@ PictureItems = React.createClass({
         for (let i = 0; i < pictures.length; i++) {
             if (pictures[i].url == this.state.currentUrl) {
                 if (i > 0) {
-                    this.props.update(pictures[i-1].url, pictures[i-1].date);
+                    this.props.update(pictures[i-1].url, pictures[i-1].date, i);
                     this.setState({currentUrl: pictures[i-1].url});
                     if (i == 1) this.props.setHide('previous');
                     else this.props.setHide('');

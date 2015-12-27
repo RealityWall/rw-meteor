@@ -1,0 +1,56 @@
+@import "./constants";
+
+.wall-posts-container {
+
+  .date {
+    font-style: italic;
+    color: $darkgrey;
+    > div {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+  }
+
+  $pictureWidth: 40px;
+  .message {
+    position:relative;
+    margin-bottom: 10px;
+
+    .delete {
+      position:absolute;
+      width: $pictureWidth;
+      height: $pictureWidth;
+      text-align:center;
+      line-height: $pictureWidth;
+      .fa {
+        cursor:pointer;
+      }
+    }
+
+    .user-img {
+      left:40px;
+      height:$pictureWidth;
+      width:$pictureWidth;
+      background-repeat: no-repeat!important;
+      background-size: cover!important;
+      background-position: center center!important;
+      border-radius: 200000px;
+      position:absolute;
+    }
+    .user-name {
+      margin-left: 10px + 2 * $pictureWidth;
+      text-transform: capitalize;
+      font-weight: bold;
+      color: $darkgrey;
+      .time {
+        font-weight:normal;
+      }
+    }
+
+    .user-message {
+      margin-left: 10px + 2 * $pictureWidth;
+      color: $darkgrey;
+    }
+  }
+
+}

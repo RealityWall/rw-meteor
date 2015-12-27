@@ -16,6 +16,24 @@
     padding-left: 15px;
     line-height: 40px;
     animation-duration: .3s;
+
+    .fa {
+      font-size:20px;
+      margin-right:5px;
+    }
+
+    .fa-close {
+      color:red;
+    }
+
+    .fa-check {
+      color: green;
+    }
+
+    .fa-info {
+      color: dodgerblue;
+    }
+
   }
 
   .error:last-child {
@@ -25,6 +43,6 @@
 
 @media screen and (min-width: $max-width) {
   .body .errors {
-    right: calc( (100% - $max-width) / 2);
+    right: calc( (100% - #{$max-width}) / 2);
   }
 }

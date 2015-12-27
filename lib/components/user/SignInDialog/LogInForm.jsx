@@ -21,6 +21,7 @@ LogInForm = React.createClass({
                         message: "Email / Mot de passe incorrect"
                     });
                 } else {
+                    self.props.toggle();
                     FlowRouter.go('/walls');
                 }
             });
@@ -28,6 +29,7 @@ LogInForm = React.createClass({
     },
 
     _facebookLogin() {
+        let self = this;
         Meteor.loginWithFacebook({}, function(err){
             if (err) {
                 pushNotificationToClient({
@@ -36,6 +38,7 @@ LogInForm = React.createClass({
                     message: "Une erreur est survenue lors de la connexion à Facebook"
                 });
             } else {
+                self.props.toggle();
                 FlowRouter.go('/walls');
             }
         });

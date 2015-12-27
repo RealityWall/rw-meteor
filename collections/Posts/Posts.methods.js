@@ -14,7 +14,8 @@ Meteor.methods({
                             name: user.profile.firstname + " " + user.profile.lastname.substr(0, 1) + ".",
                             imagePath: user.profile.imagePath,
                             imageId: user.profile.imageId
-                        }
+                        },
+                        hidden: false
                     });
 
                     Meteor.users.update(userId, {
@@ -51,6 +52,28 @@ Meteor.methods({
                     type: 'ERROR',
                     id: Session.get('notificationId'),
                     message: "Vous devez être connecté"
+                });
+            }
+        }
+    },
+
+    hidePost(postId) {
+        let userId = Meteor.userId();
+        if (isAdminById(userId)) {
+            Posts.update(postId, { $set: { hidden: true } });
+            if (Meteor.isClient) {
+                pushNotificationToClient({
+                    type: 'SUCCESS',
+                    id: Session.get('notificationId'),
+                    message: "Ce post a bien été supprimé"
+                });
+            }
+        } else {
+            if (Meteor.isClient) {
+                pushNotificationToClient({
+                    type: 'ERROR',
+                    id: Session.get('notificationId'),
+                    message: "Vous devez être connecté en tant qu'administrateur"
                 });
             }
         }

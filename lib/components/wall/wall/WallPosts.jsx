@@ -4,6 +4,10 @@ function getFrenchDate(date) {
     return daysInWeek[date.getDay()] + " " + date.getDate() + " " + monthsInYear[date.getMonth()] + " " + date.getFullYear();
 }
 
+function getTime(date) {
+    return date.getHours() + ":" + date.getMinutes();
+}
+
 
 WallPostsComponent = React.createClass({
 
@@ -20,8 +24,7 @@ WallPostsComponent = React.createClass({
         let self = this;
         return (
             <LayoutComponent>
-                <div className="wall-upload-container">
-                    POSTS
+                <div className="wall-posts-container">
                     {
                         self.data.readyForPosts ?
                             <div>
@@ -56,6 +59,10 @@ AllPosts = React.createClass({
         }
     },
 
+    hidePost(postId) {
+        Meteor.call('hidePost', postId);
+    },
+
     render() {
         return (
             <div>
@@ -69,9 +76,12 @@ AllPosts = React.createClass({
                                     }
                                 </div>
                                 <div className="message">
-                                    <img src={post.author.imagePath} height="30"/>
-                                    {post.author.name} :
-                                    {post.body}
+                                    <div className="delete"><i onClick={ () => { this.hidePost(post._id) }} className="fa fa-close"></i></div>
+                                    <div className="user-img" style={{background: 'url("' + post.author.imagePath + '")'}}></div>
+                                    <div className="user-name">
+                                        {post.author.name} <span className="time"><i className="fa fa-clock-o"></i> { getTime(post.createdAt) }</span>
+                                    </div>
+                                    <div className="user-message">{post.body}</div>
                                 </div>
                             </div>
                         );
@@ -88,10 +98,10 @@ AllPosts = React.createClass({
             if (date1.getDate() != date2.getDate()
                 || date1.getMonth() != date2.getMonth()
                 || date1.getFullYear() != date2.getFullYear()) {
-                return (<span> { getFrenchDate(date1) } </span>);
+                return (<div> { getFrenchDate(date1) } </div>);
             }
         } else {
-            return (<span> { getFrenchDate(date1) } </span>)
+            return (<div> { getFrenchDate(date1) } </div>)
         }
     }
 

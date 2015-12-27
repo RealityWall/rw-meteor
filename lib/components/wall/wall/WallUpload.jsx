@@ -1,13 +1,4 @@
 WallUploadComponent = React.createClass({
-
-    mixins: [ReactMeteorData],
-
-    getMeteorData() {
-        return {
-            imagesReady: Meteor.subscribe('wallImages').ready(),
-            images: WallImages.find({}).fetch()
-        }
-    },
     
     submitImage(e) {
         e.preventDefault();
@@ -23,7 +14,15 @@ WallUploadComponent = React.createClass({
                     // handle error
                     console.log('err');
                 } else {
-                    Meteor.call('associateImageWithWall', self.props.id, date, fileObj._id);
+                    Meteor.call('associateImageWithWall', self.props.id, date, fileObj._id, (err) => {
+                        if (!err) {
+                            pushNotificationToClient({
+                                type: 'SUCCESS',
+                                id: Session.get('notificationId'),
+                                message: "Image mise en ligne avec succès"
+                            });
+                        }
+                    });
                 }
             });
         } else {
@@ -35,11 +34,6 @@ WallUploadComponent = React.createClass({
                 });
             }
         }
-    },
-
-    deleteImage(image) {
-        console.log(image);
-        //WallImages.remove(image._id);
     },
 
     componentDidMount() {
@@ -72,18 +66,6 @@ WallUploadComponent = React.createClass({
                         </form>
                             
                     </div>
-
-                    {
-                        self.data.imagesReady ?
-                            self.data.images.map( (image, index) => {
-                                return Meteor.isClient ?
-                                    (<img height="100" src={image.url()} key={index} alt=""
-                                          onClick={ () => { self.deleteImage(image) }}/>)
-                                    : null;
-                            }):
-                            null
-                    }
-
                 </div>
             </LayoutComponent>
         )

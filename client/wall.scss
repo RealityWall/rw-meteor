@@ -420,7 +420,7 @@
         margin-right: 15px;
       }
 
-      *{
+      > * {
         display: inline-block;
         height: 50px;
         line-height: 50px;
@@ -464,7 +464,7 @@
     }
 
     .selected{
-      border: solid $mainColor 5px;
+      border: solid $pink 5px;
       height: 140px; 
       width: 140px;
     }   
@@ -565,7 +565,7 @@
       }
 
       .selected{
-        border: solid $mainColor 3px;
+        border: solid $pink 3px;
         height: 64px; 
         width: 64px;
       }

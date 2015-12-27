@@ -1,6 +1,6 @@
-Meteor.publish('postsByWallId', (userId, wallId, limit) => {
+Meteor.publish('postsByWallId', (userId, wallId) => {
     if (isAdminById(userId)) {
-        return Posts.find({wallId: wallId}, {limit: limit ? limit : 10, sort: {commentCount: -1}});
+        return Posts.find({wallId: wallId, hidden: false});
     } else {
         return Posts.find({wallId: 'haters_gonna_hate'});
     }

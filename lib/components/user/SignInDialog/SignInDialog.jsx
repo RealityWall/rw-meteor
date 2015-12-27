@@ -48,7 +48,7 @@ SignInDialog = React.createClass({
                         <div>
                             {
                                 this.state.modalSelectedIndex == 0 ?
-                                    <LogInForm />
+                                    <LogInForm toggle={this.toggle} />
                                     : null
                             }
 
@@ -56,14 +56,14 @@ SignInDialog = React.createClass({
                         <div>
                             {
                                 this.state.modalSelectedIndex == 1 ?
-                                    <SignInForm />
+                                    <SignInForm toggle={this.toggle} />
                                     : null
                             }
                         </div>
                         <div>
                             {
                                 this.state.modalSelectedIndex == 2 ?
-                                    <ForgottenPasswordForm />
+                                    <ForgottenPasswordForm toggle={this.toggle} />
                                     : null
                             }
                         </div>

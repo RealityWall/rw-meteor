@@ -20,7 +20,6 @@ SignInForm = React.createClass({
         }, function (err) {
             self.setState({loading:false});
             if (err) {
-                console.log(err);
                 if (err.reason != "Login forbidden") {
                     pushNotificationToClient({
                         type: 'ERROR',
@@ -34,15 +33,19 @@ SignInForm = React.createClass({
                         message: "Un email de confirmation a été envoyé à " + email
                     });
                 }
-
             } else {
-
+                pushNotificationToClient({
+                    type: 'SUCCESS',
+                    id: Session.get('notificationId'),
+                    message: "Un email de confirmation a été envoyé à " + email
+                });
             }
         });
     },
 
     _facebookLogin() {
-        Meteor.loginWithFacebook({}, function(err){
+        let self = this;
+        Meteor.loginWithFacebook({}, function(err) {
             if (err) {
                 pushNotificationToClient({
                     type: 'ERROR',
@@ -50,6 +53,7 @@ SignInForm = React.createClass({
                     message: "Une erreur est survenue lors de la connexion à Facebook"
                 });
             } else {
+                self.props.toggle();
                 FlowRouter.go('/walls');
             }
         });

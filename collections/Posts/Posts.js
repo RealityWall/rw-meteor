@@ -28,6 +28,9 @@ let PostSchema = new SimpleSchema({
     },
     author: {
         type: AuthorSchema
+    },
+    hidden: {
+        type: Boolean
     }
 });
 
