@@ -16,6 +16,7 @@ WallsComponent = React.createClass({
         return {
             showUserStep: Meteor.isClient && window.location.search === '?next=post',
             showAdminStep: Meteor.isClient && window.location.search === '?next=upload'
+            || Meteor.isClient && window.location.search === '?next=posts'
         };
     },
 
@@ -38,6 +39,7 @@ WallsComponent = React.createClass({
         this.setState({
             showUserStep: Meteor.isClient && window.location.search === '?next=post',
             showAdminStep: Meteor.isClient && window.location.search === '?next=upload'
+                || Meteor.isClient && window.location.search === '?next=posts'
         });
     },
 
@@ -84,6 +86,8 @@ WallsComponent = React.createClass({
                     FlowRouter.go('/walls/' + wall._id + '/post');
                 } else if (window.location.search == '?next=upload') {
                     FlowRouter.go('/walls/' + wall._id + '/upload');
+                } else if (window.location.search == '?next=posts') {
+                    FlowRouter.go('/walls/' + wall._id + '/posts');
                 } else {
                     FlowRouter.go('/walls/' + wall._id);
                 }
@@ -112,7 +116,7 @@ WallsComponent = React.createClass({
                         this.state.showAdminStep ?
                             <div className="step-wrapper">
                                 <div className="step-1 animated tada">
-                                    <span className="step-title">étape 1 :</span> Choisissez un mur
+                                    Choisissez un mur
                                 </div>
                             </div>
                             : null

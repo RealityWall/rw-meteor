@@ -80,11 +80,7 @@ WallComponent = React.createClass({
                         </div>
                         : null
                     }
-                    {
-                        self.data.currentUser && self.data.currentUser.profile.roles.indexOf('admin') >= 0 ?
-                            <div><a href={"/walls/" + this.props.id + "/posts"}>voir les posts</a></div>
-                            :null
-                    }
+
                     {
                         self.data.wall && self.data.wall.pictures.length > 0 ?
                             <div className="current-date"> { getFrenchDate(self.state.dateToDisplay) }</div>

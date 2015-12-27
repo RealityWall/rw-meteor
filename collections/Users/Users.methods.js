@@ -3,6 +3,9 @@ Meteor.methods({
     associateImageWithUser(imageId) {
         let userId = Meteor.userId();
         if (userId) {
+            // get previous profile image
+            let user = Meteor.users.findOne(userId);
+
             // update user profile
             Meteor.users.update(userId, {
                 $set: {
@@ -20,6 +23,9 @@ Meteor.methods({
                     'author.imagePath': ''
                 }
             });
+
+            // delete previous profile images
+            if (user.profile.imageId) ProfileImages.remove(user.profile.imageId);
         } else {
             if (Meteor.isServer) {
                 ProfileImages.remove(imageId);

@@ -53,7 +53,13 @@ Header = React.createClass({
 
                         {
                             this.data.user && this.data.user.profile && this.data.user.profile.roles && this.data.user.profile.roles.indexOf('admin') >= 0
-                                ? <a onClick={() => { this.onWallClick('/walls?next=upload') }} className="btn transparent"><i className="fa fa-upload"></i> Photo</a>
+                                ? <a onClick={() => { this.onWallClick('/walls?next=posts') }} className="btn transparent"><i className="fa fa-comments"></i> <span className="hidden-xs">Messages</span></a>
+                                : null
+                        }
+
+                        {
+                            this.data.user && this.data.user.profile && this.data.user.profile.roles && this.data.user.profile.roles.indexOf('admin') >= 0
+                                ? <a onClick={() => { this.onWallClick('/walls?next=upload') }} className="btn transparent"><i className="fa fa-upload"></i> <span className="hidden-xs">Photo</span></a>
                                 : null
                         }
 
@@ -66,7 +72,7 @@ Header = React.createClass({
                                             {
                                                 this.data.user && this.data.user.profile.imageId ?
                                                     <MyCustomImage imageId={this.data.user.profile.imageId}/>
-                                                    : <img src={this.data.user.profile.imagePath} alt="Compte Utilisateur" />
+                                                    : <img src={this.data.user.profile.imagePath} />
                                             }
                                         </a>
 
