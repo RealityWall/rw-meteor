@@ -74,15 +74,12 @@ WallGalleryComponent = React.createClass({
                 <div className="wall-gallery-container">
 
                     {
-                        self.data.wall && self.data.wall.pictures.length > 0 ?
+                        self.data.wall ?
                             <div className="current-date"> { getFrenchDate(self.state.dateToDisplay) }</div>
-                            :
-                            <div>
-                                désolé bro y'a pas d'image ici !
-                            </div>
+                            : null
                     }
 
-                    <div className={"slider-container " + (self.data.wall && self.data.wall.pictures.length > 0 ? "" : "hidden")} >
+                    <div className={"slider-container "} >
                         <div id="current-picture"></div>
                         {
                             self.state.hide === 'previous' || self.state.hide === 'all' ?
@@ -107,13 +104,14 @@ WallGalleryComponent = React.createClass({
                                 <div className="gallery-description">
                                     <div>
                                         <div className="message">Choisissez l'image à agrandir</div>
-                                        <div className="picture-number">{self.state.index}/{self.data.wall.pictures.length}</div>
+                                        <div className="picture-number">{self.state.index}/{self.data.wall.pictures.length + 1}</div>
                                     </div>
                                 </div>
                                 <PictureItems
                                     init={ self._initSlider }
                                     update={ self._updateSlider }
                                     setHide={ self._setHide }
+                                    creationDate={self.data.wall.createdAt}
                                     ref="pictureItems"
                                     images={ self.data.wall.pictures }/>
                             </div>
@@ -147,7 +145,12 @@ PictureItems = React.createClass({
                         }
                     }
                     return result;
-                }).sort( (a, b) => {
+                })
+                .concat({
+                    url: '/img/full-logo.png',
+                    date: this.props.creationDate
+                })
+                .sort( (a, b) => {
                     return new Date(b.date).getTime() - new Date(a.date).getTime()
                 })
         }

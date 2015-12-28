@@ -16,7 +16,6 @@ Meteor.startup( () => {
         });
         Accounts.setPassword(userId, 'password');
         ProfileImages.remove({});
-        WallImages.remove({});
     }
 });
 
