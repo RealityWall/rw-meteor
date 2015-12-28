@@ -158,23 +158,22 @@ PictureItems = React.createClass({
 
     getInitialState() {
         return {
-            currentUrl: ''
+            currentUrl: '',
+            hasAlreadyInit: false
         };
     },
 
     componentDidMount() {
-        if (this.data.wallImages.length > 0) {
-            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date, 1);
-            this.setState({currentUrl: this.data.wallImages[0].url});
-            this.props.setHide('previous');
-            if (this.data.wallImages.length == 1) this.props.setHide('all');
-        }
+        this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date, 1);
+        this.setState({currentUrl: this.data.wallImages[0].url});
+        this.props.setHide('previous');
+        if (this.data.wallImages.length == 1) this.props.setHide('all');
     },
 
     componentDidUpdate() {
-        if (this.state.currentUrl == '' && this.data.wallImages.length == this.props.images.length && this.data.wallImages.length > 0) {
-            this.props.init(this.data.wallImages[0].url, this.data.wallImages[0].date, 1);
-            this.setState({currentUrl: this.data.wallImages[0].url});
+        if (!this.state.hasAlreadyInit && this.data.wallImages.length == this.props.images.length + 1 && this.data.wallImages.length > 1) {
+            this.props.update(this.data.wallImages[0].url, this.data.wallImages[0].date, 1);
+            this.setState({currentUrl: this.data.wallImages[0].url, hasAlreadyInit: true});
             this.props.setHide('previous');
             if (this.data.wallImages.length == 1) this.props.setHide('all');
         }

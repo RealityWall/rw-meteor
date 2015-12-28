@@ -51,7 +51,12 @@ Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res
                     'format': 'A3',
                     'orientation': 'landscape',
                     'margin': '1cm'
-                }
+                },
+                onLoadFinished: {
+                    fn: function() {
+                    }
+                },
+                customCSS: Assets.getText('pdfs/userPdf.css')
             };
 
             webshot(html, fileName, options, (err) => {

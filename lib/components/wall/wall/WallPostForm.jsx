@@ -12,7 +12,7 @@ WallPostFormComponent = React.createClass({
         if (!self.state.loading) {
             self.setState({loading: true});
             Meteor.call('insertPost', this.props.id, this.refs.body.value, function(error, result) {
-                self.setState({loading: true});
+                self.setState({loading: false});
                 if (result === 'OK') {
                     pushNotificationToClient({
                         type:'SUCCESS',
