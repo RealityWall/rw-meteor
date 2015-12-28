@@ -56,6 +56,9 @@ let WallSchema = new SimpleSchema({
         type: [WallImageSchema],
         optional: true,
         blackbox: true
+    },
+    createdAt: {
+        type: Date
     }
 });
 

@@ -9,16 +9,35 @@ ProfilePictureSettings = React.createClass({
         }
     },
 
+    getInitialState() {
+        return {
+            loading: false
+        };
+    },
+
     _inputChange(event) {
-        FS.Utility.eachFile(event, function(file) {
-            ProfileImages.insert(file, function (err, fileObj) {
-                if (err){
-                    console.log('err');
-                } else {
-                    Meteor.call('associateImageWithUser', fileObj._id);
-                }
+        let self = this;
+        self.setState({loading: true});
+        if (!self.state.loading) {
+            FS.Utility.eachFile(event, function(file) {
+                ProfileImages.insert(file, function (err, fileObj) {
+                    self.setState({loading: false});
+                    if (err){
+                    } else {
+                        self.setState({loading: true});
+                        Meteor.call('associateImageWithUser', fileObj._id, () => {
+                            self.setState({loading: false});
+                        });
+                    }
+                });
             });
-        });
+        } else {
+            pushNotificationToClient({
+                type: 'INFO',
+                id: Session.get('notificationId'),
+                message: "Veuillez patientez pendant le téléchargement de votre image"
+            });
+        }
     },
 
     render() {
@@ -35,7 +54,11 @@ ProfilePictureSettings = React.createClass({
                             <i className="fa fa-upload fa-3x"></i>
                         </div>
                     </div>
-                    <div className="info">Cliquez sur votre photo de profil pour en télécharger une nouvelle</div>
+                    <div className="info">{
+                        this.state.loading ?
+                            'Chargement...'
+                            : 'Cliquez sur votre photo de profil pour en télécharger une nouvelle'
+                    }</div>
 
                 </div>
             </div>

@@ -29,7 +29,7 @@ Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res
             posts.forEach( (post) => {
                 for (let i = 0; i < images.length; i++) {
                     if (post.author.imageId == images[i]._id) {
-                        post.author.imagePath = 'http://localhost:3000' + images[i].url();
+                        post.author.imagePath = process.env.URL + images[i].url();
                         break;
                     }
                 }

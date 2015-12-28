@@ -9,7 +9,7 @@ Meteor.startup( () => {
                 roles : ['admin']
             },
             emails: [{
-                address: 'admin@admin.fr',
+                address: 'admin@reality-wall.fr',
                 verified: true
             }],
             createdAt: new Date()

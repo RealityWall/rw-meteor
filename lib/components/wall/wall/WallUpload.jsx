@@ -1,4 +1,10 @@
 WallUploadComponent = React.createClass({
+
+    getInitialState() {
+        return {
+            loading: false
+        };
+    },
     
     submitImage(e) {
         e.preventDefault();
@@ -9,22 +15,26 @@ WallUploadComponent = React.createClass({
             : null;
 
         if (date) {
-            WallImages.insert(document.getElementById('wall-img').files[0], function (err, fileObj) {
-                if (err) {
-                    // handle error
-                    console.log('err');
-                } else {
-                    Meteor.call('associateImageWithWall', self.props.id, date, fileObj._id, (err) => {
-                        if (!err) {
-                            pushNotificationToClient({
-                                type: 'SUCCESS',
-                                id: Session.get('notificationId'),
-                                message: "Image mise en ligne avec succès"
-                            });
-                        }
-                    });
-                }
-            });
+            if (!self.state.loading) {
+                self.setState({loading: true});
+                WallImages.insert(document.getElementById('wall-img').files[0], function (err, fileObj) {
+                    self.setState({loading: false});
+                    if (err) {
+                        // handle error
+                        console.log('err');
+                    } else {
+                        Meteor.call('associateImageWithWall', self.props.id, date, fileObj._id, (err) => {
+                            if (!err) {
+                                pushNotificationToClient({
+                                    type: 'SUCCESS',
+                                    id: Session.get('notificationId'),
+                                    message: "Image mise en ligne avec succès"
+                                });
+                            }
+                        });
+                    }
+                });
+            }
         } else {
             if (Meteor.isClient) {
                 pushNotificationToClient({
@@ -61,7 +71,11 @@ WallUploadComponent = React.createClass({
                                 <input id="wall-img" type="file" accept="image/*"/>
                             </div>
                             <div>
-                                <button type="submit" className="btn plain"><i className="fa fa-upload"></i> Envoyer</button>
+                                <button type="submit" className="btn plain"><i className="fa fa-upload"></i> {
+                                    self.state.loading ?
+                                        'Chargement...'
+                                        : 'Envoyer'
+                                }</button>
                             </div>
                         </form>
                             
