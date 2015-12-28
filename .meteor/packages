@@ -33,3 +33,6 @@ cfs:standard-packages
 cfs:gridfs
 ostrio:mailer
 natestrauser:jquery-scrollto
+bryanmorgan:webshot
+meteorhacks:ssr
+meteorhacks:picker

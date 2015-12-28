@@ -1,5 +1,5 @@
 let monthsInYear= ["janvier", "février", "mars", "avril", "mai", "juin", "juillet", "août", "septembre", "octobre", "novembre", "décembre"];
-let daysInWeek = ["lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi", "dimanche"];
+let daysInWeek = ["dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi"];
 function getFrenchDate(date) {
     return daysInWeek[date.getDay()] + " " + date.getDate() + " " + monthsInYear[date.getMonth()] + " " + date.getFullYear();
 }
@@ -52,7 +52,6 @@ AllPosts = React.createClass({
                 for (let i = 0; i < posts.length; i++) {
                     if (posts[i].author.imageId == image._id) {
                         if (Meteor.isClient) posts[i].author.imagePath = image.url();
-                        break;
                     }
                 }
             })
@@ -98,10 +97,24 @@ AllPosts = React.createClass({
             if (date1.getDate() != date2.getDate()
                 || date1.getMonth() != date2.getMonth()
                 || date1.getFullYear() != date2.getFullYear()) {
-                return (<div> { getFrenchDate(date1) } </div>);
+                return (
+                    <div>
+                        { getFrenchDate(date1) }&nbsp;&nbsp;
+                        <a target="_blank" href={"./posts/" + date1.getDate() + "-" + (date1.getMonth() + 1) + "-" + date1.getFullYear() + "/pdf/" + Meteor.userId()}>
+                            (<i className="fa fa-download"></i> télécharger)
+                        </a>
+                    </div>
+                );
             }
         } else {
-            return (<div> { getFrenchDate(date1) } </div>)
+            return (
+                <div>
+                    { getFrenchDate(date1) }&nbsp;&nbsp;
+                    <a target="_blank" href={"./posts/" + date1.getDate() + "-" + (date1.getMonth() + 1) + "-" + date1.getFullYear() + "/pdf/" + Meteor.userId()}>
+                        (<i className="fa fa-download"></i> télécharger)
+                    </a>
+                </div>
+            );
         }
     }
 
