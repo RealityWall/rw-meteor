@@ -1,0 +1,264 @@
+@import "../constants";
+
+.wall-gallery-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background: #222222;
+
+  .gallery-description{
+    position: absolute;
+    bottom: 210px;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-color: #111111;
+    color: $grey;
+
+    > div{
+      width: 100%;
+
+      .message{
+        float: left;
+        margin-left: 15px;
+      }
+
+      .picture-number{
+        float: right;
+        text-align: right;
+        margin-right: 15px;
+      }
+
+      > * {
+        display: inline-block;
+        height: 50px;
+        line-height: 50px;
+      }
+    }
+    
+  }
+
+  .pictures{
+    white-space: nowrap;
+    overflow-y: hidden;
+    overflow-x: auto;
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 160px;
+    bottom: 0px;
+    margin: 0 auto;
+    padding: 20px 0;
+    text-align: center;
+
+    .picture{
+      height: 150px; 
+      width: 150px;
+      margin: 0 5px;
+      display: inline-block;
+      background-position: center center;
+      -webkit-background-size: cover;
+      -moz-background-size: cover;
+      -o-background-size: cover;
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+
+    .picture:first-child{
+      margin-left: 10px;
+    }
+
+    .picture:last-child{
+      margin-right: 10px;
+    }
+
+    .selected{
+      border: solid $pink 5px;
+      height: 140px; 
+      width: 140px;
+    }   
+  }
+
+  .current-date {
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    text-transform: capitalize;
+    font-style: italic;
+    text-align: center;
+    color: $lightgrey;
+    font-size: 24px;
+  }
+
+  .slider-container.hidden {
+    display: none;
+  }
+
+  .slider-container {
+    position: relative;
+    $pictureHeight: calc(100vh - 430px);
+    $navDim: 40px;
+
+    .previous, .next{
+      top: calc((100vh - 470px) / 2);
+      background-color: rgba(34, 34, 34, 0.7);
+    }
+
+    #current-picture {
+      height: $pictureHeight;
+      position:relative;
+      width: 100%;
+    }
+
+    .previous {
+      cursor:pointer;
+      text-align:center;
+      line-height: $navDim;
+      position:absolute;
+      left:10px;
+      width: $navDim;
+      height: $navDim;
+      color: $lightgrey;
+      border: 2px $lightgrey solid;
+      border-radius: 10000px;
+    }
+    .next {
+      cursor: pointer;
+      text-align:center;
+      line-height: $navDim;
+      position:absolute;
+      right:10px;
+      width: $navDim;
+      height: $navDim;
+      color: $lightgrey;
+      border: 2px $lightgrey solid;
+      border-radius: 10000px;
+    }
+
+
+    .controls {
+      text-align:center;
+      width: 100%;
+      height: 70px;
+
+      > div {
+        height: 70px;
+        line-height: 70px;
+        display:inline-block;
+        margin: 5px 15px;
+        color:lightgrey;
+        cursor:pointer;
+      }
+    }
+  }
+
+  .wall-info {
+    display:none;
+  }
+
+  @media screen and (max-height: 700px){
+    .pictures{
+      height: 70px;
+
+      .picture{
+        height: 70px; 
+        width: 70px;
+        margin: 0 5px;
+        display: inline-block;
+        background-position: center center;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        background-repeat: no-repeat;
+      }
+
+      .selected{
+        border: solid $pink 3px;
+        height: 64px; 
+        width: 64px;
+      }
+    }
+
+    .current-date{
+        font-size: 18px;
+    }
+
+    .gallery-description{
+      height: 30px;
+      bottom: 100px;
+
+      > div > *{
+        height: 30px;
+        line-height: 30px;
+        font-size: 14px;
+      }
+    }
+
+    .slider-container {
+      position: relative;
+      $pictureHeight: calc(100vh - 270px);
+      $navDim: 40px;
+      
+      #current-picture {
+        height: $pictureHeight;
+      }
+
+      .previous, .next{
+        top: calc((100vh - 310px) / 2);
+      }
+
+      .controls {
+        text-align:center;
+        height: 40px;
+
+        > div {
+          height: 40px;
+          line-height: 40px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-height: 400px){
+    .pictures{
+      display: none;
+    }
+
+    .current-date{
+      font-size: 18px;
+    }
+
+    .gallery-description{
+      display: none;
+    }
+
+    .slider-container {
+      position: relative;
+      $pictureHeight: calc(100vh - 150px);
+      $navDim: 40px;
+      
+      #current-picture {
+        height: $pictureHeight;
+      }
+
+      .previous, .next{
+        top: calc((100vh - 180px) / 2);
+      }
+
+      .controls {
+        text-align:center;
+        height: 40px;
+
+        > div {
+          height: 40px;
+          line-height: 40px;
+          font-size: 12px;
+        }
+      }
+    }
+  }
+}

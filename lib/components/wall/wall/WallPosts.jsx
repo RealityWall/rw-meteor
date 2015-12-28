@@ -16,7 +16,7 @@ WallPostsComponent = React.createClass({
     getMeteorData() {
         return {
             readyForPosts: Meteor.subscribe('postsByWallId', Meteor.userId(), this.props.id).ready(),
-            posts: Posts.find({}).fetch()
+            posts: Posts.find({}, {sort: {createdAt: -1}}).fetch()
         }
     },
 

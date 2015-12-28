@@ -1,0 +1,22 @@
+$darkBlue: #1A2530;
+$lightBlue: #79BEE0;
+$grey: #E1EBF5;
+$red: #E84E3C ;
+
+$darkgrey: rgb(74, 74, 74);
+$lightgrey: rgb(247, 247, 247);
+$mainColor: #db4c3f;
+$mainColorAccent: #872F27;
+
+$max-width: 1200px;
+$headerHeight: 50px;
+
+$pink: #FF0099;
+$pinkAccent: #B21272;
+
+@mixin box-shadow($x, $y, $blur, $spread, $color) {
+  -moz-box-shadow: $x $y $blur $spread $color;
+  -webkit-box-shadow: $x $y $blur $spread $color;
+  -o-box-shadow:$x $y $blur $spread $color;
+  box-shadow: $x $y $blur $spread $color;
+}

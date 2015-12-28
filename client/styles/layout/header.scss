@@ -1,4 +1,4 @@
-@import "./constants";
+@import "../constants";
 
 #header {
   position: fixed;
@@ -7,20 +7,15 @@
   z-index: 200;
   width: 100%;
 
-  background: rgba(255,0,153,1);
-  background: -moz-linear-gradient(left, rgba(255,0,153,1) 0%, rgba(178,18,114,1) 100%);
-  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(255,0,153,1)), color-stop(100%, rgba(178,18,114,1)));
-  background: -webkit-linear-gradient(left, rgba(255,0,153,1) 0%, rgba(178,18,114,1) 100%);
-  background: -o-linear-gradient(left, rgba(255,0,153,1) 0%, rgba(178,18,114,1) 100%);
-  background: -ms-linear-gradient(left, rgba(255,0,153,1) 0%, rgba(178,18,114,1) 100%);
-  background: linear-gradient(to right, rgba(255,0,153,1) 0%, rgba(178,18,114,1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff0099', endColorstr='#b21272', GradientType=1 );
+  background: $pink;
+  background: -moz-linear-gradient(left, $pink 0%, $pinkAccent 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, $pink), color-stop(100%, $pinkAccent));
+  background: -webkit-linear-gradient(left, $pink 0%, $pinkAccent 100%);
+  background: -o-linear-gradient(left, $pink 0%, $pinkAccent 100%);
+  background: -ms-linear-gradient(left, $pink 0%, $pinkAccent 100%);
+  background: linear-gradient(to right, $pink 0%, $pinkAccent 100%);
 
-  -moz-box-shadow: 0px 1px 2px 0px #656565;
-  -webkit-box-shadow: 0px 1px 2px 0px #656565;
-  -o-box-shadow: 0px 1px 2px 0px #656565;
-  box-shadow: 0px 1px 2px 0px #656565;
-  filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
+  @include box-shadow(0px, 1px, 2px, 0px, #656565);
 
   .inner-bar {
     max-width:$max-width;
@@ -49,7 +44,7 @@
 
       .search-bar{
         height: 100%;
-        font-family: "Roboto"; 
+        font-family: "Roboto", sans-serif;
         font-weight: 500;
         vertical-align: top;
         margin-right: 10px;
@@ -124,12 +119,7 @@
           top: 50px;
           margin-left: -108px;
 
-          -moz-box-shadow: 0px 1px 2px 0px #656565;
-          -webkit-box-shadow: 0px 1px 2px 0px #656565;
-          -o-box-shadow: 0px 1px 2px 0px #656565;
-          box-shadow: 0px 1px 2px 0px #656565;
-          filter:progid:DXImageTransform.Microsoft.Shadow(color=#656565, Direction=180, Strength=5);
-
+          @include box-shadow(0px, 1px, 2px, 0px, #656565);
 
           .menu-item {
             position:relative;
@@ -144,7 +134,6 @@
               margin-right: 5px;
             }
           }
-
         }
 
         .bubble:after {
@@ -159,13 +148,8 @@
           top: -7px;
           left: 117px;
         }
-
-
       }
-
-
     }
-
   }
 
   .profile-thumb {

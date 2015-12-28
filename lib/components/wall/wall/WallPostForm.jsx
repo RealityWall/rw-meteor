@@ -1,4 +1,4 @@
-WallPostComponent = React.createClass({
+WallPostFormComponent = React.createClass({
 
     _postMessage(e) {
         e.preventDefault();

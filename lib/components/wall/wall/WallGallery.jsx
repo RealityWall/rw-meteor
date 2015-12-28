@@ -4,7 +4,7 @@ function getFrenchDate(date) {
     return daysInWeek[date.getDay()] + " " + date.getDate() + " " + monthsInYear[date.getMonth()] + " " + date.getFullYear();
 }
 
-WallComponent = React.createClass({
+WallGalleryComponent = React.createClass({
 
     mixins: [ReactMeteorData],
 
@@ -72,15 +72,6 @@ WallComponent = React.createClass({
         return (
             <LayoutComponent>
                 <div className="wall-gallery-container">
-                    {/* TODO : build wall info component */}
-                    { self.data.wall ?
-                        <div className="wall-info">
-                            <div className="wall-address">{self.data.wall.address.address}</div>
-                            <div className="wall-postal-code">{self.data.wall.address.postalCode} {self.data.wall.address.city}</div>
-                            <div className="wall-geolocation">{self.data.wall.loc.lat}, {self.data.wall.loc.lon}</div>
-                        </div>
-                        : null
-                    }
 
                     {
                         self.data.wall && self.data.wall.pictures.length > 0 ?

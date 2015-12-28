@@ -1,11 +1,11 @@
-@import "./constants";
+@import "../constants";
 
 .wall-post-container, .wall-upload-container {
   padding-top: 10px;
 
   h1{
-    color: $darkBlue;
-    font-family: "Roboto"; 
+    color: $darkgrey;
+    font-family: "Roboto", sans-serif;
     font-weight: 600;
   }
 
