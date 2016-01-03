@@ -66,7 +66,7 @@ AllPosts = React.createClass({
         let win = window.open(
             "./posts/" + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
             + "/pdf/" + Meteor.userId()
-            + "/" + Meteor.user().services.resume.loginTokens[0].hashedToken,
+            + "?token=" + Meteor.user().services.resume.loginTokens[0].hashedToken,
             '_blank'
         );
         win.focus();
