@@ -28,3 +28,7 @@ button.btn {
   outline: 0px!important;
   border:none;
 }
+
+.btn.plain:active {
+  box-shadow: inset 0px 2px  0px $pinkAccent;
+}

@@ -1,7 +1,7 @@
 Meteor.mail = new Meteor.Mailer({
-    login: 'XXX',
-    host: 'XXX',
-    connectionUrl: "smtp://XXX:password@smtp:port",
+    login: 'X',
+    host: 'X',
+    connectionUrl: "X",
     accountName: "Reality Wall",
     verbose: true,
     intervalTime: 120,
@@ -47,19 +47,17 @@ Meteor.startup(() => {
         return name.substr(0, 1).toUpperCase() + name.substr(1, name.length).toLowerCase()
     }
 
-    process.env.MAIL_URL = 'something amazing';
+    process.env.MAIL_URL = 'X';
 
     Accounts.emailTemplates = {
         from: 'Reality Wall <noreply@realitywall.com>',
         siteName: 'Reality Wall',
         verifyEmail: {
-            subject: function(user) {
+            subject: function() {
                 return '[Reality Wall] Email de vérification';
             },
             text: function(user, url) {
-                if (process.env.URL != 'http://localhost:3000') {
-                    url = url.replace(/localhost:3000/, 'reality-wall.com')
-                }
+                url = url.replace(/http:\/\/*\//, process.env.URL + '/');
                 return 'Bonjour ' + toCamelCase(user.profile.firstname) + " " + toCamelCase(user.profile.lastname) + ',\n\n' +
                     'Cliquez sur le lien ci dessous pour valider votre compte sur notre site reality-wall.com:\n'
                     + url + '\n\n' +
@@ -67,13 +65,11 @@ Meteor.startup(() => {
             }
         },
         resetPassword: {
-            subject: function(user) {
+            subject: function() {
                 return '[Reality Wall] Mot de passe oublié';
             },
             text: function(user, url) {
-                if (process.env.URL != 'http://localhost:3000') {
-                    url = url.replace(/localhost:3000/, 'reality-wall.com')
-                }
+                url = url.replace(/http:\/\/*\//, process.env.URL + '/');
                 return 'Bonjour ' + toCamelCase(user.profile.firstname) + " " + toCamelCase(user.profile.lastname) + ',\n\n' +
                     'Vous avez fait une demande pour réinitialiser votre mot de passe.\n' +
                     'Cliquez sur le lien ci dessous :\n'
