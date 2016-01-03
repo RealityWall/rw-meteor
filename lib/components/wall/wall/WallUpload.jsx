@@ -1,5 +1,14 @@
 WallUploadComponent = React.createClass({
 
+    mixins: [ReactMeteorData],
+
+    getMeteorData() {
+        return {
+            readyForWall: Meteor.subscribe('wallById', this.props.id).ready(),
+            wall: Walls.findOne({})
+        }
+    },
+
     getInitialState() {
         return {
             loading: false
@@ -50,6 +59,7 @@ WallUploadComponent = React.createClass({
         let datepickerElement = $('#datepicker');
         datepickerElement.datepicker({
             language: 'fr',
+            minDate: new Date(this.data.wall.createdAt),
             maxDate: new Date(),
             inline: true
         });
