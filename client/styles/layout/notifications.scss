@@ -1,20 +1,20 @@
 @import "../constants";
 
-.body .errors {
+.body .notifications {
 
   position: fixed;
   top: 60px;
   right:0px;
   z-index:10000;
 
-  .error {
+  .notification {
     background: black;
     margin-bottom: 10px;
-    height: 40px;
+    padding-top: 10px;
+    padding-bottom: 10px;
     color: white;
     padding-right: 15px;
     padding-left: 15px;
-    line-height: 40px;
     animation-duration: .3s;
 
     .fa {
@@ -36,13 +36,13 @@
 
   }
 
-  .error:last-child {
+  .notification:last-child {
     margin-bottom: 0px;
   }
 }
 
 @media screen and (min-width: $max-width) {
-  .body .errors {
+  .body .notifications {
     right: calc( (100% - #{$max-width}) / 2);
   }
 }

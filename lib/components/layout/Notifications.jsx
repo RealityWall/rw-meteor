@@ -11,11 +11,11 @@ Notifications = React.createClass({
     render() {
         let self = this;
         return (
-            <div className="errors">
+            <div className="notifications">
                 {
                     self.data.notifications.map( (notification, index) => {
                         return (
-                            <div key={index} className="error animated fadeInRight">
+                            <div key={index} className="notification animated fadeInRight">
                                 <i className={"fa " +
                                     (notification.type == 'ERROR' ?
                                         'fa-close' : (notification.type == 'SUCCESS' ? 'fa-check' : (notification.type == 'INFO' ? 'fa-info':'') )) }></i>
