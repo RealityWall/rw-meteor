@@ -1,7 +1,7 @@
 Meteor.mail = new Meteor.Mailer({
     login: 'X',
     host: 'X',
-    connectionUrl: "X",
+    connectionUrl: 'X',
     accountName: "Reality Wall",
     verbose: true,
     intervalTime: 120,
@@ -27,8 +27,8 @@ Meteor.methods({
                 to: to,
                 message: message,
                 subject: subject,
-                appname: "Reality Wall", //
-                url: process.env.URL, // that is on the footer of the message (eg) reality wall
+                appname: "Reality Wall",
+                url: process.env.ROOT_URL ? process.env.ROOT_URL : 'http://localhost:3000', // that is on the footer of the message (eg) reality wall
                 lang: 'fr'
             }
             ,
@@ -57,7 +57,6 @@ Meteor.startup(() => {
                 return '[Reality Wall] Email de vérification';
             },
             text: function(user, url) {
-                url = url.replace(/http:\/\/*\//, process.env.URL + '/');
                 return 'Bonjour ' + toCamelCase(user.profile.firstname) + " " + toCamelCase(user.profile.lastname) + ',\n\n' +
                     'Cliquez sur le lien ci dessous pour valider votre compte sur notre site reality-wall.com:\n'
                     + url + '\n\n' +
@@ -69,7 +68,6 @@ Meteor.startup(() => {
                 return '[Reality Wall] Mot de passe oublié';
             },
             text: function(user, url) {
-                url = url.replace(/http:\/\/*\//, process.env.URL + '/');
                 return 'Bonjour ' + toCamelCase(user.profile.firstname) + " " + toCamelCase(user.profile.lastname) + ',\n\n' +
                     'Vous avez fait une demande pour réinitialiser votre mot de passe.\n' +
                     'Cliquez sur le lien ci dessous :\n'
