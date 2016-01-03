@@ -31,7 +31,10 @@ WallsComponent = React.createClass({
     componentDidMount() {
 
         L.Icon.Default.imagePath = 'packages/bevanhunt_leaflet/images';
-        map = L.map('walls-map').setView([43.700000, 7.250000], 11);
+        map = L.map('walls-map', {
+            minZoom: 10,
+            maxZoom: 16
+        }).setView([43.700000, 7.250000], 11);
 
         L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {}).addTo(map);
         this.displayWalls();
