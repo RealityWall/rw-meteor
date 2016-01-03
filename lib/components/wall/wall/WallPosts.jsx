@@ -5,7 +5,7 @@ function getFrenchDate(date) {
 }
 
 function getTime(date) {
-    return date.getHours() + ":" + date.getMinutes();
+    return date.getHours() + ":" + (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
 }
 
 
@@ -62,6 +62,16 @@ AllPosts = React.createClass({
         Meteor.call('hidePost', postId);
     },
 
+    downloadPdf(date) {
+        let win = window.open(
+            "./posts/" + date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()
+            + "/pdf/" + Meteor.userId()
+            + "/" + Meteor.user().services.resume.loginTokens[0].hashedToken,
+            '_blank'
+        );
+        win.focus();
+    },
+
     render() {
         return (
             <div>
@@ -100,7 +110,7 @@ AllPosts = React.createClass({
                 return (
                     <div>
                         { getFrenchDate(date1) }&nbsp;&nbsp;
-                        <a target="_blank" href={"./posts/" + date1.getDate() + "-" + (date1.getMonth() + 1) + "-" + date1.getFullYear() + "/pdf/" + Meteor.userId()}>
+                        <a onClick={ () => {this.downloadPdf(date1);}}>
                             (<i className="fa fa-download"></i> télécharger)
                         </a>
                     </div>
@@ -110,7 +120,7 @@ AllPosts = React.createClass({
             return (
                 <div>
                     { getFrenchDate(date1) }&nbsp;&nbsp;
-                    <a target="_blank" href={"./posts/" + date1.getDate() + "-" + (date1.getMonth() + 1) + "-" + date1.getFullYear() + "/pdf/" + Meteor.userId()}>
+                    <a onClick={ () => {this.downloadPdf(date1);}}>
                         (<i className="fa fa-download"></i> télécharger)
                     </a>
                 </div>

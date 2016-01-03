@@ -1,4 +1,4 @@
-Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res, next) {
+Picker.route('/walls/:wallId/posts/:date/pdf/:userId/:loginToken', function(params, req, res, next) {
     let fs = Npm.require('fs');
     let Future = Npm.require('fibers/future');
     let fileName = "generated_coucou.pdf";
