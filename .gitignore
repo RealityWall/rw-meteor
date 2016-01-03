@@ -3,5 +3,3 @@
 
 .meteor/local
 .meteor/meteorite
-
-server/initialization/mailer.js
