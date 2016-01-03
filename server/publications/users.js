@@ -37,6 +37,6 @@ Accounts.onCreateUser( (options, user) => {
     return user;
 });
 
-Meteor.publish('getUserById', (userId) => {
-    return Meteor.users.find(userId);
+Meteor.publish("currentAccessToken", () => {
+    return Meteor.users.find(this.userId, {fields: {'services.resume.loginTokens': 1}});
 });

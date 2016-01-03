@@ -35,7 +35,7 @@ WallPostsComponent = React.createClass({
                 </div>
             </LayoutComponent>
         )
-    },
+    }
 });
 
 AllPosts = React.createClass({

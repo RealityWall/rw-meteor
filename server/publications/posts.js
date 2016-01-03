@@ -4,9 +4,4 @@ Meteor.publish('postsByWallId', (userId, wallId) => {
     } else {
         return Posts.find({wallId: 'haters_gonna_hate'});
     }
-
-});
-
-Meteor.publish('postsByUserId', (userId, limit) => {
-    return Posts.find({userId: userId}, {limit: limit ? limit : 10});
 });
