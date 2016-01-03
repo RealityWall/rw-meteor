@@ -5,4 +5,3 @@
 .meteor/meteorite
 
 server/initialization/mailer.js
-server/social-config.js
