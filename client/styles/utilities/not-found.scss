@@ -1,0 +1,25 @@
+@import "../constants";
+
+.not-found-container {
+  @media screen and (max-width: 339px) {
+    img {
+      width:100%;
+    }
+  }
+
+  > img {
+    display:block;
+    margin-right:auto;
+    margin-left:auto;
+    margin-top:30px;
+    margin-bottom:30px;
+  }
+
+
+
+  > div.text-info {
+    font-size: 2em;
+    color: $darkgrey;
+    text-align:center;
+  }
+}

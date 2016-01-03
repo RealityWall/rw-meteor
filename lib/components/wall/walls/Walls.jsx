@@ -1,5 +1,13 @@
 let map = null;
 let markers = [];
+let wallIcon = null;
+if (Meteor.isClient) {
+    wallIcon = L.icon({
+        iconUrl: '/img/wall_icon.gif',
+        iconRetinaUrl: '/img/wall_icon.gif',
+        iconSize: [50, 50]
+    });
+}
 
 WallsComponent = React.createClass({
 
@@ -21,12 +29,11 @@ WallsComponent = React.createClass({
     },
 
     componentDidMount() {
-        map = new google.maps.Map(document.getElementById('walls-map'), {
-            center: {lat: 43.700000, lng: 7.250000},
-            zoom: 10,
-            disableDefaultUI: true,
-            minZoom: 6, maxZoom: 15
-        });
+
+        L.Icon.Default.imagePath = 'packages/bevanhunt_leaflet/images';
+        map = L.map('walls-map').setView([43.700000, 7.250000], 11);
+
+        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {}).addTo(map);
         this.displayWalls();
 
         window.addEventListener('searchchange', this._onSearchChange);
@@ -40,14 +47,14 @@ WallsComponent = React.createClass({
         this.setState({
             showUserStep: Meteor.isClient && window.location.search === '?next=post',
             showAdminStep: Meteor.isClient && window.location.search === '?next=upload'
-                || Meteor.isClient && window.location.search === '?next=posts'
+            || Meteor.isClient && window.location.search === '?next=posts'
         });
     },
 
     componentWillUpdate() {
         // remove all markers
         markers.forEach( (marker) => {
-            marker.setMap(null);
+            map.removeLayer(marker);
         });
         markers = [];
 
@@ -55,39 +62,16 @@ WallsComponent = React.createClass({
         this.displayWalls();
     },
 
-    zoom(out) {
-        if (out && map) map.setZoom(map.getZoom() - 1);
-        if (!out && map) map.setZoom(map.getZoom() + 1);
-    },
-
     displayWalls() {
-
-        CustomMarker.prototype = new google.maps.OverlayView();
-        function CustomMarker(latlng, map, args) { this.latlng = latlng; this.args = args; this.setMap(map); }
-        CustomMarker.prototype.remove = function() { if (this.div) { this.div.parentNode.removeChild(this.div); this.div = null; }};
-        CustomMarker.prototype.getPosition = function() { return this.latlng; };
-        CustomMarker.prototype.draw = function() {
-            let self = this;
-            let div = this.div;
-            if (!div) {
-                div = this.div = document.createElement('div');
-
-                div.className = 'custom-marker';
-                div.innerHTML = '<img src="img/wall_pictogram.png"/><div class="badge">' + this.args.postCount + '</div>';
-
-                if (typeof(self.args.marker_id) !== 'undefined') div.dataset.marker_id = self.args.marker_id;
-                google.maps.event.addDomListener(div, "click", function(event) {google.maps.event.trigger(self, "click");});
-                let panes = this.getPanes();
-                panes.overlayImage.appendChild(div);
-            }
-
-            let point = this.getProjection().fromLatLngToDivPixel(this.latlng);
-            if (point) { div.style.left = point.x + 'px'; div.style.top = point.y + 'px'; }
-        };
-
         this.data.walls.forEach( (wall) => {
-            let marker = new CustomMarker(new google.maps.LatLng(wall.loc.lat, wall.loc.lon), map, {postCount: wall.postCount});
-            marker.addListener('click', () => {
+            let marker = L.marker([wall.loc.lat, wall.loc.lon], {
+                icon: wallIcon,
+                clickable: true,
+                title: wall.address.address + " "
+                + (wall.address.address2 ? (wall.address.address2 + " ") : "") + wall.address.postalCode + " " + wall.address.city.toUpperCase(),
+                alt: 'wall icon'
+            }).addTo(map);
+            marker.addEventListener('click', () => {
                 if (window.location.search == '?next=post') {
                     FlowRouter.go('/walls/' + wall._id + '/post');
                 } else if (window.location.search == '?next=upload') {
@@ -98,7 +82,6 @@ WallsComponent = React.createClass({
                     FlowRouter.go('/walls/' + wall._id);
                 }
             });
-
             markers.push(marker);
         });
     },
@@ -117,10 +100,6 @@ WallsComponent = React.createClass({
                             </div>
                             : null
                     }
-                    <div className="zoom-controls">
-                        <div onClick={ () => {this.zoom(false)}}><i className="fa fa-plus"></i></div>
-                        <div onClick={ () => {this.zoom(true)}}><i className="fa fa-minus"></i></div>
-                    </div>
                 </div>
             </LayoutComponent>
         )
