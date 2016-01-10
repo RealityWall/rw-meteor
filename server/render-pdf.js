@@ -75,8 +75,8 @@ Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res
                 fs.readFile(filePath.replace('.html', '.pdf'), (err, data) => {
                     if (err) return console.log(err);
                     // delete files
-                    //fs.unlink( filePath );
-                    //fs.unlink( filePath.replace('.html', '.pdf') );
+                    fs.unlink( filePath );
+                    fs.unlink( filePath.replace('.html', '.pdf') );
                     fut.return(data);
                 });
 
