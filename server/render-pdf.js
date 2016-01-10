@@ -1,7 +1,7 @@
 Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res, next) {
     let fs = Npm.require('fs');
     let Future = Npm.require('fibers/future');
-    let fileName = "generated_coucou.pdf";
+    let fileName = "/tmp/generated_coucou.pdf";
     let fut = new Future();
 
     let urlArray = req.url.split("?token=");
@@ -27,6 +27,10 @@ Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res
                     hidden: false
                 }).fetch();
 
+                posts.forEach((post) => {
+                    if (post.author.imagePath == "/img/unknown_user.png") post.author.imagePath = process.env.ROOT_URL + post.author.imagePath;
+                });
+
                 let images = ProfileImages.find({
                     _id: {$in: posts.map( (post) => {
                         if (!post.author.imagePath) return post.author.imageId;
@@ -36,43 +40,46 @@ Picker.route('/walls/:wallId/posts/:date/pdf/:userId', function(params, req, res
                 posts.forEach( (post) => {
                     for (let i = 0; i < images.length; i++) {
                         if (post.author.imageId == images[i]._id) {
-                            post.author.imagePath = process.env.URL + images[i].url();
+                            post.author.imagePath = process.env.ROOT_URL + images[i].url();
                             break;
                         }
                     }
                 });
 
                 // This is where SSR reads the pdf and send a information which
-                // you can use in it
-                let template = 'userPdf';
-                SSR.compileTemplate(template, Assets.getText('pdfs/userPdf.html'));
-                let html = SSR.render(template, {posts: posts});
+                // you can use in it`
+                let html = Spacebars.toHTML({posts: posts}, Assets.getText('pdfs/userPdf.html'));
+                let filename = `userPdf.html`;
+                let filePath = '/tmp/' + filename;
 
-                let options = {
-                    renderDelay: 10,
-                    phantomConfig: {
-                        'ignore-ssl-errors': 'true'
-                    },
-                    siteType: 'html',
-                    'paperSize': {
-                        'format': 'A3',
-                        'orientation': 'landscape',
-                        'margin': '1cm'
-                    },
-                    onLoadFinished: {
-                        fn: function() {
-                        }
-                    },
-                    customCSS: Assets.getText('pdfs/userPdf.css')
-                };
+                // write html to file
+                let writeFileSync = Meteor.wrapAsync( fs.writeFile );
+                try {
+                    writeFileSync( filePath, html );
+                } catch ( error ) {
+                    console.log( 'Error writing html to file:');
+                    console.log( error );
+                }
 
-                webshot(html, fileName, options, (err) => {
-                    fs.readFile(fileName, (err, data) => {
-                        if (err) return console.log(err);
-                        fs.unlinkSync(fileName);
-                        fut.return(data);
-                    });
+                // call phantom to render pdf from html
+                let childProcess = Npm.require('child_process');
+                let cmd = 'phantomjs --config=assets/app/config.json assets/app/phantomDriver.js ' + filePath;
+                let execSync = Meteor.wrapAsync( childProcess.exec );
+                try {
+                    execSync( cmd );
+                } catch ( error ) {
+                    console.log( 'Error phantomjs:');
+                    console.log( error );
+                }
+
+                fs.readFile(filePath.replace('.html', '.pdf'), (err, data) => {
+                    if (err) return console.log(err);
+                    // delete files
+                    //fs.unlink( filePath );
+                    //fs.unlink( filePath.replace('.html', '.pdf') );
+                    fut.return(data);
                 });
+
 
                 res.writeHead(200, {
                     'Content-Type': 'application/pdf',
