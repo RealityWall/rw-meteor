@@ -32,8 +32,6 @@ thereactivestack:blazetoreact
 cfs:standard-packages
 cfs:gridfs
 ostrio:mailer
-bryanmorgan:webshot
-meteorhacks:ssr
 meteorhacks:picker
 bevanhunt:leaflet
 dburles:spacebars-tohtml
